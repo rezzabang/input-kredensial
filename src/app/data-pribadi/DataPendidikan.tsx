@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Button, Input, DatePicker, Form, Upload } from 'antd';
+import { Input, DatePicker, Form, Upload } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
 const normFile = (e: any) => {
@@ -11,9 +11,7 @@ const normFile = (e: any) => {
   };
 
 const DataPendidikan = () => (
-  <div className="App" style={{ padding: '20px' }}>
-    <h1>Kredensial Rekam Medis</h1>
-        <div>
+        <>
             <h1>B. Data Pendidikan</h1>
             <Form
                 name="data-pendidikan"
@@ -64,15 +62,8 @@ const DataPendidikan = () => (
                         </button>
                     </Upload>
                 </Form.Item>
-
-                <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
-                    <Button type="primary" htmlType="submit">
-                    Submit
-                    </Button>
-                </Form.Item>
             </Form>
-        </div>
-  </div>
-);
+        </>
+    );
 
 export default DataPendidikan;
