@@ -2,7 +2,6 @@
 import React from 'react';
 import { Button, Input, DatePicker, Select, Form, Upload} from 'antd';
 import { PlusOutlined, MinusCircleOutlined  } from '@ant-design/icons';
-import { text } from 'stream/consumers';
 
 const normFile = (e: any) => {
   if (Array.isArray(e)) {
@@ -14,7 +13,7 @@ const normFile = (e: any) => {
 const DataPribadi = () => {
     const [form] = Form.useForm();
   
-    const handleSubmit = (values: any) => {
+    const handleSubmit = (values: string) => {
       console.log('Form values:', values);
     };
   
@@ -165,7 +164,7 @@ const DataPribadi = () => {
                       <Form.Item
                         name={[name, 'namapelatihan']}
                         style={{ flex: 1 }}
-                        rules={[{ required: true, message: 'Isi nama pelatihan' }]}
+                        rules={[{ message: 'Isi nama pelatihan' }]}
                       >
                         <Input placeholder="Nama Pelatihan" />
                       </Form.Item>
@@ -173,7 +172,7 @@ const DataPribadi = () => {
                       <Form.Item
                         name={[name, 'jenispelatihan']}
                         style={{ flex: 1 }}
-                        rules={[{ required: true, message: 'Pilih jenis pelatihan' }]}
+                        rules={[{ message: 'Pilih jenis pelatihan' }]}
                       >
                         <Select
                           placeholder="Pilih Jenis Pelatihan"
