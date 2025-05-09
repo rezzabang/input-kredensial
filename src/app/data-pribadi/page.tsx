@@ -1,15 +1,31 @@
 'use client';
 import React from 'react';
-import { Button, Input, DatePicker, Select, Form, Upload} from 'antd';
-import { PlusOutlined, MinusCircleOutlined  } from '@ant-design/icons';
+import { Button, Input, DatePicker, Select, Form, Upload, UploadProps, message, Card, Row, Col} from 'antd';
+import { PlusOutlined, MinusCircleOutlined , UploadOutlined } from '@ant-design/icons';
+import type { UploadChangeParam, UploadFile } from 'antd/es/upload/interface';
 
-const normFile = (e: any) => {
+const props: UploadProps = {
+  beforeUpload: (file) => {
+    const isPDF = file.type === 'application/pdf';
+    if (!isPDF) {
+      message.error(`${file.name} bukan file PDF`);
+    }
+    return isPDF || Upload.LIST_IGNORE;
+  },
+  onChange: (info) => {
+    console.log(info.fileList);
+  },
+};
+
+const normFile = (
+  e: UploadChangeParam<UploadFile> | UploadFile[]
+): UploadFile[] => {
+  console.log('Upload event:', e);
   if (Array.isArray(e)) {
     return e;
   }
-  return e?.fileList;
+  return e?.fileList || [];
 };
-
 const DataPribadi = () => {
     const [form] = Form.useForm();
   
@@ -24,11 +40,10 @@ const DataPribadi = () => {
           form={form}
           name="kredensial-form"
           onFinish={handleSubmit}
-          initialValues={{ jeniskelamin: 'Pilih Jenis Kelamin' }}
+          initialValues={{ jenisKelamin: 'Pilih Jenis Kelamin', fileIjazah: []  }}
           style={{ maxWidth: '100%' }}
         >
           <div style={{ display: 'flex', gap: '40px' }}>
-            {/* Left Column */}
             <div style={{ flex: 1 }}>
               <h2>A. Data Pribadi</h2>
   
@@ -36,15 +51,15 @@ const DataPribadi = () => {
                 <Input />
               </Form.Item>
   
-              <Form.Item label="Tempat Lahir" name="tempatlahir" rules={[{ required: true, message: 'Tempat Lahir mohon untuk diisi!' }]}>
+              <Form.Item label="Tempat Lahir" name="tempatLahir" rules={[{ required: true, message: 'Tempat Lahir mohon untuk diisi!' }]}>
                 <Input />
               </Form.Item>
   
-              <Form.Item label="Tanggal Lahir" name="tanggalahir" rules={[{ required: true, message: 'Tanggal Lahir mohon untuk diisi!' }]}>
+              <Form.Item label="Tanggal Lahir" name="tanggalLahir" rules={[{ required: true, message: 'Tanggal Lahir mohon untuk diisi!' }]}>
                 <DatePicker style={{ width: '100%' }} />
               </Form.Item>
   
-              <Form.Item label="Jenis Kelamin" name="jeniskelamin" rules={[{ required: true, message: 'Jenis Kelamin mohon untuk diisi!' }]}>
+              <Form.Item label="Jenis Kelamin" name="jenisKelamin" rules={[{ required: true, message: 'Jenis Kelamin mohon untuk diisi!' }]}>
                 <Select
                   options={[
                     { value: 'Laki-laki', label: 'Laki-laki' },
@@ -61,14 +76,14 @@ const DataPribadi = () => {
                 <Input />
               </Form.Item>
   
-              <Form.Item label="Alamat" name="address" rules={[{ required: true, message: 'Alamat mohon untuk diisi!' }]}>
+              <Form.Item label="Alamat" name="alamat" rules={[{ required: true, message: 'Alamat mohon untuk diisi!' }]}>
                 <Input.TextArea />
               </Form.Item>
             </div>
 
             <div style={{ flex: 1 }}>
             <h2>B. Data Pendidikan</h2>
-            <Form.Item label="Nama Sekolah" name="sekolah" rules={[{ required: true, message: 'Nama Sekolah mohon untuk diisi!' }]}>
+                <Form.Item label="Nama Perguruan Tinggi" name="universitas" rules={[{ required: true, message: 'Nama Sekolah mohon untuk diisi!' }]}>
                     <Input type="text" id="sekolah"/>
                 </Form.Item>
 
@@ -82,7 +97,7 @@ const DataPribadi = () => {
 
                 <Form.Item
                     label="Nomor Ijazah"
-                    name="noijazah"
+                    name="noIjazah"
                     rules={[{ required: true, message: 'Nomor Ijazah mohon diisi!' }]}
                 >
                     <Input type="text" id="noijazah"/>
@@ -90,26 +105,22 @@ const DataPribadi = () => {
                 
                 <Form.Item
                     label="Tanggal Ijazah"
-                    name="tanggaijazah"
+                    name="tanggalIjazah"
                     rules={[{ required: true, message: 'Tanggal Ijazah mohon diisi!' }]}
                 >
                     <DatePicker id="tanggaijazah" />
                 </Form.Item>
 
-                <Form.Item label="Upload Ijazah" valuePropName="fileList" getValueFromEvent={normFile}>
-                    <Upload 
-                        action="/upload.do"
-                        listType="picture-card"
-                        accept=".pdf"
-                    >
-                        <button
-                            style={{ color: 'inherit', cursor: 'inherit', border: 0, background: 'none' }}
-                            type="button"
-                        >
-                        <PlusOutlined />
-                            <div style={{ marginTop: 8 }}>Tambah File</div>
-                        </button>
-                    </Upload>
+                <Form.Item
+                  label="Upload Ijazah"
+                  name="fileIjazah"
+                  valuePropName="fileList"
+                  rules={[{ required: true, message: 'File Ijazah mohon diupload!' }]}
+                  getValueFromEvent={normFile}
+                >
+                  <Upload {...props}>
+                    <Button icon={<UploadOutlined />}>File Ijazah</Button>
+                  </Upload>
                 </Form.Item>
             </div>
           </div>
@@ -121,88 +132,92 @@ const DataPribadi = () => {
               <Input />
             </Form.Item>
 
-            <Form.Item label="Nama Tempat Kerja" name="namatempatbekerja" rules={[{ required: true, message: 'Nama Tempat Kerja mohon untuk diisi!' }]}>
+            <Form.Item label="Nama Tempat Kerja" name="namaTempatBekerja" rules={[{ required: true, message: 'Nama Tempat Kerja mohon untuk diisi!' }]}>
               <Input />
             </Form.Item>
 
-            <Form.Item label="Alamat Tempat Kerja" name="jobaddress" rules={[{ required: true, message: 'Alamat Tempat Kerja mohon untuk diisi!' }]}>
+            <Form.Item label="Alamat Tempat Kerja" name="alamatPekerjaan" rules={[{ required: true, message: 'Alamat Tempat Kerja mohon untuk diisi!' }]}>
               <Input.TextArea />
             </Form.Item>
 
-            <Form.Item label="Nomor STR" name="nostr" rules={[{ required: true, message: 'Nomor STR mohon untuk diisi!' }]}>
+            <Form.Item label="Nomor STR" name="noStr" rules={[{ required: true, message: 'Nomor STR mohon untuk diisi!' }]}>
               <Input />
             </Form.Item>
 
-            <Form.Item label="Tanggal Berlaku STR" name="tanggalstr" rules={[{ required: true, message: 'TTanggal Berlaku STR mohon untuk diisi!' }]}>
+            <Form.Item label="Tanggal Berlaku STR" name="tanggalStr" rules={[{ required: true, message: 'TTanggal Berlaku STR mohon untuk diisi!' }]}>
                 <DatePicker style={{ width: '100%' }} />
               </Form.Item>
 
-            <Form.Item label="Nomor SIP" name="nosip" rules={[{ required: true, message: 'Nomor SIP mohon untuk diisi!' }]}>
+            <Form.Item label="Nomor SIP" name="noSip" rules={[{ required: true, message: 'Nomor SIP mohon untuk diisi!' }]}>
               <Input />
             </Form.Item>
 
-            <Form.Item label="Tanggal Berlaku SIP" name="tanggasip" rules={[{ required: true, message: 'TTanggal Berlaku SIP mohon untuk diisi!' }]}>
+            <Form.Item label="Tanggal Berlaku SIP" name="tanggalSip" rules={[{ required: true, message: 'TTanggal Berlaku SIP mohon untuk diisi!' }]}>
                 <DatePicker style={{ width: '100%' }} />
               </Form.Item>
             </div>
             <div style={{ flex: 1 }}>
-            <h2>D. Data Pelatihan</h2>
-
-            <Form.List name="pelatihan">
-              {(fields, { add, remove }) => (
-                <>
-                  {fields.map(({ key, name }) => (
-                    <div
-                      key={key}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '16px',
-                        marginBottom: 12,
-                      }}
-                    >
-                      <Form.Item
-                        name={[name, 'namapelatihan']}
-                        style={{ flex: 1 }}
-                        rules={[{ message: 'Isi nama pelatihan' }]}
-                      >
-                        <Input placeholder="Nama Pelatihan" />
-                      </Form.Item>
-
-                      <Form.Item
-                        name={[name, 'jenispelatihan']}
-                        style={{ flex: 1 }}
-                        rules={[{ message: 'Pilih jenis pelatihan' }]}
-                      >
-                        <Select
-                          placeholder="Pilih Jenis Pelatihan"
-                          options={[
-                            { value: 'Koder', label: 'Koder' },
-                            { value: 'Pelaporan', label: 'Pelaporan' },
-                            { value: 'Arsip', label: 'Arsip' },
-                            { value: 'Lainnya', label: 'Lainnya' },
-                          ]}
-                        />
-                      </Form.Item>
-
-                      <MinusCircleOutlined
-                        onClick={() => remove(name)}
-                        style={{ color: 'red', fontSize: '18px', cursor: 'pointer' }}
-                      />
-                    </div>
-                  ))}
-
-                  <Form.Item style={{ textAlign: 'center' }}>
-                    <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-                      Tambah Pelatihan
-                    </Button>
-                  </Form.Item>
-                </>
-              )}
-            </Form.List>
+              <h2>D. Data Pelatihan</h2>
+              <Form.List name="pelatihan">
+                {(fields, { add, remove }) => (
+                  <>
+                    {fields.map(({ key, name, ...restField }) => (
+                      <Card key={key} style={{ marginBottom: 16 }}>
+                        <Row gutter={6}>
+                          <Col xs={24} sm={12}>
+                            <Form.Item
+                              {...restField}
+                              name={[name, 'namaPelatihan']}
+                            >
+                              <Input placeholder="Nama Pelatihan" />
+                            </Form.Item>
+                          </Col>
+                          <Col xs={24} sm={12}>
+                            <Form.Item
+                              {...restField}
+                              name={[name, 'jenisPelatihan']}
+                            >
+                              <Select
+                                placeholder="Kategori"
+                                options={[
+                                  { value: 'Koder', label: 'Koder' },
+                                  { value: 'Pelaporan', label: 'Pelaporan' },
+                                  { value: 'Arsip', label: 'Arsip' },
+                                  { value: 'Lainnya', label: 'Lainnya' },
+                                ]}
+                              />
+                            </Form.Item>
+                          </Col>
+                          <Col xs={24} sm={12}>
+                            <Form.Item
+                              {...restField}
+                              name={[name, 'filePelatihan']}
+                              valuePropName="fileList"
+                              getValueFromEvent={normFile}
+                            >
+                              <Upload {...props}>
+                                <Button icon={<UploadOutlined />}>Unggah File</Button>
+                              </Upload>
+                            </Form.Item>
+                          </Col>
+                          <Col xs={24} sm={12} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                            <Button danger icon={<MinusCircleOutlined />} onClick={() => remove(name)}>
+                              Hapus Pelatihan
+                            </Button>
+                          </Col>
+                        </Row>
+                      </Card>
+                    ))}
+                    <Form.Item>
+                      <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                        Tambah Pelatihan
+                      </Button>
+                    </Form.Item>
+                  </>
+                )}
+              </Form.List>
             </div>
           </div>
-          {/* Single Submit Button */}
           <Form.Item style={{ marginTop: 24, textAlign: 'center' }}>
             <Button type="primary" htmlType="submit">
               SIMPAN

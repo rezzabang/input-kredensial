@@ -1,6 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import '@ant-design/v5-patch-for-react-19';
+import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import {
   HomeOutlined,
@@ -13,7 +15,6 @@ import { Layout, Menu, theme } from 'antd';
 import Link from 'next/link';
 import Image from 'next/image';
 
-
 const { Sider, Content } = Layout;
 
 const RootLayout = ({ children }: React.PropsWithChildren) => {
@@ -21,6 +22,14 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (pathname === '/exam') {
+      setCollapsed(true);
+    }
+  }, [pathname]);
 
   return (
     <AntdRegistry>
