@@ -11,7 +11,7 @@ import {
   UserOutlined,
   FileSearchOutlined,
 } from '@ant-design/icons';
-import { Layout, Menu, theme } from 'antd';
+import { Layout, Menu, theme, Skeleton } from 'antd';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -19,6 +19,7 @@ const { Sider, Content } = Layout;
 
 const RootLayout = ({ children }: React.PropsWithChildren) => {
   const [collapsed, setCollapsed] = useState(false);
+  const [loading, setLoading] = useState(true);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -29,6 +30,12 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
     if (pathname === '/exam') {
       setCollapsed(true);
     }
+
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   return (
@@ -37,10 +44,10 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
         <body>
           <Layout>
             <Sider trigger={null} collapsible collapsed={collapsed}>
-              <div 
-                className="logo-vertical" 
-                style={{ 
-                  textAlign: 'center', 
+              <div
+                className="logo-vertical"
+                style={{
+                  textAlign: 'center',
                   paddingTop: '10px',
                   transition: 'all 0.3s ease',
                   paddingBottom: '10px',
@@ -54,7 +61,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
                     width={40}
                     height={40}
                     onClick={() => setCollapsed(!collapsed)}
-                    style={{ cursor: 'pointer'}}
+                    style={{ cursor: 'pointer' }}
                   />
                 ) : (
                   <Image
@@ -63,7 +70,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
                     width={190}
                     height={70}
                     onClick={() => setCollapsed(!collapsed)}
-                    style={{ cursor: 'pointer'}}
+                    style={{ cursor: 'pointer' }}
                   />
                 )}
               </div>
@@ -101,7 +108,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
                 ]}
               />
             </Sider>
-            <Layout>
+            <Layout style={{ minHeight: '100vh' }}>
               <Content
                 style={{
                   margin: '24px 16px',
@@ -111,7 +118,11 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
                   borderRadius: borderRadiusLG,
                 }}
               >
-                {children}
+                {loading ? (
+                  <Skeleton active paragraph={{ rows: 10 }} />
+                ) : (
+                  children
+                )}
               </Content>
             </Layout>
           </Layout>

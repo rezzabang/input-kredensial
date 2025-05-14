@@ -14,10 +14,15 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model Dataribadi
+ * Model Datapribadi
  * 
  */
-export type Dataribadi = $Result.DefaultSelection<Prisma.$DataribadiPayload>
+export type Datapribadi = $Result.DefaultSelection<Prisma.$DatapribadiPayload>
+/**
+ * Model DataPekerjaan
+ * 
+ */
+export type DataPekerjaan = $Result.DefaultSelection<Prisma.$DataPekerjaanPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -26,8 +31,8 @@ export type Dataribadi = $Result.DefaultSelection<Prisma.$DataribadiPayload>
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Dataribadis
- * const dataribadis = await prisma.dataribadi.findMany()
+ * // Fetch zero or more Datapribadis
+ * const datapribadis = await prisma.datapribadi.findMany()
  * ```
  *
  *
@@ -47,8 +52,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Dataribadis
-   * const dataribadis = await prisma.dataribadi.findMany()
+   * // Fetch zero or more Datapribadis
+   * const datapribadis = await prisma.datapribadi.findMany()
    * ```
    *
    *
@@ -145,14 +150,24 @@ export class PrismaClient<
   }>>
 
       /**
-   * `prisma.dataribadi`: Exposes CRUD operations for the **Dataribadi** model.
+   * `prisma.datapribadi`: Exposes CRUD operations for the **Datapribadi** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Dataribadis
-    * const dataribadis = await prisma.dataribadi.findMany()
+    * // Fetch zero or more Datapribadis
+    * const datapribadis = await prisma.datapribadi.findMany()
     * ```
     */
-  get dataribadi(): Prisma.DataribadiDelegate<ExtArgs, ClientOptions>;
+  get datapribadi(): Prisma.DatapribadiDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dataPekerjaan`: Exposes CRUD operations for the **DataPekerjaan** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DataPekerjaans
+    * const dataPekerjaans = await prisma.dataPekerjaan.findMany()
+    * ```
+    */
+  get dataPekerjaan(): Prisma.DataPekerjaanDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -593,7 +608,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Dataribadi: 'Dataribadi'
+    Datapribadi: 'Datapribadi',
+    DataPekerjaan: 'DataPekerjaan'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -612,73 +628,139 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "dataribadi"
+      modelProps: "datapribadi" | "dataPekerjaan"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      Dataribadi: {
-        payload: Prisma.$DataribadiPayload<ExtArgs>
-        fields: Prisma.DataribadiFieldRefs
+      Datapribadi: {
+        payload: Prisma.$DatapribadiPayload<ExtArgs>
+        fields: Prisma.DatapribadiFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.DataribadiFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DataribadiPayload> | null
+            args: Prisma.DatapribadiFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DatapribadiPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.DataribadiFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DataribadiPayload>
+            args: Prisma.DatapribadiFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DatapribadiPayload>
           }
           findFirst: {
-            args: Prisma.DataribadiFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DataribadiPayload> | null
+            args: Prisma.DatapribadiFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DatapribadiPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.DataribadiFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DataribadiPayload>
+            args: Prisma.DatapribadiFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DatapribadiPayload>
           }
           findMany: {
-            args: Prisma.DataribadiFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DataribadiPayload>[]
+            args: Prisma.DatapribadiFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DatapribadiPayload>[]
           }
           create: {
-            args: Prisma.DataribadiCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DataribadiPayload>
+            args: Prisma.DatapribadiCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DatapribadiPayload>
           }
           createMany: {
-            args: Prisma.DataribadiCreateManyArgs<ExtArgs>
+            args: Prisma.DatapribadiCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.DataribadiDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DataribadiPayload>
+            args: Prisma.DatapribadiDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DatapribadiPayload>
           }
           update: {
-            args: Prisma.DataribadiUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DataribadiPayload>
+            args: Prisma.DatapribadiUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DatapribadiPayload>
           }
           deleteMany: {
-            args: Prisma.DataribadiDeleteManyArgs<ExtArgs>
+            args: Prisma.DatapribadiDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.DataribadiUpdateManyArgs<ExtArgs>
+            args: Prisma.DatapribadiUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.DataribadiUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DataribadiPayload>
+            args: Prisma.DatapribadiUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DatapribadiPayload>
           }
           aggregate: {
-            args: Prisma.DataribadiAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateDataribadi>
+            args: Prisma.DatapribadiAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDatapribadi>
           }
           groupBy: {
-            args: Prisma.DataribadiGroupByArgs<ExtArgs>
-            result: $Utils.Optional<DataribadiGroupByOutputType>[]
+            args: Prisma.DatapribadiGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DatapribadiGroupByOutputType>[]
           }
           count: {
-            args: Prisma.DataribadiCountArgs<ExtArgs>
-            result: $Utils.Optional<DataribadiCountAggregateOutputType> | number
+            args: Prisma.DatapribadiCountArgs<ExtArgs>
+            result: $Utils.Optional<DatapribadiCountAggregateOutputType> | number
+          }
+        }
+      }
+      DataPekerjaan: {
+        payload: Prisma.$DataPekerjaanPayload<ExtArgs>
+        fields: Prisma.DataPekerjaanFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DataPekerjaanFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPekerjaanPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DataPekerjaanFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPekerjaanPayload>
+          }
+          findFirst: {
+            args: Prisma.DataPekerjaanFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPekerjaanPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DataPekerjaanFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPekerjaanPayload>
+          }
+          findMany: {
+            args: Prisma.DataPekerjaanFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPekerjaanPayload>[]
+          }
+          create: {
+            args: Prisma.DataPekerjaanCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPekerjaanPayload>
+          }
+          createMany: {
+            args: Prisma.DataPekerjaanCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.DataPekerjaanDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPekerjaanPayload>
+          }
+          update: {
+            args: Prisma.DataPekerjaanUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPekerjaanPayload>
+          }
+          deleteMany: {
+            args: Prisma.DataPekerjaanDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DataPekerjaanUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.DataPekerjaanUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPekerjaanPayload>
+          }
+          aggregate: {
+            args: Prisma.DataPekerjaanAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDataPekerjaan>
+          }
+          groupBy: {
+            args: Prisma.DataPekerjaanGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DataPekerjaanGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DataPekerjaanCountArgs<ExtArgs>
+            result: $Utils.Optional<DataPekerjaanCountAggregateOutputType> | number
           }
         }
       }
@@ -766,7 +848,8 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
-    dataribadi?: DataribadiOmit
+    datapribadi?: DatapribadiOmit
+    dataPekerjaan?: DataPekerjaanOmit
   }
 
   /* Types for Logging */
@@ -862,16 +945,16 @@ export namespace Prisma {
    */
 
   /**
-   * Model Dataribadi
+   * Model Datapribadi
    */
 
-  export type AggregateDataribadi = {
-    _count: DataribadiCountAggregateOutputType | null
-    _min: DataribadiMinAggregateOutputType | null
-    _max: DataribadiMaxAggregateOutputType | null
+  export type AggregateDatapribadi = {
+    _count: DatapribadiCountAggregateOutputType | null
+    _min: DatapribadiMinAggregateOutputType | null
+    _max: DatapribadiMaxAggregateOutputType | null
   }
 
-  export type DataribadiMinAggregateOutputType = {
+  export type DatapribadiMinAggregateOutputType = {
     nip: string | null
     nama: string | null
     tempatLahir: string | null
@@ -882,7 +965,7 @@ export namespace Prisma {
     alamat: string | null
   }
 
-  export type DataribadiMaxAggregateOutputType = {
+  export type DatapribadiMaxAggregateOutputType = {
     nip: string | null
     nama: string | null
     tempatLahir: string | null
@@ -893,7 +976,7 @@ export namespace Prisma {
     alamat: string | null
   }
 
-  export type DataribadiCountAggregateOutputType = {
+  export type DatapribadiCountAggregateOutputType = {
     nip: number
     nama: number
     tempatLahir: number
@@ -906,7 +989,7 @@ export namespace Prisma {
   }
 
 
-  export type DataribadiMinAggregateInputType = {
+  export type DatapribadiMinAggregateInputType = {
     nip?: true
     nama?: true
     tempatLahir?: true
@@ -917,7 +1000,7 @@ export namespace Prisma {
     alamat?: true
   }
 
-  export type DataribadiMaxAggregateInputType = {
+  export type DatapribadiMaxAggregateInputType = {
     nip?: true
     nama?: true
     tempatLahir?: true
@@ -928,7 +1011,7 @@ export namespace Prisma {
     alamat?: true
   }
 
-  export type DataribadiCountAggregateInputType = {
+  export type DatapribadiCountAggregateInputType = {
     nip?: true
     nama?: true
     tempatLahir?: true
@@ -940,79 +1023,79 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type DataribadiAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DatapribadiAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Dataribadi to aggregate.
+     * Filter which Datapribadi to aggregate.
      */
-    where?: DataribadiWhereInput
+    where?: DatapribadiWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Dataribadis to fetch.
+     * Determine the order of Datapribadis to fetch.
      */
-    orderBy?: DataribadiOrderByWithRelationInput | DataribadiOrderByWithRelationInput[]
+    orderBy?: DatapribadiOrderByWithRelationInput | DatapribadiOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: DataribadiWhereUniqueInput
+    cursor?: DatapribadiWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Dataribadis from the position of the cursor.
+     * Take `±n` Datapribadis from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Dataribadis.
+     * Skip the first `n` Datapribadis.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Dataribadis
+     * Count returned Datapribadis
     **/
-    _count?: true | DataribadiCountAggregateInputType
+    _count?: true | DatapribadiCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: DataribadiMinAggregateInputType
+    _min?: DatapribadiMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: DataribadiMaxAggregateInputType
+    _max?: DatapribadiMaxAggregateInputType
   }
 
-  export type GetDataribadiAggregateType<T extends DataribadiAggregateArgs> = {
-        [P in keyof T & keyof AggregateDataribadi]: P extends '_count' | 'count'
+  export type GetDatapribadiAggregateType<T extends DatapribadiAggregateArgs> = {
+        [P in keyof T & keyof AggregateDatapribadi]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateDataribadi[P]>
-      : GetScalarType<T[P], AggregateDataribadi[P]>
+        : GetScalarType<T[P], AggregateDatapribadi[P]>
+      : GetScalarType<T[P], AggregateDatapribadi[P]>
   }
 
 
 
 
-  export type DataribadiGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DataribadiWhereInput
-    orderBy?: DataribadiOrderByWithAggregationInput | DataribadiOrderByWithAggregationInput[]
-    by: DataribadiScalarFieldEnum[] | DataribadiScalarFieldEnum
-    having?: DataribadiScalarWhereWithAggregatesInput
+  export type DatapribadiGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DatapribadiWhereInput
+    orderBy?: DatapribadiOrderByWithAggregationInput | DatapribadiOrderByWithAggregationInput[]
+    by: DatapribadiScalarFieldEnum[] | DatapribadiScalarFieldEnum
+    having?: DatapribadiScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: DataribadiCountAggregateInputType | true
-    _min?: DataribadiMinAggregateInputType
-    _max?: DataribadiMaxAggregateInputType
+    _count?: DatapribadiCountAggregateInputType | true
+    _min?: DatapribadiMinAggregateInputType
+    _max?: DatapribadiMaxAggregateInputType
   }
 
-  export type DataribadiGroupByOutputType = {
+  export type DatapribadiGroupByOutputType = {
     nip: string
     nama: string
     tempatLahir: string
@@ -1021,26 +1104,26 @@ export namespace Prisma {
     phone: string
     email: string
     alamat: string
-    _count: DataribadiCountAggregateOutputType | null
-    _min: DataribadiMinAggregateOutputType | null
-    _max: DataribadiMaxAggregateOutputType | null
+    _count: DatapribadiCountAggregateOutputType | null
+    _min: DatapribadiMinAggregateOutputType | null
+    _max: DatapribadiMaxAggregateOutputType | null
   }
 
-  type GetDataribadiGroupByPayload<T extends DataribadiGroupByArgs> = Prisma.PrismaPromise<
+  type GetDatapribadiGroupByPayload<T extends DatapribadiGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<DataribadiGroupByOutputType, T['by']> &
+      PickEnumerable<DatapribadiGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof DataribadiGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof DatapribadiGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], DataribadiGroupByOutputType[P]>
-            : GetScalarType<T[P], DataribadiGroupByOutputType[P]>
+              : GetScalarType<T[P], DatapribadiGroupByOutputType[P]>
+            : GetScalarType<T[P], DatapribadiGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type DataribadiSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type DatapribadiSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     nip?: boolean
     nama?: boolean
     tempatLahir?: boolean
@@ -1049,11 +1132,12 @@ export namespace Prisma {
     phone?: boolean
     email?: boolean
     alamat?: boolean
-  }, ExtArgs["result"]["dataribadi"]>
+    pekerjaan?: boolean | Datapribadi$pekerjaanArgs<ExtArgs>
+  }, ExtArgs["result"]["datapribadi"]>
 
 
 
-  export type DataribadiSelectScalar = {
+  export type DatapribadiSelectScalar = {
     nip?: boolean
     nama?: boolean
     tempatLahir?: boolean
@@ -1064,11 +1148,16 @@ export namespace Prisma {
     alamat?: boolean
   }
 
-  export type DataribadiOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nip" | "nama" | "tempatLahir" | "tanggalLahir" | "jenisKelamin" | "phone" | "email" | "alamat", ExtArgs["result"]["dataribadi"]>
+  export type DatapribadiOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nip" | "nama" | "tempatLahir" | "tanggalLahir" | "jenisKelamin" | "phone" | "email" | "alamat", ExtArgs["result"]["datapribadi"]>
+  export type DatapribadiInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pekerjaan?: boolean | Datapribadi$pekerjaanArgs<ExtArgs>
+  }
 
-  export type $DataribadiPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Dataribadi"
-    objects: {}
+  export type $DatapribadiPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Datapribadi"
+    objects: {
+      pekerjaan: Prisma.$DataPekerjaanPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       nip: string
       nama: string
@@ -1078,143 +1167,143 @@ export namespace Prisma {
       phone: string
       email: string
       alamat: string
-    }, ExtArgs["result"]["dataribadi"]>
+    }, ExtArgs["result"]["datapribadi"]>
     composites: {}
   }
 
-  type DataribadiGetPayload<S extends boolean | null | undefined | DataribadiDefaultArgs> = $Result.GetResult<Prisma.$DataribadiPayload, S>
+  type DatapribadiGetPayload<S extends boolean | null | undefined | DatapribadiDefaultArgs> = $Result.GetResult<Prisma.$DatapribadiPayload, S>
 
-  type DataribadiCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<DataribadiFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: DataribadiCountAggregateInputType | true
+  type DatapribadiCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DatapribadiFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DatapribadiCountAggregateInputType | true
     }
 
-  export interface DataribadiDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Dataribadi'], meta: { name: 'Dataribadi' } }
+  export interface DatapribadiDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Datapribadi'], meta: { name: 'Datapribadi' } }
     /**
-     * Find zero or one Dataribadi that matches the filter.
-     * @param {DataribadiFindUniqueArgs} args - Arguments to find a Dataribadi
+     * Find zero or one Datapribadi that matches the filter.
+     * @param {DatapribadiFindUniqueArgs} args - Arguments to find a Datapribadi
      * @example
-     * // Get one Dataribadi
-     * const dataribadi = await prisma.dataribadi.findUnique({
+     * // Get one Datapribadi
+     * const datapribadi = await prisma.datapribadi.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends DataribadiFindUniqueArgs>(args: SelectSubset<T, DataribadiFindUniqueArgs<ExtArgs>>): Prisma__DataribadiClient<$Result.GetResult<Prisma.$DataribadiPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends DatapribadiFindUniqueArgs>(args: SelectSubset<T, DatapribadiFindUniqueArgs<ExtArgs>>): Prisma__DatapribadiClient<$Result.GetResult<Prisma.$DatapribadiPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Dataribadi that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Datapribadi that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {DataribadiFindUniqueOrThrowArgs} args - Arguments to find a Dataribadi
+     * @param {DatapribadiFindUniqueOrThrowArgs} args - Arguments to find a Datapribadi
      * @example
-     * // Get one Dataribadi
-     * const dataribadi = await prisma.dataribadi.findUniqueOrThrow({
+     * // Get one Datapribadi
+     * const datapribadi = await prisma.datapribadi.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends DataribadiFindUniqueOrThrowArgs>(args: SelectSubset<T, DataribadiFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DataribadiClient<$Result.GetResult<Prisma.$DataribadiPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends DatapribadiFindUniqueOrThrowArgs>(args: SelectSubset<T, DatapribadiFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DatapribadiClient<$Result.GetResult<Prisma.$DatapribadiPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Dataribadi that matches the filter.
+     * Find the first Datapribadi that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DataribadiFindFirstArgs} args - Arguments to find a Dataribadi
+     * @param {DatapribadiFindFirstArgs} args - Arguments to find a Datapribadi
      * @example
-     * // Get one Dataribadi
-     * const dataribadi = await prisma.dataribadi.findFirst({
+     * // Get one Datapribadi
+     * const datapribadi = await prisma.datapribadi.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends DataribadiFindFirstArgs>(args?: SelectSubset<T, DataribadiFindFirstArgs<ExtArgs>>): Prisma__DataribadiClient<$Result.GetResult<Prisma.$DataribadiPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends DatapribadiFindFirstArgs>(args?: SelectSubset<T, DatapribadiFindFirstArgs<ExtArgs>>): Prisma__DatapribadiClient<$Result.GetResult<Prisma.$DatapribadiPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Dataribadi that matches the filter or
+     * Find the first Datapribadi that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DataribadiFindFirstOrThrowArgs} args - Arguments to find a Dataribadi
+     * @param {DatapribadiFindFirstOrThrowArgs} args - Arguments to find a Datapribadi
      * @example
-     * // Get one Dataribadi
-     * const dataribadi = await prisma.dataribadi.findFirstOrThrow({
+     * // Get one Datapribadi
+     * const datapribadi = await prisma.datapribadi.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends DataribadiFindFirstOrThrowArgs>(args?: SelectSubset<T, DataribadiFindFirstOrThrowArgs<ExtArgs>>): Prisma__DataribadiClient<$Result.GetResult<Prisma.$DataribadiPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends DatapribadiFindFirstOrThrowArgs>(args?: SelectSubset<T, DatapribadiFindFirstOrThrowArgs<ExtArgs>>): Prisma__DatapribadiClient<$Result.GetResult<Prisma.$DatapribadiPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Dataribadis that matches the filter.
+     * Find zero or more Datapribadis that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DataribadiFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {DatapribadiFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Dataribadis
-     * const dataribadis = await prisma.dataribadi.findMany()
+     * // Get all Datapribadis
+     * const datapribadis = await prisma.datapribadi.findMany()
      * 
-     * // Get first 10 Dataribadis
-     * const dataribadis = await prisma.dataribadi.findMany({ take: 10 })
+     * // Get first 10 Datapribadis
+     * const datapribadis = await prisma.datapribadi.findMany({ take: 10 })
      * 
      * // Only select the `nip`
-     * const dataribadiWithNipOnly = await prisma.dataribadi.findMany({ select: { nip: true } })
+     * const datapribadiWithNipOnly = await prisma.datapribadi.findMany({ select: { nip: true } })
      * 
      */
-    findMany<T extends DataribadiFindManyArgs>(args?: SelectSubset<T, DataribadiFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DataribadiPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends DatapribadiFindManyArgs>(args?: SelectSubset<T, DatapribadiFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DatapribadiPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Dataribadi.
-     * @param {DataribadiCreateArgs} args - Arguments to create a Dataribadi.
+     * Create a Datapribadi.
+     * @param {DatapribadiCreateArgs} args - Arguments to create a Datapribadi.
      * @example
-     * // Create one Dataribadi
-     * const Dataribadi = await prisma.dataribadi.create({
+     * // Create one Datapribadi
+     * const Datapribadi = await prisma.datapribadi.create({
      *   data: {
-     *     // ... data to create a Dataribadi
+     *     // ... data to create a Datapribadi
      *   }
      * })
      * 
      */
-    create<T extends DataribadiCreateArgs>(args: SelectSubset<T, DataribadiCreateArgs<ExtArgs>>): Prisma__DataribadiClient<$Result.GetResult<Prisma.$DataribadiPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends DatapribadiCreateArgs>(args: SelectSubset<T, DatapribadiCreateArgs<ExtArgs>>): Prisma__DatapribadiClient<$Result.GetResult<Prisma.$DatapribadiPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Dataribadis.
-     * @param {DataribadiCreateManyArgs} args - Arguments to create many Dataribadis.
+     * Create many Datapribadis.
+     * @param {DatapribadiCreateManyArgs} args - Arguments to create many Datapribadis.
      * @example
-     * // Create many Dataribadis
-     * const dataribadi = await prisma.dataribadi.createMany({
+     * // Create many Datapribadis
+     * const datapribadi = await prisma.datapribadi.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends DataribadiCreateManyArgs>(args?: SelectSubset<T, DataribadiCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends DatapribadiCreateManyArgs>(args?: SelectSubset<T, DatapribadiCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Dataribadi.
-     * @param {DataribadiDeleteArgs} args - Arguments to delete one Dataribadi.
+     * Delete a Datapribadi.
+     * @param {DatapribadiDeleteArgs} args - Arguments to delete one Datapribadi.
      * @example
-     * // Delete one Dataribadi
-     * const Dataribadi = await prisma.dataribadi.delete({
+     * // Delete one Datapribadi
+     * const Datapribadi = await prisma.datapribadi.delete({
      *   where: {
-     *     // ... filter to delete one Dataribadi
+     *     // ... filter to delete one Datapribadi
      *   }
      * })
      * 
      */
-    delete<T extends DataribadiDeleteArgs>(args: SelectSubset<T, DataribadiDeleteArgs<ExtArgs>>): Prisma__DataribadiClient<$Result.GetResult<Prisma.$DataribadiPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends DatapribadiDeleteArgs>(args: SelectSubset<T, DatapribadiDeleteArgs<ExtArgs>>): Prisma__DatapribadiClient<$Result.GetResult<Prisma.$DatapribadiPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Dataribadi.
-     * @param {DataribadiUpdateArgs} args - Arguments to update one Dataribadi.
+     * Update one Datapribadi.
+     * @param {DatapribadiUpdateArgs} args - Arguments to update one Datapribadi.
      * @example
-     * // Update one Dataribadi
-     * const dataribadi = await prisma.dataribadi.update({
+     * // Update one Datapribadi
+     * const datapribadi = await prisma.datapribadi.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1224,30 +1313,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends DataribadiUpdateArgs>(args: SelectSubset<T, DataribadiUpdateArgs<ExtArgs>>): Prisma__DataribadiClient<$Result.GetResult<Prisma.$DataribadiPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends DatapribadiUpdateArgs>(args: SelectSubset<T, DatapribadiUpdateArgs<ExtArgs>>): Prisma__DatapribadiClient<$Result.GetResult<Prisma.$DatapribadiPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Dataribadis.
-     * @param {DataribadiDeleteManyArgs} args - Arguments to filter Dataribadis to delete.
+     * Delete zero or more Datapribadis.
+     * @param {DatapribadiDeleteManyArgs} args - Arguments to filter Datapribadis to delete.
      * @example
-     * // Delete a few Dataribadis
-     * const { count } = await prisma.dataribadi.deleteMany({
+     * // Delete a few Datapribadis
+     * const { count } = await prisma.datapribadi.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends DataribadiDeleteManyArgs>(args?: SelectSubset<T, DataribadiDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends DatapribadiDeleteManyArgs>(args?: SelectSubset<T, DatapribadiDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Dataribadis.
+     * Update zero or more Datapribadis.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DataribadiUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {DatapribadiUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Dataribadis
-     * const dataribadi = await prisma.dataribadi.updateMany({
+     * // Update many Datapribadis
+     * const datapribadi = await prisma.datapribadi.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1257,56 +1346,56 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends DataribadiUpdateManyArgs>(args: SelectSubset<T, DataribadiUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends DatapribadiUpdateManyArgs>(args: SelectSubset<T, DatapribadiUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Dataribadi.
-     * @param {DataribadiUpsertArgs} args - Arguments to update or create a Dataribadi.
+     * Create or update one Datapribadi.
+     * @param {DatapribadiUpsertArgs} args - Arguments to update or create a Datapribadi.
      * @example
-     * // Update or create a Dataribadi
-     * const dataribadi = await prisma.dataribadi.upsert({
+     * // Update or create a Datapribadi
+     * const datapribadi = await prisma.datapribadi.upsert({
      *   create: {
-     *     // ... data to create a Dataribadi
+     *     // ... data to create a Datapribadi
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Dataribadi we want to update
+     *     // ... the filter for the Datapribadi we want to update
      *   }
      * })
      */
-    upsert<T extends DataribadiUpsertArgs>(args: SelectSubset<T, DataribadiUpsertArgs<ExtArgs>>): Prisma__DataribadiClient<$Result.GetResult<Prisma.$DataribadiPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends DatapribadiUpsertArgs>(args: SelectSubset<T, DatapribadiUpsertArgs<ExtArgs>>): Prisma__DatapribadiClient<$Result.GetResult<Prisma.$DatapribadiPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Dataribadis.
+     * Count the number of Datapribadis.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DataribadiCountArgs} args - Arguments to filter Dataribadis to count.
+     * @param {DatapribadiCountArgs} args - Arguments to filter Datapribadis to count.
      * @example
-     * // Count the number of Dataribadis
-     * const count = await prisma.dataribadi.count({
+     * // Count the number of Datapribadis
+     * const count = await prisma.datapribadi.count({
      *   where: {
-     *     // ... the filter for the Dataribadis we want to count
+     *     // ... the filter for the Datapribadis we want to count
      *   }
      * })
     **/
-    count<T extends DataribadiCountArgs>(
-      args?: Subset<T, DataribadiCountArgs>,
+    count<T extends DatapribadiCountArgs>(
+      args?: Subset<T, DatapribadiCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], DataribadiCountAggregateOutputType>
+          : GetScalarType<T['select'], DatapribadiCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Dataribadi.
+     * Allows you to perform aggregations operations on a Datapribadi.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DataribadiAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {DatapribadiAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -1326,13 +1415,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends DataribadiAggregateArgs>(args: Subset<T, DataribadiAggregateArgs>): Prisma.PrismaPromise<GetDataribadiAggregateType<T>>
+    aggregate<T extends DatapribadiAggregateArgs>(args: Subset<T, DatapribadiAggregateArgs>): Prisma.PrismaPromise<GetDatapribadiAggregateType<T>>
 
     /**
-     * Group by Dataribadi.
+     * Group by Datapribadi.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {DataribadiGroupByArgs} args - Group by arguments.
+     * @param {DatapribadiGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -1347,14 +1436,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends DataribadiGroupByArgs,
+      T extends DatapribadiGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: DataribadiGroupByArgs['orderBy'] }
-        : { orderBy?: DataribadiGroupByArgs['orderBy'] },
+        ? { orderBy: DatapribadiGroupByArgs['orderBy'] }
+        : { orderBy?: DatapribadiGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -1403,21 +1492,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, DataribadiGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDataribadiGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, DatapribadiGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDatapribadiGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Dataribadi model
+   * Fields of the Datapribadi model
    */
-  readonly fields: DataribadiFieldRefs;
+  readonly fields: DatapribadiFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Dataribadi.
+   * The delegate class that acts as a "Promise-like" for Datapribadi.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__DataribadiClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__DatapribadiClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    pekerjaan<T extends Datapribadi$pekerjaanArgs<ExtArgs> = {}>(args?: Subset<T, Datapribadi$pekerjaanArgs<ExtArgs>>): Prisma__DataPekerjaanClient<$Result.GetResult<Prisma.$DataPekerjaanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1444,335 +1534,1345 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Dataribadi model
+   * Fields of the Datapribadi model
    */
-  interface DataribadiFieldRefs {
-    readonly nip: FieldRef<"Dataribadi", 'String'>
-    readonly nama: FieldRef<"Dataribadi", 'String'>
-    readonly tempatLahir: FieldRef<"Dataribadi", 'String'>
-    readonly tanggalLahir: FieldRef<"Dataribadi", 'DateTime'>
-    readonly jenisKelamin: FieldRef<"Dataribadi", 'String'>
-    readonly phone: FieldRef<"Dataribadi", 'String'>
-    readonly email: FieldRef<"Dataribadi", 'String'>
-    readonly alamat: FieldRef<"Dataribadi", 'String'>
+  interface DatapribadiFieldRefs {
+    readonly nip: FieldRef<"Datapribadi", 'String'>
+    readonly nama: FieldRef<"Datapribadi", 'String'>
+    readonly tempatLahir: FieldRef<"Datapribadi", 'String'>
+    readonly tanggalLahir: FieldRef<"Datapribadi", 'DateTime'>
+    readonly jenisKelamin: FieldRef<"Datapribadi", 'String'>
+    readonly phone: FieldRef<"Datapribadi", 'String'>
+    readonly email: FieldRef<"Datapribadi", 'String'>
+    readonly alamat: FieldRef<"Datapribadi", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * Dataribadi findUnique
+   * Datapribadi findUnique
    */
-  export type DataribadiFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DatapribadiFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Dataribadi
+     * Select specific fields to fetch from the Datapribadi
      */
-    select?: DataribadiSelect<ExtArgs> | null
+    select?: DatapribadiSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Dataribadi
+     * Omit specific fields from the Datapribadi
      */
-    omit?: DataribadiOmit<ExtArgs> | null
+    omit?: DatapribadiOmit<ExtArgs> | null
     /**
-     * Filter, which Dataribadi to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: DataribadiWhereUniqueInput
+    include?: DatapribadiInclude<ExtArgs> | null
+    /**
+     * Filter, which Datapribadi to fetch.
+     */
+    where: DatapribadiWhereUniqueInput
   }
 
   /**
-   * Dataribadi findUniqueOrThrow
+   * Datapribadi findUniqueOrThrow
    */
-  export type DataribadiFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DatapribadiFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Dataribadi
+     * Select specific fields to fetch from the Datapribadi
      */
-    select?: DataribadiSelect<ExtArgs> | null
+    select?: DatapribadiSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Dataribadi
+     * Omit specific fields from the Datapribadi
      */
-    omit?: DataribadiOmit<ExtArgs> | null
+    omit?: DatapribadiOmit<ExtArgs> | null
     /**
-     * Filter, which Dataribadi to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: DataribadiWhereUniqueInput
+    include?: DatapribadiInclude<ExtArgs> | null
+    /**
+     * Filter, which Datapribadi to fetch.
+     */
+    where: DatapribadiWhereUniqueInput
   }
 
   /**
-   * Dataribadi findFirst
+   * Datapribadi findFirst
    */
-  export type DataribadiFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DatapribadiFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Dataribadi
+     * Select specific fields to fetch from the Datapribadi
      */
-    select?: DataribadiSelect<ExtArgs> | null
+    select?: DatapribadiSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Dataribadi
+     * Omit specific fields from the Datapribadi
      */
-    omit?: DataribadiOmit<ExtArgs> | null
+    omit?: DatapribadiOmit<ExtArgs> | null
     /**
-     * Filter, which Dataribadi to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: DataribadiWhereInput
+    include?: DatapribadiInclude<ExtArgs> | null
+    /**
+     * Filter, which Datapribadi to fetch.
+     */
+    where?: DatapribadiWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Dataribadis to fetch.
+     * Determine the order of Datapribadis to fetch.
      */
-    orderBy?: DataribadiOrderByWithRelationInput | DataribadiOrderByWithRelationInput[]
+    orderBy?: DatapribadiOrderByWithRelationInput | DatapribadiOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Dataribadis.
+     * Sets the position for searching for Datapribadis.
      */
-    cursor?: DataribadiWhereUniqueInput
+    cursor?: DatapribadiWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Dataribadis from the position of the cursor.
+     * Take `±n` Datapribadis from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Dataribadis.
+     * Skip the first `n` Datapribadis.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Dataribadis.
+     * Filter by unique combinations of Datapribadis.
      */
-    distinct?: DataribadiScalarFieldEnum | DataribadiScalarFieldEnum[]
+    distinct?: DatapribadiScalarFieldEnum | DatapribadiScalarFieldEnum[]
   }
 
   /**
-   * Dataribadi findFirstOrThrow
+   * Datapribadi findFirstOrThrow
    */
-  export type DataribadiFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DatapribadiFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Dataribadi
+     * Select specific fields to fetch from the Datapribadi
      */
-    select?: DataribadiSelect<ExtArgs> | null
+    select?: DatapribadiSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Dataribadi
+     * Omit specific fields from the Datapribadi
      */
-    omit?: DataribadiOmit<ExtArgs> | null
+    omit?: DatapribadiOmit<ExtArgs> | null
     /**
-     * Filter, which Dataribadi to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: DataribadiWhereInput
+    include?: DatapribadiInclude<ExtArgs> | null
+    /**
+     * Filter, which Datapribadi to fetch.
+     */
+    where?: DatapribadiWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Dataribadis to fetch.
+     * Determine the order of Datapribadis to fetch.
      */
-    orderBy?: DataribadiOrderByWithRelationInput | DataribadiOrderByWithRelationInput[]
+    orderBy?: DatapribadiOrderByWithRelationInput | DatapribadiOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Dataribadis.
+     * Sets the position for searching for Datapribadis.
      */
-    cursor?: DataribadiWhereUniqueInput
+    cursor?: DatapribadiWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Dataribadis from the position of the cursor.
+     * Take `±n` Datapribadis from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Dataribadis.
+     * Skip the first `n` Datapribadis.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Dataribadis.
+     * Filter by unique combinations of Datapribadis.
      */
-    distinct?: DataribadiScalarFieldEnum | DataribadiScalarFieldEnum[]
+    distinct?: DatapribadiScalarFieldEnum | DatapribadiScalarFieldEnum[]
   }
 
   /**
-   * Dataribadi findMany
+   * Datapribadi findMany
    */
-  export type DataribadiFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DatapribadiFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Dataribadi
+     * Select specific fields to fetch from the Datapribadi
      */
-    select?: DataribadiSelect<ExtArgs> | null
+    select?: DatapribadiSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Dataribadi
+     * Omit specific fields from the Datapribadi
      */
-    omit?: DataribadiOmit<ExtArgs> | null
+    omit?: DatapribadiOmit<ExtArgs> | null
     /**
-     * Filter, which Dataribadis to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: DataribadiWhereInput
+    include?: DatapribadiInclude<ExtArgs> | null
+    /**
+     * Filter, which Datapribadis to fetch.
+     */
+    where?: DatapribadiWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Dataribadis to fetch.
+     * Determine the order of Datapribadis to fetch.
      */
-    orderBy?: DataribadiOrderByWithRelationInput | DataribadiOrderByWithRelationInput[]
+    orderBy?: DatapribadiOrderByWithRelationInput | DatapribadiOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Dataribadis.
+     * Sets the position for listing Datapribadis.
      */
-    cursor?: DataribadiWhereUniqueInput
+    cursor?: DatapribadiWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Dataribadis from the position of the cursor.
+     * Take `±n` Datapribadis from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Dataribadis.
+     * Skip the first `n` Datapribadis.
      */
     skip?: number
-    distinct?: DataribadiScalarFieldEnum | DataribadiScalarFieldEnum[]
+    distinct?: DatapribadiScalarFieldEnum | DatapribadiScalarFieldEnum[]
   }
 
   /**
-   * Dataribadi create
+   * Datapribadi create
    */
-  export type DataribadiCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DatapribadiCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Dataribadi
+     * Select specific fields to fetch from the Datapribadi
      */
-    select?: DataribadiSelect<ExtArgs> | null
+    select?: DatapribadiSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Dataribadi
+     * Omit specific fields from the Datapribadi
      */
-    omit?: DataribadiOmit<ExtArgs> | null
+    omit?: DatapribadiOmit<ExtArgs> | null
     /**
-     * The data needed to create a Dataribadi.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<DataribadiCreateInput, DataribadiUncheckedCreateInput>
+    include?: DatapribadiInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Datapribadi.
+     */
+    data: XOR<DatapribadiCreateInput, DatapribadiUncheckedCreateInput>
   }
 
   /**
-   * Dataribadi createMany
+   * Datapribadi createMany
    */
-  export type DataribadiCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DatapribadiCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Dataribadis.
+     * The data used to create many Datapribadis.
      */
-    data: DataribadiCreateManyInput | DataribadiCreateManyInput[]
+    data: DatapribadiCreateManyInput | DatapribadiCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Dataribadi update
+   * Datapribadi update
    */
-  export type DataribadiUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DatapribadiUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Dataribadi
+     * Select specific fields to fetch from the Datapribadi
      */
-    select?: DataribadiSelect<ExtArgs> | null
+    select?: DatapribadiSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Dataribadi
+     * Omit specific fields from the Datapribadi
      */
-    omit?: DataribadiOmit<ExtArgs> | null
+    omit?: DatapribadiOmit<ExtArgs> | null
     /**
-     * The data needed to update a Dataribadi.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<DataribadiUpdateInput, DataribadiUncheckedUpdateInput>
+    include?: DatapribadiInclude<ExtArgs> | null
     /**
-     * Choose, which Dataribadi to update.
+     * The data needed to update a Datapribadi.
      */
-    where: DataribadiWhereUniqueInput
+    data: XOR<DatapribadiUpdateInput, DatapribadiUncheckedUpdateInput>
+    /**
+     * Choose, which Datapribadi to update.
+     */
+    where: DatapribadiWhereUniqueInput
   }
 
   /**
-   * Dataribadi updateMany
+   * Datapribadi updateMany
    */
-  export type DataribadiUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DatapribadiUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Dataribadis.
+     * The data used to update Datapribadis.
      */
-    data: XOR<DataribadiUpdateManyMutationInput, DataribadiUncheckedUpdateManyInput>
+    data: XOR<DatapribadiUpdateManyMutationInput, DatapribadiUncheckedUpdateManyInput>
     /**
-     * Filter which Dataribadis to update
+     * Filter which Datapribadis to update
      */
-    where?: DataribadiWhereInput
+    where?: DatapribadiWhereInput
     /**
-     * Limit how many Dataribadis to update.
+     * Limit how many Datapribadis to update.
      */
     limit?: number
   }
 
   /**
-   * Dataribadi upsert
+   * Datapribadi upsert
    */
-  export type DataribadiUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DatapribadiUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Dataribadi
+     * Select specific fields to fetch from the Datapribadi
      */
-    select?: DataribadiSelect<ExtArgs> | null
+    select?: DatapribadiSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Dataribadi
+     * Omit specific fields from the Datapribadi
      */
-    omit?: DataribadiOmit<ExtArgs> | null
+    omit?: DatapribadiOmit<ExtArgs> | null
     /**
-     * The filter to search for the Dataribadi to update in case it exists.
+     * Choose, which related nodes to fetch as well
      */
-    where: DataribadiWhereUniqueInput
+    include?: DatapribadiInclude<ExtArgs> | null
     /**
-     * In case the Dataribadi found by the `where` argument doesn't exist, create a new Dataribadi with this data.
+     * The filter to search for the Datapribadi to update in case it exists.
      */
-    create: XOR<DataribadiCreateInput, DataribadiUncheckedCreateInput>
+    where: DatapribadiWhereUniqueInput
     /**
-     * In case the Dataribadi was found with the provided `where` argument, update it with this data.
+     * In case the Datapribadi found by the `where` argument doesn't exist, create a new Datapribadi with this data.
      */
-    update: XOR<DataribadiUpdateInput, DataribadiUncheckedUpdateInput>
+    create: XOR<DatapribadiCreateInput, DatapribadiUncheckedCreateInput>
+    /**
+     * In case the Datapribadi was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DatapribadiUpdateInput, DatapribadiUncheckedUpdateInput>
   }
 
   /**
-   * Dataribadi delete
+   * Datapribadi delete
    */
-  export type DataribadiDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DatapribadiDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Dataribadi
+     * Select specific fields to fetch from the Datapribadi
      */
-    select?: DataribadiSelect<ExtArgs> | null
+    select?: DatapribadiSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Dataribadi
+     * Omit specific fields from the Datapribadi
      */
-    omit?: DataribadiOmit<ExtArgs> | null
+    omit?: DatapribadiOmit<ExtArgs> | null
     /**
-     * Filter which Dataribadi to delete.
+     * Choose, which related nodes to fetch as well
      */
-    where: DataribadiWhereUniqueInput
+    include?: DatapribadiInclude<ExtArgs> | null
+    /**
+     * Filter which Datapribadi to delete.
+     */
+    where: DatapribadiWhereUniqueInput
   }
 
   /**
-   * Dataribadi deleteMany
+   * Datapribadi deleteMany
    */
-  export type DataribadiDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DatapribadiDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Dataribadis to delete
+     * Filter which Datapribadis to delete
      */
-    where?: DataribadiWhereInput
+    where?: DatapribadiWhereInput
     /**
-     * Limit how many Dataribadis to delete.
+     * Limit how many Datapribadis to delete.
      */
     limit?: number
   }
 
   /**
-   * Dataribadi without action
+   * Datapribadi.pekerjaan
    */
-  export type DataribadiDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Datapribadi$pekerjaanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Dataribadi
+     * Select specific fields to fetch from the DataPekerjaan
      */
-    select?: DataribadiSelect<ExtArgs> | null
+    select?: DataPekerjaanSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Dataribadi
+     * Omit specific fields from the DataPekerjaan
      */
-    omit?: DataribadiOmit<ExtArgs> | null
+    omit?: DataPekerjaanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPekerjaanInclude<ExtArgs> | null
+    where?: DataPekerjaanWhereInput
+  }
+
+  /**
+   * Datapribadi without action
+   */
+  export type DatapribadiDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Datapribadi
+     */
+    select?: DatapribadiSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Datapribadi
+     */
+    omit?: DatapribadiOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DatapribadiInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DataPekerjaan
+   */
+
+  export type AggregateDataPekerjaan = {
+    _count: DataPekerjaanCountAggregateOutputType | null
+    _min: DataPekerjaanMinAggregateOutputType | null
+    _max: DataPekerjaanMaxAggregateOutputType | null
+  }
+
+  export type DataPekerjaanMinAggregateOutputType = {
+    nip: string | null
+    namaTempatBekerja: string | null
+    alamatPekerjaan: string | null
+    noStr: string | null
+    tanggalStr: Date | null
+    noSip: string | null
+    tanggalSip: Date | null
+  }
+
+  export type DataPekerjaanMaxAggregateOutputType = {
+    nip: string | null
+    namaTempatBekerja: string | null
+    alamatPekerjaan: string | null
+    noStr: string | null
+    tanggalStr: Date | null
+    noSip: string | null
+    tanggalSip: Date | null
+  }
+
+  export type DataPekerjaanCountAggregateOutputType = {
+    nip: number
+    namaTempatBekerja: number
+    alamatPekerjaan: number
+    noStr: number
+    tanggalStr: number
+    noSip: number
+    tanggalSip: number
+    _all: number
+  }
+
+
+  export type DataPekerjaanMinAggregateInputType = {
+    nip?: true
+    namaTempatBekerja?: true
+    alamatPekerjaan?: true
+    noStr?: true
+    tanggalStr?: true
+    noSip?: true
+    tanggalSip?: true
+  }
+
+  export type DataPekerjaanMaxAggregateInputType = {
+    nip?: true
+    namaTempatBekerja?: true
+    alamatPekerjaan?: true
+    noStr?: true
+    tanggalStr?: true
+    noSip?: true
+    tanggalSip?: true
+  }
+
+  export type DataPekerjaanCountAggregateInputType = {
+    nip?: true
+    namaTempatBekerja?: true
+    alamatPekerjaan?: true
+    noStr?: true
+    tanggalStr?: true
+    noSip?: true
+    tanggalSip?: true
+    _all?: true
+  }
+
+  export type DataPekerjaanAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DataPekerjaan to aggregate.
+     */
+    where?: DataPekerjaanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DataPekerjaans to fetch.
+     */
+    orderBy?: DataPekerjaanOrderByWithRelationInput | DataPekerjaanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DataPekerjaanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DataPekerjaans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DataPekerjaans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DataPekerjaans
+    **/
+    _count?: true | DataPekerjaanCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DataPekerjaanMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DataPekerjaanMaxAggregateInputType
+  }
+
+  export type GetDataPekerjaanAggregateType<T extends DataPekerjaanAggregateArgs> = {
+        [P in keyof T & keyof AggregateDataPekerjaan]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDataPekerjaan[P]>
+      : GetScalarType<T[P], AggregateDataPekerjaan[P]>
+  }
+
+
+
+
+  export type DataPekerjaanGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DataPekerjaanWhereInput
+    orderBy?: DataPekerjaanOrderByWithAggregationInput | DataPekerjaanOrderByWithAggregationInput[]
+    by: DataPekerjaanScalarFieldEnum[] | DataPekerjaanScalarFieldEnum
+    having?: DataPekerjaanScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DataPekerjaanCountAggregateInputType | true
+    _min?: DataPekerjaanMinAggregateInputType
+    _max?: DataPekerjaanMaxAggregateInputType
+  }
+
+  export type DataPekerjaanGroupByOutputType = {
+    nip: string
+    namaTempatBekerja: string
+    alamatPekerjaan: string
+    noStr: string
+    tanggalStr: Date
+    noSip: string
+    tanggalSip: Date
+    _count: DataPekerjaanCountAggregateOutputType | null
+    _min: DataPekerjaanMinAggregateOutputType | null
+    _max: DataPekerjaanMaxAggregateOutputType | null
+  }
+
+  type GetDataPekerjaanGroupByPayload<T extends DataPekerjaanGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DataPekerjaanGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DataPekerjaanGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DataPekerjaanGroupByOutputType[P]>
+            : GetScalarType<T[P], DataPekerjaanGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DataPekerjaanSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    nip?: boolean
+    namaTempatBekerja?: boolean
+    alamatPekerjaan?: boolean
+    noStr?: boolean
+    tanggalStr?: boolean
+    noSip?: boolean
+    tanggalSip?: boolean
+    datapribadi?: boolean | DatapribadiDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dataPekerjaan"]>
+
+
+
+  export type DataPekerjaanSelectScalar = {
+    nip?: boolean
+    namaTempatBekerja?: boolean
+    alamatPekerjaan?: boolean
+    noStr?: boolean
+    tanggalStr?: boolean
+    noSip?: boolean
+    tanggalSip?: boolean
+  }
+
+  export type DataPekerjaanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nip" | "namaTempatBekerja" | "alamatPekerjaan" | "noStr" | "tanggalStr" | "noSip" | "tanggalSip", ExtArgs["result"]["dataPekerjaan"]>
+  export type DataPekerjaanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    datapribadi?: boolean | DatapribadiDefaultArgs<ExtArgs>
+  }
+
+  export type $DataPekerjaanPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DataPekerjaan"
+    objects: {
+      datapribadi: Prisma.$DatapribadiPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      nip: string
+      namaTempatBekerja: string
+      alamatPekerjaan: string
+      noStr: string
+      tanggalStr: Date
+      noSip: string
+      tanggalSip: Date
+    }, ExtArgs["result"]["dataPekerjaan"]>
+    composites: {}
+  }
+
+  type DataPekerjaanGetPayload<S extends boolean | null | undefined | DataPekerjaanDefaultArgs> = $Result.GetResult<Prisma.$DataPekerjaanPayload, S>
+
+  type DataPekerjaanCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DataPekerjaanFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DataPekerjaanCountAggregateInputType | true
+    }
+
+  export interface DataPekerjaanDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DataPekerjaan'], meta: { name: 'DataPekerjaan' } }
+    /**
+     * Find zero or one DataPekerjaan that matches the filter.
+     * @param {DataPekerjaanFindUniqueArgs} args - Arguments to find a DataPekerjaan
+     * @example
+     * // Get one DataPekerjaan
+     * const dataPekerjaan = await prisma.dataPekerjaan.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DataPekerjaanFindUniqueArgs>(args: SelectSubset<T, DataPekerjaanFindUniqueArgs<ExtArgs>>): Prisma__DataPekerjaanClient<$Result.GetResult<Prisma.$DataPekerjaanPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DataPekerjaan that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DataPekerjaanFindUniqueOrThrowArgs} args - Arguments to find a DataPekerjaan
+     * @example
+     * // Get one DataPekerjaan
+     * const dataPekerjaan = await prisma.dataPekerjaan.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DataPekerjaanFindUniqueOrThrowArgs>(args: SelectSubset<T, DataPekerjaanFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DataPekerjaanClient<$Result.GetResult<Prisma.$DataPekerjaanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DataPekerjaan that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DataPekerjaanFindFirstArgs} args - Arguments to find a DataPekerjaan
+     * @example
+     * // Get one DataPekerjaan
+     * const dataPekerjaan = await prisma.dataPekerjaan.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DataPekerjaanFindFirstArgs>(args?: SelectSubset<T, DataPekerjaanFindFirstArgs<ExtArgs>>): Prisma__DataPekerjaanClient<$Result.GetResult<Prisma.$DataPekerjaanPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DataPekerjaan that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DataPekerjaanFindFirstOrThrowArgs} args - Arguments to find a DataPekerjaan
+     * @example
+     * // Get one DataPekerjaan
+     * const dataPekerjaan = await prisma.dataPekerjaan.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DataPekerjaanFindFirstOrThrowArgs>(args?: SelectSubset<T, DataPekerjaanFindFirstOrThrowArgs<ExtArgs>>): Prisma__DataPekerjaanClient<$Result.GetResult<Prisma.$DataPekerjaanPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DataPekerjaans that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DataPekerjaanFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DataPekerjaans
+     * const dataPekerjaans = await prisma.dataPekerjaan.findMany()
+     * 
+     * // Get first 10 DataPekerjaans
+     * const dataPekerjaans = await prisma.dataPekerjaan.findMany({ take: 10 })
+     * 
+     * // Only select the `nip`
+     * const dataPekerjaanWithNipOnly = await prisma.dataPekerjaan.findMany({ select: { nip: true } })
+     * 
+     */
+    findMany<T extends DataPekerjaanFindManyArgs>(args?: SelectSubset<T, DataPekerjaanFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DataPekerjaanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DataPekerjaan.
+     * @param {DataPekerjaanCreateArgs} args - Arguments to create a DataPekerjaan.
+     * @example
+     * // Create one DataPekerjaan
+     * const DataPekerjaan = await prisma.dataPekerjaan.create({
+     *   data: {
+     *     // ... data to create a DataPekerjaan
+     *   }
+     * })
+     * 
+     */
+    create<T extends DataPekerjaanCreateArgs>(args: SelectSubset<T, DataPekerjaanCreateArgs<ExtArgs>>): Prisma__DataPekerjaanClient<$Result.GetResult<Prisma.$DataPekerjaanPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DataPekerjaans.
+     * @param {DataPekerjaanCreateManyArgs} args - Arguments to create many DataPekerjaans.
+     * @example
+     * // Create many DataPekerjaans
+     * const dataPekerjaan = await prisma.dataPekerjaan.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DataPekerjaanCreateManyArgs>(args?: SelectSubset<T, DataPekerjaanCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a DataPekerjaan.
+     * @param {DataPekerjaanDeleteArgs} args - Arguments to delete one DataPekerjaan.
+     * @example
+     * // Delete one DataPekerjaan
+     * const DataPekerjaan = await prisma.dataPekerjaan.delete({
+     *   where: {
+     *     // ... filter to delete one DataPekerjaan
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DataPekerjaanDeleteArgs>(args: SelectSubset<T, DataPekerjaanDeleteArgs<ExtArgs>>): Prisma__DataPekerjaanClient<$Result.GetResult<Prisma.$DataPekerjaanPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DataPekerjaan.
+     * @param {DataPekerjaanUpdateArgs} args - Arguments to update one DataPekerjaan.
+     * @example
+     * // Update one DataPekerjaan
+     * const dataPekerjaan = await prisma.dataPekerjaan.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DataPekerjaanUpdateArgs>(args: SelectSubset<T, DataPekerjaanUpdateArgs<ExtArgs>>): Prisma__DataPekerjaanClient<$Result.GetResult<Prisma.$DataPekerjaanPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DataPekerjaans.
+     * @param {DataPekerjaanDeleteManyArgs} args - Arguments to filter DataPekerjaans to delete.
+     * @example
+     * // Delete a few DataPekerjaans
+     * const { count } = await prisma.dataPekerjaan.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DataPekerjaanDeleteManyArgs>(args?: SelectSubset<T, DataPekerjaanDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DataPekerjaans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DataPekerjaanUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DataPekerjaans
+     * const dataPekerjaan = await prisma.dataPekerjaan.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DataPekerjaanUpdateManyArgs>(args: SelectSubset<T, DataPekerjaanUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one DataPekerjaan.
+     * @param {DataPekerjaanUpsertArgs} args - Arguments to update or create a DataPekerjaan.
+     * @example
+     * // Update or create a DataPekerjaan
+     * const dataPekerjaan = await prisma.dataPekerjaan.upsert({
+     *   create: {
+     *     // ... data to create a DataPekerjaan
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DataPekerjaan we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DataPekerjaanUpsertArgs>(args: SelectSubset<T, DataPekerjaanUpsertArgs<ExtArgs>>): Prisma__DataPekerjaanClient<$Result.GetResult<Prisma.$DataPekerjaanPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DataPekerjaans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DataPekerjaanCountArgs} args - Arguments to filter DataPekerjaans to count.
+     * @example
+     * // Count the number of DataPekerjaans
+     * const count = await prisma.dataPekerjaan.count({
+     *   where: {
+     *     // ... the filter for the DataPekerjaans we want to count
+     *   }
+     * })
+    **/
+    count<T extends DataPekerjaanCountArgs>(
+      args?: Subset<T, DataPekerjaanCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DataPekerjaanCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DataPekerjaan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DataPekerjaanAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DataPekerjaanAggregateArgs>(args: Subset<T, DataPekerjaanAggregateArgs>): Prisma.PrismaPromise<GetDataPekerjaanAggregateType<T>>
+
+    /**
+     * Group by DataPekerjaan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DataPekerjaanGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DataPekerjaanGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DataPekerjaanGroupByArgs['orderBy'] }
+        : { orderBy?: DataPekerjaanGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DataPekerjaanGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDataPekerjaanGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DataPekerjaan model
+   */
+  readonly fields: DataPekerjaanFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DataPekerjaan.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DataPekerjaanClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    datapribadi<T extends DatapribadiDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DatapribadiDefaultArgs<ExtArgs>>): Prisma__DatapribadiClient<$Result.GetResult<Prisma.$DatapribadiPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DataPekerjaan model
+   */
+  interface DataPekerjaanFieldRefs {
+    readonly nip: FieldRef<"DataPekerjaan", 'String'>
+    readonly namaTempatBekerja: FieldRef<"DataPekerjaan", 'String'>
+    readonly alamatPekerjaan: FieldRef<"DataPekerjaan", 'String'>
+    readonly noStr: FieldRef<"DataPekerjaan", 'String'>
+    readonly tanggalStr: FieldRef<"DataPekerjaan", 'DateTime'>
+    readonly noSip: FieldRef<"DataPekerjaan", 'String'>
+    readonly tanggalSip: FieldRef<"DataPekerjaan", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DataPekerjaan findUnique
+   */
+  export type DataPekerjaanFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPekerjaan
+     */
+    select?: DataPekerjaanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPekerjaan
+     */
+    omit?: DataPekerjaanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPekerjaanInclude<ExtArgs> | null
+    /**
+     * Filter, which DataPekerjaan to fetch.
+     */
+    where: DataPekerjaanWhereUniqueInput
+  }
+
+  /**
+   * DataPekerjaan findUniqueOrThrow
+   */
+  export type DataPekerjaanFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPekerjaan
+     */
+    select?: DataPekerjaanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPekerjaan
+     */
+    omit?: DataPekerjaanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPekerjaanInclude<ExtArgs> | null
+    /**
+     * Filter, which DataPekerjaan to fetch.
+     */
+    where: DataPekerjaanWhereUniqueInput
+  }
+
+  /**
+   * DataPekerjaan findFirst
+   */
+  export type DataPekerjaanFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPekerjaan
+     */
+    select?: DataPekerjaanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPekerjaan
+     */
+    omit?: DataPekerjaanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPekerjaanInclude<ExtArgs> | null
+    /**
+     * Filter, which DataPekerjaan to fetch.
+     */
+    where?: DataPekerjaanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DataPekerjaans to fetch.
+     */
+    orderBy?: DataPekerjaanOrderByWithRelationInput | DataPekerjaanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DataPekerjaans.
+     */
+    cursor?: DataPekerjaanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DataPekerjaans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DataPekerjaans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DataPekerjaans.
+     */
+    distinct?: DataPekerjaanScalarFieldEnum | DataPekerjaanScalarFieldEnum[]
+  }
+
+  /**
+   * DataPekerjaan findFirstOrThrow
+   */
+  export type DataPekerjaanFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPekerjaan
+     */
+    select?: DataPekerjaanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPekerjaan
+     */
+    omit?: DataPekerjaanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPekerjaanInclude<ExtArgs> | null
+    /**
+     * Filter, which DataPekerjaan to fetch.
+     */
+    where?: DataPekerjaanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DataPekerjaans to fetch.
+     */
+    orderBy?: DataPekerjaanOrderByWithRelationInput | DataPekerjaanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DataPekerjaans.
+     */
+    cursor?: DataPekerjaanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DataPekerjaans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DataPekerjaans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DataPekerjaans.
+     */
+    distinct?: DataPekerjaanScalarFieldEnum | DataPekerjaanScalarFieldEnum[]
+  }
+
+  /**
+   * DataPekerjaan findMany
+   */
+  export type DataPekerjaanFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPekerjaan
+     */
+    select?: DataPekerjaanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPekerjaan
+     */
+    omit?: DataPekerjaanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPekerjaanInclude<ExtArgs> | null
+    /**
+     * Filter, which DataPekerjaans to fetch.
+     */
+    where?: DataPekerjaanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DataPekerjaans to fetch.
+     */
+    orderBy?: DataPekerjaanOrderByWithRelationInput | DataPekerjaanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DataPekerjaans.
+     */
+    cursor?: DataPekerjaanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DataPekerjaans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DataPekerjaans.
+     */
+    skip?: number
+    distinct?: DataPekerjaanScalarFieldEnum | DataPekerjaanScalarFieldEnum[]
+  }
+
+  /**
+   * DataPekerjaan create
+   */
+  export type DataPekerjaanCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPekerjaan
+     */
+    select?: DataPekerjaanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPekerjaan
+     */
+    omit?: DataPekerjaanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPekerjaanInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DataPekerjaan.
+     */
+    data: XOR<DataPekerjaanCreateInput, DataPekerjaanUncheckedCreateInput>
+  }
+
+  /**
+   * DataPekerjaan createMany
+   */
+  export type DataPekerjaanCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DataPekerjaans.
+     */
+    data: DataPekerjaanCreateManyInput | DataPekerjaanCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DataPekerjaan update
+   */
+  export type DataPekerjaanUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPekerjaan
+     */
+    select?: DataPekerjaanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPekerjaan
+     */
+    omit?: DataPekerjaanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPekerjaanInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DataPekerjaan.
+     */
+    data: XOR<DataPekerjaanUpdateInput, DataPekerjaanUncheckedUpdateInput>
+    /**
+     * Choose, which DataPekerjaan to update.
+     */
+    where: DataPekerjaanWhereUniqueInput
+  }
+
+  /**
+   * DataPekerjaan updateMany
+   */
+  export type DataPekerjaanUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DataPekerjaans.
+     */
+    data: XOR<DataPekerjaanUpdateManyMutationInput, DataPekerjaanUncheckedUpdateManyInput>
+    /**
+     * Filter which DataPekerjaans to update
+     */
+    where?: DataPekerjaanWhereInput
+    /**
+     * Limit how many DataPekerjaans to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DataPekerjaan upsert
+   */
+  export type DataPekerjaanUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPekerjaan
+     */
+    select?: DataPekerjaanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPekerjaan
+     */
+    omit?: DataPekerjaanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPekerjaanInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DataPekerjaan to update in case it exists.
+     */
+    where: DataPekerjaanWhereUniqueInput
+    /**
+     * In case the DataPekerjaan found by the `where` argument doesn't exist, create a new DataPekerjaan with this data.
+     */
+    create: XOR<DataPekerjaanCreateInput, DataPekerjaanUncheckedCreateInput>
+    /**
+     * In case the DataPekerjaan was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DataPekerjaanUpdateInput, DataPekerjaanUncheckedUpdateInput>
+  }
+
+  /**
+   * DataPekerjaan delete
+   */
+  export type DataPekerjaanDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPekerjaan
+     */
+    select?: DataPekerjaanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPekerjaan
+     */
+    omit?: DataPekerjaanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPekerjaanInclude<ExtArgs> | null
+    /**
+     * Filter which DataPekerjaan to delete.
+     */
+    where: DataPekerjaanWhereUniqueInput
+  }
+
+  /**
+   * DataPekerjaan deleteMany
+   */
+  export type DataPekerjaanDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DataPekerjaans to delete
+     */
+    where?: DataPekerjaanWhereInput
+    /**
+     * Limit how many DataPekerjaans to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DataPekerjaan without action
+   */
+  export type DataPekerjaanDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPekerjaan
+     */
+    select?: DataPekerjaanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPekerjaan
+     */
+    omit?: DataPekerjaanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPekerjaanInclude<ExtArgs> | null
   }
 
 
@@ -1790,7 +2890,7 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const DataribadiScalarFieldEnum: {
+  export const DatapribadiScalarFieldEnum: {
     nip: 'nip',
     nama: 'nama',
     tempatLahir: 'tempatLahir',
@@ -1801,7 +2901,20 @@ export namespace Prisma {
     alamat: 'alamat'
   };
 
-  export type DataribadiScalarFieldEnum = (typeof DataribadiScalarFieldEnum)[keyof typeof DataribadiScalarFieldEnum]
+  export type DatapribadiScalarFieldEnum = (typeof DatapribadiScalarFieldEnum)[keyof typeof DatapribadiScalarFieldEnum]
+
+
+  export const DataPekerjaanScalarFieldEnum: {
+    nip: 'nip',
+    namaTempatBekerja: 'namaTempatBekerja',
+    alamatPekerjaan: 'alamatPekerjaan',
+    noStr: 'noStr',
+    tanggalStr: 'tanggalStr',
+    noSip: 'noSip',
+    tanggalSip: 'tanggalSip'
+  };
+
+  export type DataPekerjaanScalarFieldEnum = (typeof DataPekerjaanScalarFieldEnum)[keyof typeof DataPekerjaanScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1812,7 +2925,7 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const DataribadiOrderByRelevanceFieldEnum: {
+  export const DatapribadiOrderByRelevanceFieldEnum: {
     nip: 'nip',
     nama: 'nama',
     tempatLahir: 'tempatLahir',
@@ -1822,7 +2935,18 @@ export namespace Prisma {
     alamat: 'alamat'
   };
 
-  export type DataribadiOrderByRelevanceFieldEnum = (typeof DataribadiOrderByRelevanceFieldEnum)[keyof typeof DataribadiOrderByRelevanceFieldEnum]
+  export type DatapribadiOrderByRelevanceFieldEnum = (typeof DatapribadiOrderByRelevanceFieldEnum)[keyof typeof DatapribadiOrderByRelevanceFieldEnum]
+
+
+  export const DataPekerjaanOrderByRelevanceFieldEnum: {
+    nip: 'nip',
+    namaTempatBekerja: 'namaTempatBekerja',
+    alamatPekerjaan: 'alamatPekerjaan',
+    noStr: 'noStr',
+    noSip: 'noSip'
+  };
+
+  export type DataPekerjaanOrderByRelevanceFieldEnum = (typeof DataPekerjaanOrderByRelevanceFieldEnum)[keyof typeof DataPekerjaanOrderByRelevanceFieldEnum]
 
 
   /**
@@ -1854,21 +2978,22 @@ export namespace Prisma {
    */
 
 
-  export type DataribadiWhereInput = {
-    AND?: DataribadiWhereInput | DataribadiWhereInput[]
-    OR?: DataribadiWhereInput[]
-    NOT?: DataribadiWhereInput | DataribadiWhereInput[]
-    nip?: StringFilter<"Dataribadi"> | string
-    nama?: StringFilter<"Dataribadi"> | string
-    tempatLahir?: StringFilter<"Dataribadi"> | string
-    tanggalLahir?: DateTimeFilter<"Dataribadi"> | Date | string
-    jenisKelamin?: StringFilter<"Dataribadi"> | string
-    phone?: StringFilter<"Dataribadi"> | string
-    email?: StringFilter<"Dataribadi"> | string
-    alamat?: StringFilter<"Dataribadi"> | string
+  export type DatapribadiWhereInput = {
+    AND?: DatapribadiWhereInput | DatapribadiWhereInput[]
+    OR?: DatapribadiWhereInput[]
+    NOT?: DatapribadiWhereInput | DatapribadiWhereInput[]
+    nip?: StringFilter<"Datapribadi"> | string
+    nama?: StringFilter<"Datapribadi"> | string
+    tempatLahir?: StringFilter<"Datapribadi"> | string
+    tanggalLahir?: DateTimeFilter<"Datapribadi"> | Date | string
+    jenisKelamin?: StringFilter<"Datapribadi"> | string
+    phone?: StringFilter<"Datapribadi"> | string
+    email?: StringFilter<"Datapribadi"> | string
+    alamat?: StringFilter<"Datapribadi"> | string
+    pekerjaan?: XOR<DataPekerjaanNullableScalarRelationFilter, DataPekerjaanWhereInput> | null
   }
 
-  export type DataribadiOrderByWithRelationInput = {
+  export type DatapribadiOrderByWithRelationInput = {
     nip?: SortOrder
     nama?: SortOrder
     tempatLahir?: SortOrder
@@ -1877,24 +3002,26 @@ export namespace Prisma {
     phone?: SortOrder
     email?: SortOrder
     alamat?: SortOrder
-    _relevance?: DataribadiOrderByRelevanceInput
+    pekerjaan?: DataPekerjaanOrderByWithRelationInput
+    _relevance?: DatapribadiOrderByRelevanceInput
   }
 
-  export type DataribadiWhereUniqueInput = Prisma.AtLeast<{
+  export type DatapribadiWhereUniqueInput = Prisma.AtLeast<{
     nip?: string
-    AND?: DataribadiWhereInput | DataribadiWhereInput[]
-    OR?: DataribadiWhereInput[]
-    NOT?: DataribadiWhereInput | DataribadiWhereInput[]
-    nama?: StringFilter<"Dataribadi"> | string
-    tempatLahir?: StringFilter<"Dataribadi"> | string
-    tanggalLahir?: DateTimeFilter<"Dataribadi"> | Date | string
-    jenisKelamin?: StringFilter<"Dataribadi"> | string
-    phone?: StringFilter<"Dataribadi"> | string
-    email?: StringFilter<"Dataribadi"> | string
-    alamat?: StringFilter<"Dataribadi"> | string
+    AND?: DatapribadiWhereInput | DatapribadiWhereInput[]
+    OR?: DatapribadiWhereInput[]
+    NOT?: DatapribadiWhereInput | DatapribadiWhereInput[]
+    nama?: StringFilter<"Datapribadi"> | string
+    tempatLahir?: StringFilter<"Datapribadi"> | string
+    tanggalLahir?: DateTimeFilter<"Datapribadi"> | Date | string
+    jenisKelamin?: StringFilter<"Datapribadi"> | string
+    phone?: StringFilter<"Datapribadi"> | string
+    email?: StringFilter<"Datapribadi"> | string
+    alamat?: StringFilter<"Datapribadi"> | string
+    pekerjaan?: XOR<DataPekerjaanNullableScalarRelationFilter, DataPekerjaanWhereInput> | null
   }, "nip">
 
-  export type DataribadiOrderByWithAggregationInput = {
+  export type DatapribadiOrderByWithAggregationInput = {
     nip?: SortOrder
     nama?: SortOrder
     tempatLahir?: SortOrder
@@ -1903,26 +3030,140 @@ export namespace Prisma {
     phone?: SortOrder
     email?: SortOrder
     alamat?: SortOrder
-    _count?: DataribadiCountOrderByAggregateInput
-    _max?: DataribadiMaxOrderByAggregateInput
-    _min?: DataribadiMinOrderByAggregateInput
+    _count?: DatapribadiCountOrderByAggregateInput
+    _max?: DatapribadiMaxOrderByAggregateInput
+    _min?: DatapribadiMinOrderByAggregateInput
   }
 
-  export type DataribadiScalarWhereWithAggregatesInput = {
-    AND?: DataribadiScalarWhereWithAggregatesInput | DataribadiScalarWhereWithAggregatesInput[]
-    OR?: DataribadiScalarWhereWithAggregatesInput[]
-    NOT?: DataribadiScalarWhereWithAggregatesInput | DataribadiScalarWhereWithAggregatesInput[]
-    nip?: StringWithAggregatesFilter<"Dataribadi"> | string
-    nama?: StringWithAggregatesFilter<"Dataribadi"> | string
-    tempatLahir?: StringWithAggregatesFilter<"Dataribadi"> | string
-    tanggalLahir?: DateTimeWithAggregatesFilter<"Dataribadi"> | Date | string
-    jenisKelamin?: StringWithAggregatesFilter<"Dataribadi"> | string
-    phone?: StringWithAggregatesFilter<"Dataribadi"> | string
-    email?: StringWithAggregatesFilter<"Dataribadi"> | string
-    alamat?: StringWithAggregatesFilter<"Dataribadi"> | string
+  export type DatapribadiScalarWhereWithAggregatesInput = {
+    AND?: DatapribadiScalarWhereWithAggregatesInput | DatapribadiScalarWhereWithAggregatesInput[]
+    OR?: DatapribadiScalarWhereWithAggregatesInput[]
+    NOT?: DatapribadiScalarWhereWithAggregatesInput | DatapribadiScalarWhereWithAggregatesInput[]
+    nip?: StringWithAggregatesFilter<"Datapribadi"> | string
+    nama?: StringWithAggregatesFilter<"Datapribadi"> | string
+    tempatLahir?: StringWithAggregatesFilter<"Datapribadi"> | string
+    tanggalLahir?: DateTimeWithAggregatesFilter<"Datapribadi"> | Date | string
+    jenisKelamin?: StringWithAggregatesFilter<"Datapribadi"> | string
+    phone?: StringWithAggregatesFilter<"Datapribadi"> | string
+    email?: StringWithAggregatesFilter<"Datapribadi"> | string
+    alamat?: StringWithAggregatesFilter<"Datapribadi"> | string
   }
 
-  export type DataribadiCreateInput = {
+  export type DataPekerjaanWhereInput = {
+    AND?: DataPekerjaanWhereInput | DataPekerjaanWhereInput[]
+    OR?: DataPekerjaanWhereInput[]
+    NOT?: DataPekerjaanWhereInput | DataPekerjaanWhereInput[]
+    nip?: StringFilter<"DataPekerjaan"> | string
+    namaTempatBekerja?: StringFilter<"DataPekerjaan"> | string
+    alamatPekerjaan?: StringFilter<"DataPekerjaan"> | string
+    noStr?: StringFilter<"DataPekerjaan"> | string
+    tanggalStr?: DateTimeFilter<"DataPekerjaan"> | Date | string
+    noSip?: StringFilter<"DataPekerjaan"> | string
+    tanggalSip?: DateTimeFilter<"DataPekerjaan"> | Date | string
+    datapribadi?: XOR<DatapribadiScalarRelationFilter, DatapribadiWhereInput>
+  }
+
+  export type DataPekerjaanOrderByWithRelationInput = {
+    nip?: SortOrder
+    namaTempatBekerja?: SortOrder
+    alamatPekerjaan?: SortOrder
+    noStr?: SortOrder
+    tanggalStr?: SortOrder
+    noSip?: SortOrder
+    tanggalSip?: SortOrder
+    datapribadi?: DatapribadiOrderByWithRelationInput
+    _relevance?: DataPekerjaanOrderByRelevanceInput
+  }
+
+  export type DataPekerjaanWhereUniqueInput = Prisma.AtLeast<{
+    nip?: string
+    AND?: DataPekerjaanWhereInput | DataPekerjaanWhereInput[]
+    OR?: DataPekerjaanWhereInput[]
+    NOT?: DataPekerjaanWhereInput | DataPekerjaanWhereInput[]
+    namaTempatBekerja?: StringFilter<"DataPekerjaan"> | string
+    alamatPekerjaan?: StringFilter<"DataPekerjaan"> | string
+    noStr?: StringFilter<"DataPekerjaan"> | string
+    tanggalStr?: DateTimeFilter<"DataPekerjaan"> | Date | string
+    noSip?: StringFilter<"DataPekerjaan"> | string
+    tanggalSip?: DateTimeFilter<"DataPekerjaan"> | Date | string
+    datapribadi?: XOR<DatapribadiScalarRelationFilter, DatapribadiWhereInput>
+  }, "nip">
+
+  export type DataPekerjaanOrderByWithAggregationInput = {
+    nip?: SortOrder
+    namaTempatBekerja?: SortOrder
+    alamatPekerjaan?: SortOrder
+    noStr?: SortOrder
+    tanggalStr?: SortOrder
+    noSip?: SortOrder
+    tanggalSip?: SortOrder
+    _count?: DataPekerjaanCountOrderByAggregateInput
+    _max?: DataPekerjaanMaxOrderByAggregateInput
+    _min?: DataPekerjaanMinOrderByAggregateInput
+  }
+
+  export type DataPekerjaanScalarWhereWithAggregatesInput = {
+    AND?: DataPekerjaanScalarWhereWithAggregatesInput | DataPekerjaanScalarWhereWithAggregatesInput[]
+    OR?: DataPekerjaanScalarWhereWithAggregatesInput[]
+    NOT?: DataPekerjaanScalarWhereWithAggregatesInput | DataPekerjaanScalarWhereWithAggregatesInput[]
+    nip?: StringWithAggregatesFilter<"DataPekerjaan"> | string
+    namaTempatBekerja?: StringWithAggregatesFilter<"DataPekerjaan"> | string
+    alamatPekerjaan?: StringWithAggregatesFilter<"DataPekerjaan"> | string
+    noStr?: StringWithAggregatesFilter<"DataPekerjaan"> | string
+    tanggalStr?: DateTimeWithAggregatesFilter<"DataPekerjaan"> | Date | string
+    noSip?: StringWithAggregatesFilter<"DataPekerjaan"> | string
+    tanggalSip?: DateTimeWithAggregatesFilter<"DataPekerjaan"> | Date | string
+  }
+
+  export type DatapribadiCreateInput = {
+    nip: string
+    nama: string
+    tempatLahir: string
+    tanggalLahir: Date | string
+    jenisKelamin: string
+    phone: string
+    email: string
+    alamat: string
+    pekerjaan?: DataPekerjaanCreateNestedOneWithoutDatapribadiInput
+  }
+
+  export type DatapribadiUncheckedCreateInput = {
+    nip: string
+    nama: string
+    tempatLahir: string
+    tanggalLahir: Date | string
+    jenisKelamin: string
+    phone: string
+    email: string
+    alamat: string
+    pekerjaan?: DataPekerjaanUncheckedCreateNestedOneWithoutDatapribadiInput
+  }
+
+  export type DatapribadiUpdateInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    pekerjaan?: DataPekerjaanUpdateOneWithoutDatapribadiNestedInput
+  }
+
+  export type DatapribadiUncheckedUpdateInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    pekerjaan?: DataPekerjaanUncheckedUpdateOneWithoutDatapribadiNestedInput
+  }
+
+  export type DatapribadiCreateManyInput = {
     nip: string
     nama: string
     tempatLahir: string
@@ -1933,70 +3174,95 @@ export namespace Prisma {
     alamat: string
   }
 
-  export type DataribadiUncheckedCreateInput = {
+  export type DatapribadiUpdateManyMutationInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DatapribadiUncheckedUpdateManyInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DataPekerjaanCreateInput = {
+    namaTempatBekerja: string
+    alamatPekerjaan: string
+    noStr: string
+    tanggalStr: Date | string
+    noSip: string
+    tanggalSip: Date | string
+    datapribadi: DatapribadiCreateNestedOneWithoutPekerjaanInput
+  }
+
+  export type DataPekerjaanUncheckedCreateInput = {
     nip: string
-    nama: string
-    tempatLahir: string
-    tanggalLahir: Date | string
-    jenisKelamin: string
-    phone: string
-    email: string
-    alamat: string
+    namaTempatBekerja: string
+    alamatPekerjaan: string
+    noStr: string
+    tanggalStr: Date | string
+    noSip: string
+    tanggalSip: Date | string
   }
 
-  export type DataribadiUpdateInput = {
+  export type DataPekerjaanUpdateInput = {
+    namaTempatBekerja?: StringFieldUpdateOperationsInput | string
+    alamatPekerjaan?: StringFieldUpdateOperationsInput | string
+    noStr?: StringFieldUpdateOperationsInput | string
+    tanggalStr?: DateTimeFieldUpdateOperationsInput | Date | string
+    noSip?: StringFieldUpdateOperationsInput | string
+    tanggalSip?: DateTimeFieldUpdateOperationsInput | Date | string
+    datapribadi?: DatapribadiUpdateOneRequiredWithoutPekerjaanNestedInput
+  }
+
+  export type DataPekerjaanUncheckedUpdateInput = {
     nip?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
-    jenisKelamin?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    alamat?: StringFieldUpdateOperationsInput | string
+    namaTempatBekerja?: StringFieldUpdateOperationsInput | string
+    alamatPekerjaan?: StringFieldUpdateOperationsInput | string
+    noStr?: StringFieldUpdateOperationsInput | string
+    tanggalStr?: DateTimeFieldUpdateOperationsInput | Date | string
+    noSip?: StringFieldUpdateOperationsInput | string
+    tanggalSip?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type DataribadiUncheckedUpdateInput = {
-    nip?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
-    jenisKelamin?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    alamat?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type DataribadiCreateManyInput = {
+  export type DataPekerjaanCreateManyInput = {
     nip: string
-    nama: string
-    tempatLahir: string
-    tanggalLahir: Date | string
-    jenisKelamin: string
-    phone: string
-    email: string
-    alamat: string
+    namaTempatBekerja: string
+    alamatPekerjaan: string
+    noStr: string
+    tanggalStr: Date | string
+    noSip: string
+    tanggalSip: Date | string
   }
 
-  export type DataribadiUpdateManyMutationInput = {
-    nip?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
-    jenisKelamin?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    alamat?: StringFieldUpdateOperationsInput | string
+  export type DataPekerjaanUpdateManyMutationInput = {
+    namaTempatBekerja?: StringFieldUpdateOperationsInput | string
+    alamatPekerjaan?: StringFieldUpdateOperationsInput | string
+    noStr?: StringFieldUpdateOperationsInput | string
+    tanggalStr?: DateTimeFieldUpdateOperationsInput | Date | string
+    noSip?: StringFieldUpdateOperationsInput | string
+    tanggalSip?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type DataribadiUncheckedUpdateManyInput = {
+  export type DataPekerjaanUncheckedUpdateManyInput = {
     nip?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
-    jenisKelamin?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    alamat?: StringFieldUpdateOperationsInput | string
+    namaTempatBekerja?: StringFieldUpdateOperationsInput | string
+    alamatPekerjaan?: StringFieldUpdateOperationsInput | string
+    noStr?: StringFieldUpdateOperationsInput | string
+    tanggalStr?: DateTimeFieldUpdateOperationsInput | Date | string
+    noSip?: StringFieldUpdateOperationsInput | string
+    tanggalSip?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2025,13 +3291,18 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type DataribadiOrderByRelevanceInput = {
-    fields: DataribadiOrderByRelevanceFieldEnum | DataribadiOrderByRelevanceFieldEnum[]
+  export type DataPekerjaanNullableScalarRelationFilter = {
+    is?: DataPekerjaanWhereInput | null
+    isNot?: DataPekerjaanWhereInput | null
+  }
+
+  export type DatapribadiOrderByRelevanceInput = {
+    fields: DatapribadiOrderByRelevanceFieldEnum | DatapribadiOrderByRelevanceFieldEnum[]
     sort: SortOrder
     search: string
   }
 
-  export type DataribadiCountOrderByAggregateInput = {
+  export type DatapribadiCountOrderByAggregateInput = {
     nip?: SortOrder
     nama?: SortOrder
     tempatLahir?: SortOrder
@@ -2042,7 +3313,7 @@ export namespace Prisma {
     alamat?: SortOrder
   }
 
-  export type DataribadiMaxOrderByAggregateInput = {
+  export type DatapribadiMaxOrderByAggregateInput = {
     nip?: SortOrder
     nama?: SortOrder
     tempatLahir?: SortOrder
@@ -2053,7 +3324,7 @@ export namespace Prisma {
     alamat?: SortOrder
   }
 
-  export type DataribadiMinOrderByAggregateInput = {
+  export type DatapribadiMinOrderByAggregateInput = {
     nip?: SortOrder
     nama?: SortOrder
     tempatLahir?: SortOrder
@@ -2096,12 +3367,99 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type DatapribadiScalarRelationFilter = {
+    is?: DatapribadiWhereInput
+    isNot?: DatapribadiWhereInput
+  }
+
+  export type DataPekerjaanOrderByRelevanceInput = {
+    fields: DataPekerjaanOrderByRelevanceFieldEnum | DataPekerjaanOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type DataPekerjaanCountOrderByAggregateInput = {
+    nip?: SortOrder
+    namaTempatBekerja?: SortOrder
+    alamatPekerjaan?: SortOrder
+    noStr?: SortOrder
+    tanggalStr?: SortOrder
+    noSip?: SortOrder
+    tanggalSip?: SortOrder
+  }
+
+  export type DataPekerjaanMaxOrderByAggregateInput = {
+    nip?: SortOrder
+    namaTempatBekerja?: SortOrder
+    alamatPekerjaan?: SortOrder
+    noStr?: SortOrder
+    tanggalStr?: SortOrder
+    noSip?: SortOrder
+    tanggalSip?: SortOrder
+  }
+
+  export type DataPekerjaanMinOrderByAggregateInput = {
+    nip?: SortOrder
+    namaTempatBekerja?: SortOrder
+    alamatPekerjaan?: SortOrder
+    noStr?: SortOrder
+    tanggalStr?: SortOrder
+    noSip?: SortOrder
+    tanggalSip?: SortOrder
+  }
+
+  export type DataPekerjaanCreateNestedOneWithoutDatapribadiInput = {
+    create?: XOR<DataPekerjaanCreateWithoutDatapribadiInput, DataPekerjaanUncheckedCreateWithoutDatapribadiInput>
+    connectOrCreate?: DataPekerjaanCreateOrConnectWithoutDatapribadiInput
+    connect?: DataPekerjaanWhereUniqueInput
+  }
+
+  export type DataPekerjaanUncheckedCreateNestedOneWithoutDatapribadiInput = {
+    create?: XOR<DataPekerjaanCreateWithoutDatapribadiInput, DataPekerjaanUncheckedCreateWithoutDatapribadiInput>
+    connectOrCreate?: DataPekerjaanCreateOrConnectWithoutDatapribadiInput
+    connect?: DataPekerjaanWhereUniqueInput
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type DataPekerjaanUpdateOneWithoutDatapribadiNestedInput = {
+    create?: XOR<DataPekerjaanCreateWithoutDatapribadiInput, DataPekerjaanUncheckedCreateWithoutDatapribadiInput>
+    connectOrCreate?: DataPekerjaanCreateOrConnectWithoutDatapribadiInput
+    upsert?: DataPekerjaanUpsertWithoutDatapribadiInput
+    disconnect?: DataPekerjaanWhereInput | boolean
+    delete?: DataPekerjaanWhereInput | boolean
+    connect?: DataPekerjaanWhereUniqueInput
+    update?: XOR<XOR<DataPekerjaanUpdateToOneWithWhereWithoutDatapribadiInput, DataPekerjaanUpdateWithoutDatapribadiInput>, DataPekerjaanUncheckedUpdateWithoutDatapribadiInput>
+  }
+
+  export type DataPekerjaanUncheckedUpdateOneWithoutDatapribadiNestedInput = {
+    create?: XOR<DataPekerjaanCreateWithoutDatapribadiInput, DataPekerjaanUncheckedCreateWithoutDatapribadiInput>
+    connectOrCreate?: DataPekerjaanCreateOrConnectWithoutDatapribadiInput
+    upsert?: DataPekerjaanUpsertWithoutDatapribadiInput
+    disconnect?: DataPekerjaanWhereInput | boolean
+    delete?: DataPekerjaanWhereInput | boolean
+    connect?: DataPekerjaanWhereUniqueInput
+    update?: XOR<XOR<DataPekerjaanUpdateToOneWithWhereWithoutDatapribadiInput, DataPekerjaanUpdateWithoutDatapribadiInput>, DataPekerjaanUncheckedUpdateWithoutDatapribadiInput>
+  }
+
+  export type DatapribadiCreateNestedOneWithoutPekerjaanInput = {
+    create?: XOR<DatapribadiCreateWithoutPekerjaanInput, DatapribadiUncheckedCreateWithoutPekerjaanInput>
+    connectOrCreate?: DatapribadiCreateOrConnectWithoutPekerjaanInput
+    connect?: DatapribadiWhereUniqueInput
+  }
+
+  export type DatapribadiUpdateOneRequiredWithoutPekerjaanNestedInput = {
+    create?: XOR<DatapribadiCreateWithoutPekerjaanInput, DatapribadiUncheckedCreateWithoutPekerjaanInput>
+    connectOrCreate?: DatapribadiCreateOrConnectWithoutPekerjaanInput
+    upsert?: DatapribadiUpsertWithoutPekerjaanInput
+    connect?: DatapribadiWhereUniqueInput
+    update?: XOR<XOR<DatapribadiUpdateToOneWithWhereWithoutPekerjaanInput, DatapribadiUpdateWithoutPekerjaanInput>, DatapribadiUncheckedUpdateWithoutPekerjaanInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2171,6 +3529,118 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type DataPekerjaanCreateWithoutDatapribadiInput = {
+    namaTempatBekerja: string
+    alamatPekerjaan: string
+    noStr: string
+    tanggalStr: Date | string
+    noSip: string
+    tanggalSip: Date | string
+  }
+
+  export type DataPekerjaanUncheckedCreateWithoutDatapribadiInput = {
+    namaTempatBekerja: string
+    alamatPekerjaan: string
+    noStr: string
+    tanggalStr: Date | string
+    noSip: string
+    tanggalSip: Date | string
+  }
+
+  export type DataPekerjaanCreateOrConnectWithoutDatapribadiInput = {
+    where: DataPekerjaanWhereUniqueInput
+    create: XOR<DataPekerjaanCreateWithoutDatapribadiInput, DataPekerjaanUncheckedCreateWithoutDatapribadiInput>
+  }
+
+  export type DataPekerjaanUpsertWithoutDatapribadiInput = {
+    update: XOR<DataPekerjaanUpdateWithoutDatapribadiInput, DataPekerjaanUncheckedUpdateWithoutDatapribadiInput>
+    create: XOR<DataPekerjaanCreateWithoutDatapribadiInput, DataPekerjaanUncheckedCreateWithoutDatapribadiInput>
+    where?: DataPekerjaanWhereInput
+  }
+
+  export type DataPekerjaanUpdateToOneWithWhereWithoutDatapribadiInput = {
+    where?: DataPekerjaanWhereInput
+    data: XOR<DataPekerjaanUpdateWithoutDatapribadiInput, DataPekerjaanUncheckedUpdateWithoutDatapribadiInput>
+  }
+
+  export type DataPekerjaanUpdateWithoutDatapribadiInput = {
+    namaTempatBekerja?: StringFieldUpdateOperationsInput | string
+    alamatPekerjaan?: StringFieldUpdateOperationsInput | string
+    noStr?: StringFieldUpdateOperationsInput | string
+    tanggalStr?: DateTimeFieldUpdateOperationsInput | Date | string
+    noSip?: StringFieldUpdateOperationsInput | string
+    tanggalSip?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DataPekerjaanUncheckedUpdateWithoutDatapribadiInput = {
+    namaTempatBekerja?: StringFieldUpdateOperationsInput | string
+    alamatPekerjaan?: StringFieldUpdateOperationsInput | string
+    noStr?: StringFieldUpdateOperationsInput | string
+    tanggalStr?: DateTimeFieldUpdateOperationsInput | Date | string
+    noSip?: StringFieldUpdateOperationsInput | string
+    tanggalSip?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DatapribadiCreateWithoutPekerjaanInput = {
+    nip: string
+    nama: string
+    tempatLahir: string
+    tanggalLahir: Date | string
+    jenisKelamin: string
+    phone: string
+    email: string
+    alamat: string
+  }
+
+  export type DatapribadiUncheckedCreateWithoutPekerjaanInput = {
+    nip: string
+    nama: string
+    tempatLahir: string
+    tanggalLahir: Date | string
+    jenisKelamin: string
+    phone: string
+    email: string
+    alamat: string
+  }
+
+  export type DatapribadiCreateOrConnectWithoutPekerjaanInput = {
+    where: DatapribadiWhereUniqueInput
+    create: XOR<DatapribadiCreateWithoutPekerjaanInput, DatapribadiUncheckedCreateWithoutPekerjaanInput>
+  }
+
+  export type DatapribadiUpsertWithoutPekerjaanInput = {
+    update: XOR<DatapribadiUpdateWithoutPekerjaanInput, DatapribadiUncheckedUpdateWithoutPekerjaanInput>
+    create: XOR<DatapribadiCreateWithoutPekerjaanInput, DatapribadiUncheckedCreateWithoutPekerjaanInput>
+    where?: DatapribadiWhereInput
+  }
+
+  export type DatapribadiUpdateToOneWithWhereWithoutPekerjaanInput = {
+    where?: DatapribadiWhereInput
+    data: XOR<DatapribadiUpdateWithoutPekerjaanInput, DatapribadiUncheckedUpdateWithoutPekerjaanInput>
+  }
+
+  export type DatapribadiUpdateWithoutPekerjaanInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DatapribadiUncheckedUpdateWithoutPekerjaanInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
   }
 
 

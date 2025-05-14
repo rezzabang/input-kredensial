@@ -6,12 +6,14 @@ import prisma from "@/lib/prisma";
 
 export async function GET(request: Request, { params }: { params: { nip: string } }) {
   try {
-    // Get params ID without converting to number
     const { nip } = params;
 
-    // Fetch data from database
-    const Dataribadi = await prisma.dataribadi.findUnique({
+    // Fetch data from database including related pekerjaan
+    const Dataribadi = await prisma.datapribadi.findUnique({
       where: { nip },
+      include: {
+        pekerjaan: true, // this pulls related DataPekerjaan
+      },
     });
 
     if (!Dataribadi) {
@@ -25,7 +27,6 @@ export async function GET(request: Request, { params }: { params: { nip: string 
       );
     }
 
-    // Return success response with data
     return NextResponse.json(
       {
         success: true,
@@ -48,4 +49,3 @@ export async function GET(request: Request, { params }: { params: { nip: string 
     );
   }
 }
-

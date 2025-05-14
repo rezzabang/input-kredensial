@@ -6,7 +6,7 @@ import prisma from "@/lib/prisma";
 
 export async function GET() {
 
-  const Dataribadi = await prisma.dataribadi.findMany();
+  const Dataribadi = await prisma.datapribadi.findMany();
 
   return NextResponse.json(
     {
@@ -17,34 +17,5 @@ export async function GET() {
     {
       status: 200,
     }
-  );
-}
-
-export async function POST(request: Request) {
-  //get all request
-  const { nip, nama, tempatLahir, tanggalLahir, jenisKelamin, phone, email, alamat } = await request.json();
-
-  //create data post
-  const Dataribadi = await prisma.dataribadi.create({
-    data: {
-      nip,
-      nama,
-      tempatLahir,
-      tanggalLahir,
-      jenisKelamin,
-      phone,
-      email,
-      alamat,
-    },
-  });
-
-  //return response JSON
-  return NextResponse.json(
-    {
-      success: true,
-      message: "Post Created Successfully!",
-      data: Dataribadi,
-    },
-    { status: 201 }
   );
 }

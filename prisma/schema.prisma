@@ -14,7 +14,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Dataribadi {
+model Datapribadi {
   nip          String         @id
   nama         String
   tempatLahir  String
@@ -23,4 +23,30 @@ model Dataribadi {
   phone        String
   email        String
   alamat       String
+
+  pekerjaan    DataPekerjaan?
+  pendidikan   DataPendidikan?
+}
+
+model DataPekerjaan {
+  nip                String      @id
+  namaTempatBekerja  String
+  alamatPekerjaan    String
+  noStr              String
+  tanggalStr         DateTime
+  noSip              String
+  tanggalSip         DateTime
+
+  datapribadi        Datapribadi @relation(fields: [nip], references: [nip], onDelete: Cascade)
+}
+
+model Datapendidikan {
+  nip           String   @id
+  universitas   String
+  jurusan       String
+  noIjazah      String
+  tanggalIjazah DateTime
+  fileIjazah    String
+
+  datapribadi   Datapribadi @relation(fields: [nip], references: [nip], onDelete: Cascade)
 }

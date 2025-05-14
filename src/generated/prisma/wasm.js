@@ -120,7 +120,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.DataribadiScalarFieldEnum = {
+exports.Prisma.DatapribadiScalarFieldEnum = {
   nip: 'nip',
   nama: 'nama',
   tempatLahir: 'tempatLahir',
@@ -131,12 +131,22 @@ exports.Prisma.DataribadiScalarFieldEnum = {
   alamat: 'alamat'
 };
 
+exports.Prisma.DataPekerjaanScalarFieldEnum = {
+  nip: 'nip',
+  namaTempatBekerja: 'namaTempatBekerja',
+  alamatPekerjaan: 'alamatPekerjaan',
+  noStr: 'noStr',
+  tanggalStr: 'tanggalStr',
+  noSip: 'noSip',
+  tanggalSip: 'tanggalSip'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
 };
 
-exports.Prisma.DataribadiOrderByRelevanceFieldEnum = {
+exports.Prisma.DatapribadiOrderByRelevanceFieldEnum = {
   nip: 'nip',
   nama: 'nama',
   tempatLahir: 'tempatLahir',
@@ -146,9 +156,18 @@ exports.Prisma.DataribadiOrderByRelevanceFieldEnum = {
   alamat: 'alamat'
 };
 
+exports.Prisma.DataPekerjaanOrderByRelevanceFieldEnum = {
+  nip: 'nip',
+  namaTempatBekerja: 'namaTempatBekerja',
+  alamatPekerjaan: 'alamatPekerjaan',
+  noStr: 'noStr',
+  noSip: 'noSip'
+};
+
 
 exports.Prisma.ModelName = {
-  Dataribadi: 'Dataribadi'
+  Datapribadi: 'Datapribadi',
+  DataPekerjaan: 'DataPekerjaan'
 };
 
 /**

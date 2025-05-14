@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE `Dataribadi` (
+CREATE TABLE `Datapribadi` (
     `nip` VARCHAR(191) NOT NULL,
     `nama` VARCHAR(191) NOT NULL,
     `tempatLahir` VARCHAR(191) NOT NULL,
