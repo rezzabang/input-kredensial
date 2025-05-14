@@ -1,11 +1,12 @@
-// prisma/schema.prisma
-
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma" // Optional: adjust if needed
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -13,8 +14,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model DataPribadi {
-  nip          String         @id // Using NIP as primary key
+model Dataribadi {
+  nip          String         @id
   nama         String
   tempatLahir  String
   tanggalLahir DateTime
@@ -22,51 +23,4 @@ model DataPribadi {
   phone        String
   email        String
   alamat       String
-
-  // One-to-one relation with EducationData
-  pendidikan   DataPendidikan?
-  
-  // One-to-one relation with WorkData
-  pekerjaan    DataPekerjaan?
-
-  // One-to-many relation with TrainingData
-  pelatihan    DataPelatihan[]
-}
-
-model DataPendidikan {
-  id             Int       @id @default(autoincrement())
-  universitas    String
-  jurusan        String
-  noIjazah       String
-  tanggalIjazah  DateTime
-  fileIjazah     String
-
-  nip            String    @unique
-  // Relation field: Each education record must link to a PersonalData record by NIP.
-  personal       DataPribadi @relation(fields: [nip], references: [nip])
-}
-
-model DataPekerjaan {
-  id                Int       @id @default(autoincrement())
-  namaTempatBekerja String
-  alamatPekerjaan   String
-  noStr             String
-  tanggalStr        DateTime
-  noSip             String
-  tanggalSip        DateTime
-
-  nip               String    @unique
-  // Relation field: Each work record corresponds to a PersonalData record.
-  personal          DataPribadi @relation(fields: [nip], references: [nip])
-}
-
-model DataPelatihan {
-  id             Int       @id @default(autoincrement())
-  namaPelatihan  String
-  jenisPelatihan String
-  filePelatihan  String
-
-  nip            String
-  // Relation field: Many training records can belong to one PersonalData record.
-  personal       DataPribadi @relation(fields: [nip], references: [nip])
 }
