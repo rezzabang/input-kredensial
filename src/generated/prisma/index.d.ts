@@ -23,6 +23,11 @@ export type Datapribadi = $Result.DefaultSelection<Prisma.$DatapribadiPayload>
  * 
  */
 export type DataPekerjaan = $Result.DefaultSelection<Prisma.$DataPekerjaanPayload>
+/**
+ * Model DataPendidikan
+ * 
+ */
+export type DataPendidikan = $Result.DefaultSelection<Prisma.$DataPendidikanPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -168,6 +173,16 @@ export class PrismaClient<
     * ```
     */
   get dataPekerjaan(): Prisma.DataPekerjaanDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dataPendidikan`: Exposes CRUD operations for the **DataPendidikan** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DataPendidikans
+    * const dataPendidikans = await prisma.dataPendidikan.findMany()
+    * ```
+    */
+  get dataPendidikan(): Prisma.DataPendidikanDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -609,7 +624,8 @@ export namespace Prisma {
 
   export const ModelName: {
     Datapribadi: 'Datapribadi',
-    DataPekerjaan: 'DataPekerjaan'
+    DataPekerjaan: 'DataPekerjaan',
+    DataPendidikan: 'DataPendidikan'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -628,7 +644,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "datapribadi" | "dataPekerjaan"
+      modelProps: "datapribadi" | "dataPekerjaan" | "dataPendidikan"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -764,6 +780,72 @@ export namespace Prisma {
           }
         }
       }
+      DataPendidikan: {
+        payload: Prisma.$DataPendidikanPayload<ExtArgs>
+        fields: Prisma.DataPendidikanFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DataPendidikanFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPendidikanPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DataPendidikanFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPendidikanPayload>
+          }
+          findFirst: {
+            args: Prisma.DataPendidikanFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPendidikanPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DataPendidikanFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPendidikanPayload>
+          }
+          findMany: {
+            args: Prisma.DataPendidikanFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPendidikanPayload>[]
+          }
+          create: {
+            args: Prisma.DataPendidikanCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPendidikanPayload>
+          }
+          createMany: {
+            args: Prisma.DataPendidikanCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.DataPendidikanDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPendidikanPayload>
+          }
+          update: {
+            args: Prisma.DataPendidikanUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPendidikanPayload>
+          }
+          deleteMany: {
+            args: Prisma.DataPendidikanDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DataPendidikanUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.DataPendidikanUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DataPendidikanPayload>
+          }
+          aggregate: {
+            args: Prisma.DataPendidikanAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDataPendidikan>
+          }
+          groupBy: {
+            args: Prisma.DataPendidikanGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DataPendidikanGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DataPendidikanCountArgs<ExtArgs>
+            result: $Utils.Optional<DataPendidikanCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -850,6 +932,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     datapribadi?: DatapribadiOmit
     dataPekerjaan?: DataPekerjaanOmit
+    dataPendidikan?: DataPendidikanOmit
   }
 
   /* Types for Logging */
@@ -1133,6 +1216,7 @@ export namespace Prisma {
     email?: boolean
     alamat?: boolean
     pekerjaan?: boolean | Datapribadi$pekerjaanArgs<ExtArgs>
+    pendidikan?: boolean | Datapribadi$pendidikanArgs<ExtArgs>
   }, ExtArgs["result"]["datapribadi"]>
 
 
@@ -1151,12 +1235,14 @@ export namespace Prisma {
   export type DatapribadiOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nip" | "nama" | "tempatLahir" | "tanggalLahir" | "jenisKelamin" | "phone" | "email" | "alamat", ExtArgs["result"]["datapribadi"]>
   export type DatapribadiInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pekerjaan?: boolean | Datapribadi$pekerjaanArgs<ExtArgs>
+    pendidikan?: boolean | Datapribadi$pendidikanArgs<ExtArgs>
   }
 
   export type $DatapribadiPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Datapribadi"
     objects: {
       pekerjaan: Prisma.$DataPekerjaanPayload<ExtArgs> | null
+      pendidikan: Prisma.$DataPendidikanPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       nip: string
@@ -1508,6 +1594,7 @@ export namespace Prisma {
   export interface Prisma__DatapribadiClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     pekerjaan<T extends Datapribadi$pekerjaanArgs<ExtArgs> = {}>(args?: Subset<T, Datapribadi$pekerjaanArgs<ExtArgs>>): Prisma__DataPekerjaanClient<$Result.GetResult<Prisma.$DataPekerjaanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    pendidikan<T extends Datapribadi$pendidikanArgs<ExtArgs> = {}>(args?: Subset<T, Datapribadi$pendidikanArgs<ExtArgs>>): Prisma__DataPendidikanClient<$Result.GetResult<Prisma.$DataPendidikanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1904,6 +1991,25 @@ export namespace Prisma {
      */
     include?: DataPekerjaanInclude<ExtArgs> | null
     where?: DataPekerjaanWhereInput
+  }
+
+  /**
+   * Datapribadi.pendidikan
+   */
+  export type Datapribadi$pendidikanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPendidikan
+     */
+    select?: DataPendidikanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPendidikan
+     */
+    omit?: DataPendidikanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPendidikanInclude<ExtArgs> | null
+    where?: DataPendidikanWhereInput
   }
 
   /**
@@ -2877,6 +2983,946 @@ export namespace Prisma {
 
 
   /**
+   * Model DataPendidikan
+   */
+
+  export type AggregateDataPendidikan = {
+    _count: DataPendidikanCountAggregateOutputType | null
+    _min: DataPendidikanMinAggregateOutputType | null
+    _max: DataPendidikanMaxAggregateOutputType | null
+  }
+
+  export type DataPendidikanMinAggregateOutputType = {
+    nip: string | null
+    universitas: string | null
+    jurusan: string | null
+    noIjazah: string | null
+    tanggalIjazah: Date | null
+    fileIjazah: string | null
+  }
+
+  export type DataPendidikanMaxAggregateOutputType = {
+    nip: string | null
+    universitas: string | null
+    jurusan: string | null
+    noIjazah: string | null
+    tanggalIjazah: Date | null
+    fileIjazah: string | null
+  }
+
+  export type DataPendidikanCountAggregateOutputType = {
+    nip: number
+    universitas: number
+    jurusan: number
+    noIjazah: number
+    tanggalIjazah: number
+    fileIjazah: number
+    _all: number
+  }
+
+
+  export type DataPendidikanMinAggregateInputType = {
+    nip?: true
+    universitas?: true
+    jurusan?: true
+    noIjazah?: true
+    tanggalIjazah?: true
+    fileIjazah?: true
+  }
+
+  export type DataPendidikanMaxAggregateInputType = {
+    nip?: true
+    universitas?: true
+    jurusan?: true
+    noIjazah?: true
+    tanggalIjazah?: true
+    fileIjazah?: true
+  }
+
+  export type DataPendidikanCountAggregateInputType = {
+    nip?: true
+    universitas?: true
+    jurusan?: true
+    noIjazah?: true
+    tanggalIjazah?: true
+    fileIjazah?: true
+    _all?: true
+  }
+
+  export type DataPendidikanAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DataPendidikan to aggregate.
+     */
+    where?: DataPendidikanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DataPendidikans to fetch.
+     */
+    orderBy?: DataPendidikanOrderByWithRelationInput | DataPendidikanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DataPendidikanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DataPendidikans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DataPendidikans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DataPendidikans
+    **/
+    _count?: true | DataPendidikanCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DataPendidikanMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DataPendidikanMaxAggregateInputType
+  }
+
+  export type GetDataPendidikanAggregateType<T extends DataPendidikanAggregateArgs> = {
+        [P in keyof T & keyof AggregateDataPendidikan]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDataPendidikan[P]>
+      : GetScalarType<T[P], AggregateDataPendidikan[P]>
+  }
+
+
+
+
+  export type DataPendidikanGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DataPendidikanWhereInput
+    orderBy?: DataPendidikanOrderByWithAggregationInput | DataPendidikanOrderByWithAggregationInput[]
+    by: DataPendidikanScalarFieldEnum[] | DataPendidikanScalarFieldEnum
+    having?: DataPendidikanScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DataPendidikanCountAggregateInputType | true
+    _min?: DataPendidikanMinAggregateInputType
+    _max?: DataPendidikanMaxAggregateInputType
+  }
+
+  export type DataPendidikanGroupByOutputType = {
+    nip: string
+    universitas: string
+    jurusan: string
+    noIjazah: string
+    tanggalIjazah: Date
+    fileIjazah: string
+    _count: DataPendidikanCountAggregateOutputType | null
+    _min: DataPendidikanMinAggregateOutputType | null
+    _max: DataPendidikanMaxAggregateOutputType | null
+  }
+
+  type GetDataPendidikanGroupByPayload<T extends DataPendidikanGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DataPendidikanGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DataPendidikanGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DataPendidikanGroupByOutputType[P]>
+            : GetScalarType<T[P], DataPendidikanGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DataPendidikanSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    nip?: boolean
+    universitas?: boolean
+    jurusan?: boolean
+    noIjazah?: boolean
+    tanggalIjazah?: boolean
+    fileIjazah?: boolean
+    datapribadi?: boolean | DatapribadiDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dataPendidikan"]>
+
+
+
+  export type DataPendidikanSelectScalar = {
+    nip?: boolean
+    universitas?: boolean
+    jurusan?: boolean
+    noIjazah?: boolean
+    tanggalIjazah?: boolean
+    fileIjazah?: boolean
+  }
+
+  export type DataPendidikanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nip" | "universitas" | "jurusan" | "noIjazah" | "tanggalIjazah" | "fileIjazah", ExtArgs["result"]["dataPendidikan"]>
+  export type DataPendidikanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    datapribadi?: boolean | DatapribadiDefaultArgs<ExtArgs>
+  }
+
+  export type $DataPendidikanPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DataPendidikan"
+    objects: {
+      datapribadi: Prisma.$DatapribadiPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      nip: string
+      universitas: string
+      jurusan: string
+      noIjazah: string
+      tanggalIjazah: Date
+      fileIjazah: string
+    }, ExtArgs["result"]["dataPendidikan"]>
+    composites: {}
+  }
+
+  type DataPendidikanGetPayload<S extends boolean | null | undefined | DataPendidikanDefaultArgs> = $Result.GetResult<Prisma.$DataPendidikanPayload, S>
+
+  type DataPendidikanCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DataPendidikanFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DataPendidikanCountAggregateInputType | true
+    }
+
+  export interface DataPendidikanDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DataPendidikan'], meta: { name: 'DataPendidikan' } }
+    /**
+     * Find zero or one DataPendidikan that matches the filter.
+     * @param {DataPendidikanFindUniqueArgs} args - Arguments to find a DataPendidikan
+     * @example
+     * // Get one DataPendidikan
+     * const dataPendidikan = await prisma.dataPendidikan.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DataPendidikanFindUniqueArgs>(args: SelectSubset<T, DataPendidikanFindUniqueArgs<ExtArgs>>): Prisma__DataPendidikanClient<$Result.GetResult<Prisma.$DataPendidikanPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DataPendidikan that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DataPendidikanFindUniqueOrThrowArgs} args - Arguments to find a DataPendidikan
+     * @example
+     * // Get one DataPendidikan
+     * const dataPendidikan = await prisma.dataPendidikan.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DataPendidikanFindUniqueOrThrowArgs>(args: SelectSubset<T, DataPendidikanFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DataPendidikanClient<$Result.GetResult<Prisma.$DataPendidikanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DataPendidikan that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DataPendidikanFindFirstArgs} args - Arguments to find a DataPendidikan
+     * @example
+     * // Get one DataPendidikan
+     * const dataPendidikan = await prisma.dataPendidikan.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DataPendidikanFindFirstArgs>(args?: SelectSubset<T, DataPendidikanFindFirstArgs<ExtArgs>>): Prisma__DataPendidikanClient<$Result.GetResult<Prisma.$DataPendidikanPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DataPendidikan that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DataPendidikanFindFirstOrThrowArgs} args - Arguments to find a DataPendidikan
+     * @example
+     * // Get one DataPendidikan
+     * const dataPendidikan = await prisma.dataPendidikan.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DataPendidikanFindFirstOrThrowArgs>(args?: SelectSubset<T, DataPendidikanFindFirstOrThrowArgs<ExtArgs>>): Prisma__DataPendidikanClient<$Result.GetResult<Prisma.$DataPendidikanPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DataPendidikans that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DataPendidikanFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DataPendidikans
+     * const dataPendidikans = await prisma.dataPendidikan.findMany()
+     * 
+     * // Get first 10 DataPendidikans
+     * const dataPendidikans = await prisma.dataPendidikan.findMany({ take: 10 })
+     * 
+     * // Only select the `nip`
+     * const dataPendidikanWithNipOnly = await prisma.dataPendidikan.findMany({ select: { nip: true } })
+     * 
+     */
+    findMany<T extends DataPendidikanFindManyArgs>(args?: SelectSubset<T, DataPendidikanFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DataPendidikanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DataPendidikan.
+     * @param {DataPendidikanCreateArgs} args - Arguments to create a DataPendidikan.
+     * @example
+     * // Create one DataPendidikan
+     * const DataPendidikan = await prisma.dataPendidikan.create({
+     *   data: {
+     *     // ... data to create a DataPendidikan
+     *   }
+     * })
+     * 
+     */
+    create<T extends DataPendidikanCreateArgs>(args: SelectSubset<T, DataPendidikanCreateArgs<ExtArgs>>): Prisma__DataPendidikanClient<$Result.GetResult<Prisma.$DataPendidikanPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DataPendidikans.
+     * @param {DataPendidikanCreateManyArgs} args - Arguments to create many DataPendidikans.
+     * @example
+     * // Create many DataPendidikans
+     * const dataPendidikan = await prisma.dataPendidikan.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DataPendidikanCreateManyArgs>(args?: SelectSubset<T, DataPendidikanCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a DataPendidikan.
+     * @param {DataPendidikanDeleteArgs} args - Arguments to delete one DataPendidikan.
+     * @example
+     * // Delete one DataPendidikan
+     * const DataPendidikan = await prisma.dataPendidikan.delete({
+     *   where: {
+     *     // ... filter to delete one DataPendidikan
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DataPendidikanDeleteArgs>(args: SelectSubset<T, DataPendidikanDeleteArgs<ExtArgs>>): Prisma__DataPendidikanClient<$Result.GetResult<Prisma.$DataPendidikanPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DataPendidikan.
+     * @param {DataPendidikanUpdateArgs} args - Arguments to update one DataPendidikan.
+     * @example
+     * // Update one DataPendidikan
+     * const dataPendidikan = await prisma.dataPendidikan.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DataPendidikanUpdateArgs>(args: SelectSubset<T, DataPendidikanUpdateArgs<ExtArgs>>): Prisma__DataPendidikanClient<$Result.GetResult<Prisma.$DataPendidikanPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DataPendidikans.
+     * @param {DataPendidikanDeleteManyArgs} args - Arguments to filter DataPendidikans to delete.
+     * @example
+     * // Delete a few DataPendidikans
+     * const { count } = await prisma.dataPendidikan.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DataPendidikanDeleteManyArgs>(args?: SelectSubset<T, DataPendidikanDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DataPendidikans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DataPendidikanUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DataPendidikans
+     * const dataPendidikan = await prisma.dataPendidikan.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DataPendidikanUpdateManyArgs>(args: SelectSubset<T, DataPendidikanUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one DataPendidikan.
+     * @param {DataPendidikanUpsertArgs} args - Arguments to update or create a DataPendidikan.
+     * @example
+     * // Update or create a DataPendidikan
+     * const dataPendidikan = await prisma.dataPendidikan.upsert({
+     *   create: {
+     *     // ... data to create a DataPendidikan
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DataPendidikan we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DataPendidikanUpsertArgs>(args: SelectSubset<T, DataPendidikanUpsertArgs<ExtArgs>>): Prisma__DataPendidikanClient<$Result.GetResult<Prisma.$DataPendidikanPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DataPendidikans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DataPendidikanCountArgs} args - Arguments to filter DataPendidikans to count.
+     * @example
+     * // Count the number of DataPendidikans
+     * const count = await prisma.dataPendidikan.count({
+     *   where: {
+     *     // ... the filter for the DataPendidikans we want to count
+     *   }
+     * })
+    **/
+    count<T extends DataPendidikanCountArgs>(
+      args?: Subset<T, DataPendidikanCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DataPendidikanCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DataPendidikan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DataPendidikanAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DataPendidikanAggregateArgs>(args: Subset<T, DataPendidikanAggregateArgs>): Prisma.PrismaPromise<GetDataPendidikanAggregateType<T>>
+
+    /**
+     * Group by DataPendidikan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DataPendidikanGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DataPendidikanGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DataPendidikanGroupByArgs['orderBy'] }
+        : { orderBy?: DataPendidikanGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DataPendidikanGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDataPendidikanGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DataPendidikan model
+   */
+  readonly fields: DataPendidikanFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DataPendidikan.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DataPendidikanClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    datapribadi<T extends DatapribadiDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DatapribadiDefaultArgs<ExtArgs>>): Prisma__DatapribadiClient<$Result.GetResult<Prisma.$DatapribadiPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DataPendidikan model
+   */
+  interface DataPendidikanFieldRefs {
+    readonly nip: FieldRef<"DataPendidikan", 'String'>
+    readonly universitas: FieldRef<"DataPendidikan", 'String'>
+    readonly jurusan: FieldRef<"DataPendidikan", 'String'>
+    readonly noIjazah: FieldRef<"DataPendidikan", 'String'>
+    readonly tanggalIjazah: FieldRef<"DataPendidikan", 'DateTime'>
+    readonly fileIjazah: FieldRef<"DataPendidikan", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DataPendidikan findUnique
+   */
+  export type DataPendidikanFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPendidikan
+     */
+    select?: DataPendidikanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPendidikan
+     */
+    omit?: DataPendidikanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPendidikanInclude<ExtArgs> | null
+    /**
+     * Filter, which DataPendidikan to fetch.
+     */
+    where: DataPendidikanWhereUniqueInput
+  }
+
+  /**
+   * DataPendidikan findUniqueOrThrow
+   */
+  export type DataPendidikanFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPendidikan
+     */
+    select?: DataPendidikanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPendidikan
+     */
+    omit?: DataPendidikanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPendidikanInclude<ExtArgs> | null
+    /**
+     * Filter, which DataPendidikan to fetch.
+     */
+    where: DataPendidikanWhereUniqueInput
+  }
+
+  /**
+   * DataPendidikan findFirst
+   */
+  export type DataPendidikanFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPendidikan
+     */
+    select?: DataPendidikanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPendidikan
+     */
+    omit?: DataPendidikanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPendidikanInclude<ExtArgs> | null
+    /**
+     * Filter, which DataPendidikan to fetch.
+     */
+    where?: DataPendidikanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DataPendidikans to fetch.
+     */
+    orderBy?: DataPendidikanOrderByWithRelationInput | DataPendidikanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DataPendidikans.
+     */
+    cursor?: DataPendidikanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DataPendidikans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DataPendidikans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DataPendidikans.
+     */
+    distinct?: DataPendidikanScalarFieldEnum | DataPendidikanScalarFieldEnum[]
+  }
+
+  /**
+   * DataPendidikan findFirstOrThrow
+   */
+  export type DataPendidikanFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPendidikan
+     */
+    select?: DataPendidikanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPendidikan
+     */
+    omit?: DataPendidikanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPendidikanInclude<ExtArgs> | null
+    /**
+     * Filter, which DataPendidikan to fetch.
+     */
+    where?: DataPendidikanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DataPendidikans to fetch.
+     */
+    orderBy?: DataPendidikanOrderByWithRelationInput | DataPendidikanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DataPendidikans.
+     */
+    cursor?: DataPendidikanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DataPendidikans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DataPendidikans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DataPendidikans.
+     */
+    distinct?: DataPendidikanScalarFieldEnum | DataPendidikanScalarFieldEnum[]
+  }
+
+  /**
+   * DataPendidikan findMany
+   */
+  export type DataPendidikanFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPendidikan
+     */
+    select?: DataPendidikanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPendidikan
+     */
+    omit?: DataPendidikanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPendidikanInclude<ExtArgs> | null
+    /**
+     * Filter, which DataPendidikans to fetch.
+     */
+    where?: DataPendidikanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DataPendidikans to fetch.
+     */
+    orderBy?: DataPendidikanOrderByWithRelationInput | DataPendidikanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DataPendidikans.
+     */
+    cursor?: DataPendidikanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DataPendidikans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DataPendidikans.
+     */
+    skip?: number
+    distinct?: DataPendidikanScalarFieldEnum | DataPendidikanScalarFieldEnum[]
+  }
+
+  /**
+   * DataPendidikan create
+   */
+  export type DataPendidikanCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPendidikan
+     */
+    select?: DataPendidikanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPendidikan
+     */
+    omit?: DataPendidikanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPendidikanInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DataPendidikan.
+     */
+    data: XOR<DataPendidikanCreateInput, DataPendidikanUncheckedCreateInput>
+  }
+
+  /**
+   * DataPendidikan createMany
+   */
+  export type DataPendidikanCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DataPendidikans.
+     */
+    data: DataPendidikanCreateManyInput | DataPendidikanCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DataPendidikan update
+   */
+  export type DataPendidikanUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPendidikan
+     */
+    select?: DataPendidikanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPendidikan
+     */
+    omit?: DataPendidikanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPendidikanInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DataPendidikan.
+     */
+    data: XOR<DataPendidikanUpdateInput, DataPendidikanUncheckedUpdateInput>
+    /**
+     * Choose, which DataPendidikan to update.
+     */
+    where: DataPendidikanWhereUniqueInput
+  }
+
+  /**
+   * DataPendidikan updateMany
+   */
+  export type DataPendidikanUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DataPendidikans.
+     */
+    data: XOR<DataPendidikanUpdateManyMutationInput, DataPendidikanUncheckedUpdateManyInput>
+    /**
+     * Filter which DataPendidikans to update
+     */
+    where?: DataPendidikanWhereInput
+    /**
+     * Limit how many DataPendidikans to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DataPendidikan upsert
+   */
+  export type DataPendidikanUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPendidikan
+     */
+    select?: DataPendidikanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPendidikan
+     */
+    omit?: DataPendidikanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPendidikanInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DataPendidikan to update in case it exists.
+     */
+    where: DataPendidikanWhereUniqueInput
+    /**
+     * In case the DataPendidikan found by the `where` argument doesn't exist, create a new DataPendidikan with this data.
+     */
+    create: XOR<DataPendidikanCreateInput, DataPendidikanUncheckedCreateInput>
+    /**
+     * In case the DataPendidikan was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DataPendidikanUpdateInput, DataPendidikanUncheckedUpdateInput>
+  }
+
+  /**
+   * DataPendidikan delete
+   */
+  export type DataPendidikanDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPendidikan
+     */
+    select?: DataPendidikanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPendidikan
+     */
+    omit?: DataPendidikanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPendidikanInclude<ExtArgs> | null
+    /**
+     * Filter which DataPendidikan to delete.
+     */
+    where: DataPendidikanWhereUniqueInput
+  }
+
+  /**
+   * DataPendidikan deleteMany
+   */
+  export type DataPendidikanDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DataPendidikans to delete
+     */
+    where?: DataPendidikanWhereInput
+    /**
+     * Limit how many DataPendidikans to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DataPendidikan without action
+   */
+  export type DataPendidikanDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DataPendidikan
+     */
+    select?: DataPendidikanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DataPendidikan
+     */
+    omit?: DataPendidikanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DataPendidikanInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -2917,6 +3963,18 @@ export namespace Prisma {
   export type DataPekerjaanScalarFieldEnum = (typeof DataPekerjaanScalarFieldEnum)[keyof typeof DataPekerjaanScalarFieldEnum]
 
 
+  export const DataPendidikanScalarFieldEnum: {
+    nip: 'nip',
+    universitas: 'universitas',
+    jurusan: 'jurusan',
+    noIjazah: 'noIjazah',
+    tanggalIjazah: 'tanggalIjazah',
+    fileIjazah: 'fileIjazah'
+  };
+
+  export type DataPendidikanScalarFieldEnum = (typeof DataPendidikanScalarFieldEnum)[keyof typeof DataPendidikanScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -2947,6 +4005,17 @@ export namespace Prisma {
   };
 
   export type DataPekerjaanOrderByRelevanceFieldEnum = (typeof DataPekerjaanOrderByRelevanceFieldEnum)[keyof typeof DataPekerjaanOrderByRelevanceFieldEnum]
+
+
+  export const DataPendidikanOrderByRelevanceFieldEnum: {
+    nip: 'nip',
+    universitas: 'universitas',
+    jurusan: 'jurusan',
+    noIjazah: 'noIjazah',
+    fileIjazah: 'fileIjazah'
+  };
+
+  export type DataPendidikanOrderByRelevanceFieldEnum = (typeof DataPendidikanOrderByRelevanceFieldEnum)[keyof typeof DataPendidikanOrderByRelevanceFieldEnum]
 
 
   /**
@@ -2991,6 +4060,7 @@ export namespace Prisma {
     email?: StringFilter<"Datapribadi"> | string
     alamat?: StringFilter<"Datapribadi"> | string
     pekerjaan?: XOR<DataPekerjaanNullableScalarRelationFilter, DataPekerjaanWhereInput> | null
+    pendidikan?: XOR<DataPendidikanNullableScalarRelationFilter, DataPendidikanWhereInput> | null
   }
 
   export type DatapribadiOrderByWithRelationInput = {
@@ -3003,6 +4073,7 @@ export namespace Prisma {
     email?: SortOrder
     alamat?: SortOrder
     pekerjaan?: DataPekerjaanOrderByWithRelationInput
+    pendidikan?: DataPendidikanOrderByWithRelationInput
     _relevance?: DatapribadiOrderByRelevanceInput
   }
 
@@ -3019,6 +4090,7 @@ export namespace Prisma {
     email?: StringFilter<"Datapribadi"> | string
     alamat?: StringFilter<"Datapribadi"> | string
     pekerjaan?: XOR<DataPekerjaanNullableScalarRelationFilter, DataPekerjaanWhereInput> | null
+    pendidikan?: XOR<DataPendidikanNullableScalarRelationFilter, DataPendidikanWhereInput> | null
   }, "nip">
 
   export type DatapribadiOrderByWithAggregationInput = {
@@ -3115,6 +4187,67 @@ export namespace Prisma {
     tanggalSip?: DateTimeWithAggregatesFilter<"DataPekerjaan"> | Date | string
   }
 
+  export type DataPendidikanWhereInput = {
+    AND?: DataPendidikanWhereInput | DataPendidikanWhereInput[]
+    OR?: DataPendidikanWhereInput[]
+    NOT?: DataPendidikanWhereInput | DataPendidikanWhereInput[]
+    nip?: StringFilter<"DataPendidikan"> | string
+    universitas?: StringFilter<"DataPendidikan"> | string
+    jurusan?: StringFilter<"DataPendidikan"> | string
+    noIjazah?: StringFilter<"DataPendidikan"> | string
+    tanggalIjazah?: DateTimeFilter<"DataPendidikan"> | Date | string
+    fileIjazah?: StringFilter<"DataPendidikan"> | string
+    datapribadi?: XOR<DatapribadiScalarRelationFilter, DatapribadiWhereInput>
+  }
+
+  export type DataPendidikanOrderByWithRelationInput = {
+    nip?: SortOrder
+    universitas?: SortOrder
+    jurusan?: SortOrder
+    noIjazah?: SortOrder
+    tanggalIjazah?: SortOrder
+    fileIjazah?: SortOrder
+    datapribadi?: DatapribadiOrderByWithRelationInput
+    _relevance?: DataPendidikanOrderByRelevanceInput
+  }
+
+  export type DataPendidikanWhereUniqueInput = Prisma.AtLeast<{
+    nip?: string
+    AND?: DataPendidikanWhereInput | DataPendidikanWhereInput[]
+    OR?: DataPendidikanWhereInput[]
+    NOT?: DataPendidikanWhereInput | DataPendidikanWhereInput[]
+    universitas?: StringFilter<"DataPendidikan"> | string
+    jurusan?: StringFilter<"DataPendidikan"> | string
+    noIjazah?: StringFilter<"DataPendidikan"> | string
+    tanggalIjazah?: DateTimeFilter<"DataPendidikan"> | Date | string
+    fileIjazah?: StringFilter<"DataPendidikan"> | string
+    datapribadi?: XOR<DatapribadiScalarRelationFilter, DatapribadiWhereInput>
+  }, "nip">
+
+  export type DataPendidikanOrderByWithAggregationInput = {
+    nip?: SortOrder
+    universitas?: SortOrder
+    jurusan?: SortOrder
+    noIjazah?: SortOrder
+    tanggalIjazah?: SortOrder
+    fileIjazah?: SortOrder
+    _count?: DataPendidikanCountOrderByAggregateInput
+    _max?: DataPendidikanMaxOrderByAggregateInput
+    _min?: DataPendidikanMinOrderByAggregateInput
+  }
+
+  export type DataPendidikanScalarWhereWithAggregatesInput = {
+    AND?: DataPendidikanScalarWhereWithAggregatesInput | DataPendidikanScalarWhereWithAggregatesInput[]
+    OR?: DataPendidikanScalarWhereWithAggregatesInput[]
+    NOT?: DataPendidikanScalarWhereWithAggregatesInput | DataPendidikanScalarWhereWithAggregatesInput[]
+    nip?: StringWithAggregatesFilter<"DataPendidikan"> | string
+    universitas?: StringWithAggregatesFilter<"DataPendidikan"> | string
+    jurusan?: StringWithAggregatesFilter<"DataPendidikan"> | string
+    noIjazah?: StringWithAggregatesFilter<"DataPendidikan"> | string
+    tanggalIjazah?: DateTimeWithAggregatesFilter<"DataPendidikan"> | Date | string
+    fileIjazah?: StringWithAggregatesFilter<"DataPendidikan"> | string
+  }
+
   export type DatapribadiCreateInput = {
     nip: string
     nama: string
@@ -3125,6 +4258,7 @@ export namespace Prisma {
     email: string
     alamat: string
     pekerjaan?: DataPekerjaanCreateNestedOneWithoutDatapribadiInput
+    pendidikan?: DataPendidikanCreateNestedOneWithoutDatapribadiInput
   }
 
   export type DatapribadiUncheckedCreateInput = {
@@ -3137,6 +4271,7 @@ export namespace Prisma {
     email: string
     alamat: string
     pekerjaan?: DataPekerjaanUncheckedCreateNestedOneWithoutDatapribadiInput
+    pendidikan?: DataPendidikanUncheckedCreateNestedOneWithoutDatapribadiInput
   }
 
   export type DatapribadiUpdateInput = {
@@ -3149,6 +4284,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     alamat?: StringFieldUpdateOperationsInput | string
     pekerjaan?: DataPekerjaanUpdateOneWithoutDatapribadiNestedInput
+    pendidikan?: DataPendidikanUpdateOneWithoutDatapribadiNestedInput
   }
 
   export type DatapribadiUncheckedUpdateInput = {
@@ -3161,6 +4297,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     alamat?: StringFieldUpdateOperationsInput | string
     pekerjaan?: DataPekerjaanUncheckedUpdateOneWithoutDatapribadiNestedInput
+    pendidikan?: DataPendidikanUncheckedUpdateOneWithoutDatapribadiNestedInput
   }
 
   export type DatapribadiCreateManyInput = {
@@ -3265,6 +4402,68 @@ export namespace Prisma {
     tanggalSip?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type DataPendidikanCreateInput = {
+    universitas: string
+    jurusan: string
+    noIjazah: string
+    tanggalIjazah: Date | string
+    fileIjazah: string
+    datapribadi: DatapribadiCreateNestedOneWithoutPendidikanInput
+  }
+
+  export type DataPendidikanUncheckedCreateInput = {
+    nip: string
+    universitas: string
+    jurusan: string
+    noIjazah: string
+    tanggalIjazah: Date | string
+    fileIjazah: string
+  }
+
+  export type DataPendidikanUpdateInput = {
+    universitas?: StringFieldUpdateOperationsInput | string
+    jurusan?: StringFieldUpdateOperationsInput | string
+    noIjazah?: StringFieldUpdateOperationsInput | string
+    tanggalIjazah?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileIjazah?: StringFieldUpdateOperationsInput | string
+    datapribadi?: DatapribadiUpdateOneRequiredWithoutPendidikanNestedInput
+  }
+
+  export type DataPendidikanUncheckedUpdateInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    universitas?: StringFieldUpdateOperationsInput | string
+    jurusan?: StringFieldUpdateOperationsInput | string
+    noIjazah?: StringFieldUpdateOperationsInput | string
+    tanggalIjazah?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileIjazah?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DataPendidikanCreateManyInput = {
+    nip: string
+    universitas: string
+    jurusan: string
+    noIjazah: string
+    tanggalIjazah: Date | string
+    fileIjazah: string
+  }
+
+  export type DataPendidikanUpdateManyMutationInput = {
+    universitas?: StringFieldUpdateOperationsInput | string
+    jurusan?: StringFieldUpdateOperationsInput | string
+    noIjazah?: StringFieldUpdateOperationsInput | string
+    tanggalIjazah?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileIjazah?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DataPendidikanUncheckedUpdateManyInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    universitas?: StringFieldUpdateOperationsInput | string
+    jurusan?: StringFieldUpdateOperationsInput | string
+    noIjazah?: StringFieldUpdateOperationsInput | string
+    tanggalIjazah?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileIjazah?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -3294,6 +4493,11 @@ export namespace Prisma {
   export type DataPekerjaanNullableScalarRelationFilter = {
     is?: DataPekerjaanWhereInput | null
     isNot?: DataPekerjaanWhereInput | null
+  }
+
+  export type DataPendidikanNullableScalarRelationFilter = {
+    is?: DataPendidikanWhereInput | null
+    isNot?: DataPendidikanWhereInput | null
   }
 
   export type DatapribadiOrderByRelevanceInput = {
@@ -3408,16 +4612,61 @@ export namespace Prisma {
     tanggalSip?: SortOrder
   }
 
+  export type DataPendidikanOrderByRelevanceInput = {
+    fields: DataPendidikanOrderByRelevanceFieldEnum | DataPendidikanOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type DataPendidikanCountOrderByAggregateInput = {
+    nip?: SortOrder
+    universitas?: SortOrder
+    jurusan?: SortOrder
+    noIjazah?: SortOrder
+    tanggalIjazah?: SortOrder
+    fileIjazah?: SortOrder
+  }
+
+  export type DataPendidikanMaxOrderByAggregateInput = {
+    nip?: SortOrder
+    universitas?: SortOrder
+    jurusan?: SortOrder
+    noIjazah?: SortOrder
+    tanggalIjazah?: SortOrder
+    fileIjazah?: SortOrder
+  }
+
+  export type DataPendidikanMinOrderByAggregateInput = {
+    nip?: SortOrder
+    universitas?: SortOrder
+    jurusan?: SortOrder
+    noIjazah?: SortOrder
+    tanggalIjazah?: SortOrder
+    fileIjazah?: SortOrder
+  }
+
   export type DataPekerjaanCreateNestedOneWithoutDatapribadiInput = {
     create?: XOR<DataPekerjaanCreateWithoutDatapribadiInput, DataPekerjaanUncheckedCreateWithoutDatapribadiInput>
     connectOrCreate?: DataPekerjaanCreateOrConnectWithoutDatapribadiInput
     connect?: DataPekerjaanWhereUniqueInput
   }
 
+  export type DataPendidikanCreateNestedOneWithoutDatapribadiInput = {
+    create?: XOR<DataPendidikanCreateWithoutDatapribadiInput, DataPendidikanUncheckedCreateWithoutDatapribadiInput>
+    connectOrCreate?: DataPendidikanCreateOrConnectWithoutDatapribadiInput
+    connect?: DataPendidikanWhereUniqueInput
+  }
+
   export type DataPekerjaanUncheckedCreateNestedOneWithoutDatapribadiInput = {
     create?: XOR<DataPekerjaanCreateWithoutDatapribadiInput, DataPekerjaanUncheckedCreateWithoutDatapribadiInput>
     connectOrCreate?: DataPekerjaanCreateOrConnectWithoutDatapribadiInput
     connect?: DataPekerjaanWhereUniqueInput
+  }
+
+  export type DataPendidikanUncheckedCreateNestedOneWithoutDatapribadiInput = {
+    create?: XOR<DataPendidikanCreateWithoutDatapribadiInput, DataPendidikanUncheckedCreateWithoutDatapribadiInput>
+    connectOrCreate?: DataPendidikanCreateOrConnectWithoutDatapribadiInput
+    connect?: DataPendidikanWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3438,6 +4687,16 @@ export namespace Prisma {
     update?: XOR<XOR<DataPekerjaanUpdateToOneWithWhereWithoutDatapribadiInput, DataPekerjaanUpdateWithoutDatapribadiInput>, DataPekerjaanUncheckedUpdateWithoutDatapribadiInput>
   }
 
+  export type DataPendidikanUpdateOneWithoutDatapribadiNestedInput = {
+    create?: XOR<DataPendidikanCreateWithoutDatapribadiInput, DataPendidikanUncheckedCreateWithoutDatapribadiInput>
+    connectOrCreate?: DataPendidikanCreateOrConnectWithoutDatapribadiInput
+    upsert?: DataPendidikanUpsertWithoutDatapribadiInput
+    disconnect?: DataPendidikanWhereInput | boolean
+    delete?: DataPendidikanWhereInput | boolean
+    connect?: DataPendidikanWhereUniqueInput
+    update?: XOR<XOR<DataPendidikanUpdateToOneWithWhereWithoutDatapribadiInput, DataPendidikanUpdateWithoutDatapribadiInput>, DataPendidikanUncheckedUpdateWithoutDatapribadiInput>
+  }
+
   export type DataPekerjaanUncheckedUpdateOneWithoutDatapribadiNestedInput = {
     create?: XOR<DataPekerjaanCreateWithoutDatapribadiInput, DataPekerjaanUncheckedCreateWithoutDatapribadiInput>
     connectOrCreate?: DataPekerjaanCreateOrConnectWithoutDatapribadiInput
@@ -3446,6 +4705,16 @@ export namespace Prisma {
     delete?: DataPekerjaanWhereInput | boolean
     connect?: DataPekerjaanWhereUniqueInput
     update?: XOR<XOR<DataPekerjaanUpdateToOneWithWhereWithoutDatapribadiInput, DataPekerjaanUpdateWithoutDatapribadiInput>, DataPekerjaanUncheckedUpdateWithoutDatapribadiInput>
+  }
+
+  export type DataPendidikanUncheckedUpdateOneWithoutDatapribadiNestedInput = {
+    create?: XOR<DataPendidikanCreateWithoutDatapribadiInput, DataPendidikanUncheckedCreateWithoutDatapribadiInput>
+    connectOrCreate?: DataPendidikanCreateOrConnectWithoutDatapribadiInput
+    upsert?: DataPendidikanUpsertWithoutDatapribadiInput
+    disconnect?: DataPendidikanWhereInput | boolean
+    delete?: DataPendidikanWhereInput | boolean
+    connect?: DataPendidikanWhereUniqueInput
+    update?: XOR<XOR<DataPendidikanUpdateToOneWithWhereWithoutDatapribadiInput, DataPendidikanUpdateWithoutDatapribadiInput>, DataPendidikanUncheckedUpdateWithoutDatapribadiInput>
   }
 
   export type DatapribadiCreateNestedOneWithoutPekerjaanInput = {
@@ -3460,6 +4729,20 @@ export namespace Prisma {
     upsert?: DatapribadiUpsertWithoutPekerjaanInput
     connect?: DatapribadiWhereUniqueInput
     update?: XOR<XOR<DatapribadiUpdateToOneWithWhereWithoutPekerjaanInput, DatapribadiUpdateWithoutPekerjaanInput>, DatapribadiUncheckedUpdateWithoutPekerjaanInput>
+  }
+
+  export type DatapribadiCreateNestedOneWithoutPendidikanInput = {
+    create?: XOR<DatapribadiCreateWithoutPendidikanInput, DatapribadiUncheckedCreateWithoutPendidikanInput>
+    connectOrCreate?: DatapribadiCreateOrConnectWithoutPendidikanInput
+    connect?: DatapribadiWhereUniqueInput
+  }
+
+  export type DatapribadiUpdateOneRequiredWithoutPendidikanNestedInput = {
+    create?: XOR<DatapribadiCreateWithoutPendidikanInput, DatapribadiUncheckedCreateWithoutPendidikanInput>
+    connectOrCreate?: DatapribadiCreateOrConnectWithoutPendidikanInput
+    upsert?: DatapribadiUpsertWithoutPendidikanInput
+    connect?: DatapribadiWhereUniqueInput
+    update?: XOR<XOR<DatapribadiUpdateToOneWithWhereWithoutPendidikanInput, DatapribadiUpdateWithoutPendidikanInput>, DatapribadiUncheckedUpdateWithoutPendidikanInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3554,6 +4837,27 @@ export namespace Prisma {
     create: XOR<DataPekerjaanCreateWithoutDatapribadiInput, DataPekerjaanUncheckedCreateWithoutDatapribadiInput>
   }
 
+  export type DataPendidikanCreateWithoutDatapribadiInput = {
+    universitas: string
+    jurusan: string
+    noIjazah: string
+    tanggalIjazah: Date | string
+    fileIjazah: string
+  }
+
+  export type DataPendidikanUncheckedCreateWithoutDatapribadiInput = {
+    universitas: string
+    jurusan: string
+    noIjazah: string
+    tanggalIjazah: Date | string
+    fileIjazah: string
+  }
+
+  export type DataPendidikanCreateOrConnectWithoutDatapribadiInput = {
+    where: DataPendidikanWhereUniqueInput
+    create: XOR<DataPendidikanCreateWithoutDatapribadiInput, DataPendidikanUncheckedCreateWithoutDatapribadiInput>
+  }
+
   export type DataPekerjaanUpsertWithoutDatapribadiInput = {
     update: XOR<DataPekerjaanUpdateWithoutDatapribadiInput, DataPekerjaanUncheckedUpdateWithoutDatapribadiInput>
     create: XOR<DataPekerjaanCreateWithoutDatapribadiInput, DataPekerjaanUncheckedCreateWithoutDatapribadiInput>
@@ -3583,6 +4887,33 @@ export namespace Prisma {
     tanggalSip?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type DataPendidikanUpsertWithoutDatapribadiInput = {
+    update: XOR<DataPendidikanUpdateWithoutDatapribadiInput, DataPendidikanUncheckedUpdateWithoutDatapribadiInput>
+    create: XOR<DataPendidikanCreateWithoutDatapribadiInput, DataPendidikanUncheckedCreateWithoutDatapribadiInput>
+    where?: DataPendidikanWhereInput
+  }
+
+  export type DataPendidikanUpdateToOneWithWhereWithoutDatapribadiInput = {
+    where?: DataPendidikanWhereInput
+    data: XOR<DataPendidikanUpdateWithoutDatapribadiInput, DataPendidikanUncheckedUpdateWithoutDatapribadiInput>
+  }
+
+  export type DataPendidikanUpdateWithoutDatapribadiInput = {
+    universitas?: StringFieldUpdateOperationsInput | string
+    jurusan?: StringFieldUpdateOperationsInput | string
+    noIjazah?: StringFieldUpdateOperationsInput | string
+    tanggalIjazah?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileIjazah?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DataPendidikanUncheckedUpdateWithoutDatapribadiInput = {
+    universitas?: StringFieldUpdateOperationsInput | string
+    jurusan?: StringFieldUpdateOperationsInput | string
+    noIjazah?: StringFieldUpdateOperationsInput | string
+    tanggalIjazah?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileIjazah?: StringFieldUpdateOperationsInput | string
+  }
+
   export type DatapribadiCreateWithoutPekerjaanInput = {
     nip: string
     nama: string
@@ -3592,6 +4923,7 @@ export namespace Prisma {
     phone: string
     email: string
     alamat: string
+    pendidikan?: DataPendidikanCreateNestedOneWithoutDatapribadiInput
   }
 
   export type DatapribadiUncheckedCreateWithoutPekerjaanInput = {
@@ -3603,6 +4935,7 @@ export namespace Prisma {
     phone: string
     email: string
     alamat: string
+    pendidikan?: DataPendidikanUncheckedCreateNestedOneWithoutDatapribadiInput
   }
 
   export type DatapribadiCreateOrConnectWithoutPekerjaanInput = {
@@ -3630,6 +4963,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     alamat?: StringFieldUpdateOperationsInput | string
+    pendidikan?: DataPendidikanUpdateOneWithoutDatapribadiNestedInput
   }
 
   export type DatapribadiUncheckedUpdateWithoutPekerjaanInput = {
@@ -3641,6 +4975,71 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     alamat?: StringFieldUpdateOperationsInput | string
+    pendidikan?: DataPendidikanUncheckedUpdateOneWithoutDatapribadiNestedInput
+  }
+
+  export type DatapribadiCreateWithoutPendidikanInput = {
+    nip: string
+    nama: string
+    tempatLahir: string
+    tanggalLahir: Date | string
+    jenisKelamin: string
+    phone: string
+    email: string
+    alamat: string
+    pekerjaan?: DataPekerjaanCreateNestedOneWithoutDatapribadiInput
+  }
+
+  export type DatapribadiUncheckedCreateWithoutPendidikanInput = {
+    nip: string
+    nama: string
+    tempatLahir: string
+    tanggalLahir: Date | string
+    jenisKelamin: string
+    phone: string
+    email: string
+    alamat: string
+    pekerjaan?: DataPekerjaanUncheckedCreateNestedOneWithoutDatapribadiInput
+  }
+
+  export type DatapribadiCreateOrConnectWithoutPendidikanInput = {
+    where: DatapribadiWhereUniqueInput
+    create: XOR<DatapribadiCreateWithoutPendidikanInput, DatapribadiUncheckedCreateWithoutPendidikanInput>
+  }
+
+  export type DatapribadiUpsertWithoutPendidikanInput = {
+    update: XOR<DatapribadiUpdateWithoutPendidikanInput, DatapribadiUncheckedUpdateWithoutPendidikanInput>
+    create: XOR<DatapribadiCreateWithoutPendidikanInput, DatapribadiUncheckedCreateWithoutPendidikanInput>
+    where?: DatapribadiWhereInput
+  }
+
+  export type DatapribadiUpdateToOneWithWhereWithoutPendidikanInput = {
+    where?: DatapribadiWhereInput
+    data: XOR<DatapribadiUpdateWithoutPendidikanInput, DatapribadiUncheckedUpdateWithoutPendidikanInput>
+  }
+
+  export type DatapribadiUpdateWithoutPendidikanInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    pekerjaan?: DataPekerjaanUpdateOneWithoutDatapribadiNestedInput
+  }
+
+  export type DatapribadiUncheckedUpdateWithoutPendidikanInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    pekerjaan?: DataPekerjaanUncheckedUpdateOneWithoutDatapribadiNestedInput
   }
 
 

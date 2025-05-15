@@ -37,46 +37,46 @@ const DataPendidikan = ({ form }) => {
     if (!hydrated) return null;
     return (
     <Card>
-            <h2>C. Data Pendidikan Terakhir</h2>
-                <Form.Item label="Nama Perguruan Tinggi" name="universitas" rules={[{ required: true, message: 'Nama Sekolah mohon untuk diisi!' }]}>
-                    <Input type="text" id="sekolah"/>
-                </Form.Item>
+      <h2>C. Data Pendidikan Terakhir</h2>
+      <Form.Item label="Nama Perguruan Tinggi" name="universitas" rules={[{ required: true, message: 'Nama Sekolah mohon untuk diisi!' }]}>
+          <Input type="text" id="sekolah"/>
+      </Form.Item>
 
-                <Form.Item
-                    label="Jurusan/Program"
-                    name="jurusan"
-                    rules={[{ required: true, message: 'Jurusan/Program mohon diisi!' }]}
-                >
-                    <Input type="text" id="jurusan"/>
-                </Form.Item>
+      <Form.Item
+          label="Jurusan/Program"
+          name="jurusan"
+          rules={[{ required: true, message: 'Jurusan/Program mohon diisi!' }]}
+      >
+          <Input type="text" id="jurusan"/>
+      </Form.Item>
 
-                <Form.Item
-                    label="Nomor Ijazah"
-                    name="noIjazah"
-                    rules={[{ required: true, message: 'Nomor Ijazah mohon diisi!' }]}
-                >
-                    <Input type="text" id="noijazah"/>
-                </Form.Item>
-                
-                <Form.Item
-                    label="Tanggal Ijazah"
-                    name="tanggalIjazah"
-                    rules={[{ required: true, message: 'Tanggal Ijazah mohon diisi!' }]}
-                >
-                    <DatePicker id="tanggaijazah" />
-                </Form.Item>
+      <Form.Item
+          label="Nomor Ijazah"
+          name="noIjazah"
+          rules={[{ required: true, message: 'Nomor Ijazah mohon diisi!' }]}
+      >
+          <Input type="text" id="noijazah"/>
+      </Form.Item>
+      
+      <Form.Item
+          label="Tanggal Ijazah"
+          name="tanggalIjazah"
+          rules={[{ required: true, message: 'Tanggal Ijazah mohon diisi!' }]}
+      >
+          <DatePicker id="tanggaijazah" />
+      </Form.Item>
 
-                <Form.Item
-                  label="Upload Ijazah"
-                  name="fileIjazah"
-                  valuePropName="fileList"
-                  rules={[{ required: true, message: 'File Ijazah mohon diupload!' }]}
-                  getValueFromEvent={normFile}
-                >
-                  <Upload {...props}>
-                    <Button icon={<UploadOutlined />}>File Ijazah</Button>
-                  </Upload>
-                </Form.Item>
+      <Form.Item
+        label="Upload Ijazah"
+        name="fileIjazah"
+        valuePropName="fileList"
+        rules={[{ required: true, message: 'File Ijazah mohon diupload!' }]}
+        getValueFromEvent={normFile}
+      >
+        <Upload {...props}>
+          <Button icon={<UploadOutlined />}>File Ijazah</Button>
+        </Upload>
+      </Form.Item>
     </Card>
   );
 };

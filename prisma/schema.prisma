@@ -40,7 +40,7 @@ model DataPekerjaan {
   datapribadi        Datapribadi @relation(fields: [nip], references: [nip], onDelete: Cascade)
 }
 
-model Datapendidikan {
+model DataPendidikan {
   nip           String   @id
   universitas   String
   jurusan       String

@@ -141,6 +141,15 @@ exports.Prisma.DataPekerjaanScalarFieldEnum = {
   tanggalSip: 'tanggalSip'
 };
 
+exports.Prisma.DataPendidikanScalarFieldEnum = {
+  nip: 'nip',
+  universitas: 'universitas',
+  jurusan: 'jurusan',
+  noIjazah: 'noIjazah',
+  tanggalIjazah: 'tanggalIjazah',
+  fileIjazah: 'fileIjazah'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -164,10 +173,19 @@ exports.Prisma.DataPekerjaanOrderByRelevanceFieldEnum = {
   noSip: 'noSip'
 };
 
+exports.Prisma.DataPendidikanOrderByRelevanceFieldEnum = {
+  nip: 'nip',
+  universitas: 'universitas',
+  jurusan: 'jurusan',
+  noIjazah: 'noIjazah',
+  fileIjazah: 'fileIjazah'
+};
+
 
 exports.Prisma.ModelName = {
   Datapribadi: 'Datapribadi',
-  DataPekerjaan: 'DataPekerjaan'
+  DataPekerjaan: 'DataPekerjaan',
+  DataPendidikan: 'DataPendidikan'
 };
 
 /**

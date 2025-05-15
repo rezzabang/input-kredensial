@@ -15,47 +15,51 @@ const DataPribadi = ({ form }) => {
 
   if (!hydrated) return null;
 
-    const fetchData = async () => {
-    const nip = form.getFieldValue('nip')?.trim();
-    if (!nip) {
-      message.warning('Silakan masukkan NIP terlebih dahulu.');
+  const fetchData = async () => {
+  const nip = form.getFieldValue('nip')?.trim();
+  if (!nip) {
+    message.warning('Silakan masukkan NIP terlebih dahulu.');
+    return;
+  }
+
+  try {
+    const res = await fetch(`/api/data/${nip}`);
+    const json = await res.json();
+
+    if (!json.success) {
+      message.error(json.message || 'Data tidak ditemukan!');
       return;
     }
 
-    try {
-      const res = await fetch(`/api/data/${nip}`);
-      const json = await res.json();
+    const { data } = json;
 
-      if (!json.success) {
-        message.error(json.message || 'Data tidak ditemukan!');
-        return;
-      }
+    form.setFieldsValue({
+      nip: data.nip,
+      nama: data.nama,
+      tempatLahir: data.tempatLahir,
+      tanggalLahir: dayjs(data.tanggalLahir),
+      jenisKelamin: data.jenisKelamin,
+      phone: data.phone,
+      email: data.email,
+      alamat: data.alamat,
+      namaTempatBekerja: data.pekerjaan?.namaTempatBekerja,
+      alamatPekerjaan: data.pekerjaan?.alamatPekerjaan,
+      noStr: data.pekerjaan?.noStr,
+      tanggalStr: data.pekerjaan?.tanggalStr ? dayjs(data.pekerjaan.tanggalStr) : null,
+      noSip: data.pekerjaan?.noSip,
+      tanggalSip: data.pekerjaan?.tanggalSip ? dayjs(data.pekerjaan.tanggalSip) : null,
+      universitas: data.pendidikan?.universitas,
+      jurusan: data.pendidikan?.jurusan,
+      noIjazah: data.pendidikan?.noIjazah,
+      tanggalIjazah: data.pendidikan?.tanggalIjazah ? dayjs(data.pendidikan.tanggalIjazah) : null,
+      fileIjazah: data.pendidikan?.fileIjazah,
+    });
 
-      const { data } = json;
-
-      // Normalize date strings using dayjs
-      form.setFieldsValue({
-        nip: data.nip,
-        nama: data.nama,
-        tempatLahir: data.tempatLahir,
-        tanggalLahir: dayjs(data.tanggalLahir),
-        jenisKelamin: data.jenisKelamin,
-        phone: data.phone,
-        email: data.email,
-        alamat: data.alamat,
-        namaTempatBekerja: data.pekerjaan?.namaTempatBekerja,
-        alamatPekerjaan: data.pekerjaan?.alamatPekerjaan,
-        noStr: data.pekerjaan?.noStr,
-        tanggalStr: data.pekerjaan?.tanggalStr ? dayjs(data.pekerjaan.tanggalStr) : null,
-        noSip: data.pekerjaan?.noSip,
-        tanggalSip: data.pekerjaan?.tanggalSip ? dayjs(data.pekerjaan.tanggalSip) : null,
-      });
-
-      message.success('Data berhasil dimuat!');
-    } catch (err) {
-      console.error(err);
-      message.error('Terjadi kesalahan saat memuat data.');
-    }
+    message.success('Data berhasil dimuat!');
+  } catch (err) {
+    console.error(err);
+    message.error('Terjadi kesalahan saat memuat data.');
+  }
   };
 
   return (

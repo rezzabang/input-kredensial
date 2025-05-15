@@ -1,22 +1,19 @@
-//import next request and response
 import { NextResponse } from "next/server";
-
-//import prisma client
 import prisma from "@/lib/prisma";
 
-export async function GET(request: Request, { params }: { params: { nip: string } }) {
+export async function GET(request: Request, context: { params: { nip: string } }) {
   try {
-    const { nip } = params;
+    const { nip } = context.params;
 
-    // Fetch data from database including related pekerjaan
-    const Dataribadi = await prisma.datapribadi.findUnique({
+    const datapribadi = await prisma.datapribadi.findUnique({
       where: { nip },
       include: {
-        pekerjaan: true, // this pulls related DataPekerjaan
+        pekerjaan: true,       // Include related pekerjaan (assuming your relation model name is "pekerjaan")
+        pendidikan: true,      // If you want to include pendidikan as well
       },
     });
 
-    if (!Dataribadi) {
+    if (!datapribadi) {
       return NextResponse.json(
         {
           success: false,
@@ -31,7 +28,7 @@ export async function GET(request: Request, { params }: { params: { nip: string 
       {
         success: true,
         message: "Detail NIP ditemukan!",
-        data: Dataribadi,
+        data: datapribadi,
       },
       { status: 200 }
     );
@@ -42,8 +39,8 @@ export async function GET(request: Request, { params }: { params: { nip: string 
     return NextResponse.json(
       {
         success: false,
-        message: "Error fetching post",
-        error: "Unknown error",
+        message: "Error fetching data",
+        error: String(error),
       },
       { status: 500 }
     );

@@ -24,7 +24,8 @@ model Datapribadi {
   email        String
   alamat       String
 
-  pekerjaan DataPekerjaan?
+  pekerjaan  DataPekerjaan?
+  pendidikan DataPendidikan?
 }
 
 model DataPekerjaan {
@@ -35,6 +36,17 @@ model DataPekerjaan {
   tanggalStr        DateTime
   noSip             String
   tanggalSip        DateTime
+
+  datapribadi Datapribadi @relation(fields: [nip], references: [nip], onDelete: Cascade)
+}
+
+model DataPendidikan {
+  nip           String   @id
+  universitas   String
+  jurusan       String
+  noIjazah      String
+  tanggalIjazah DateTime
+  fileIjazah    String
 
   datapribadi Datapribadi @relation(fields: [nip], references: [nip], onDelete: Cascade)
 }
