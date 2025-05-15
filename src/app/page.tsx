@@ -6,12 +6,10 @@ const { Title } = Typography;
 const Home = () => (
   <div className="Home" style={{textAlign: 'center' }}>
     <div style={{ display: 'flex', gap: '40px' }}>
-      {/* Left Column */}
       <div style={{ flex: 1 }}>
         <Title>Selamat Datang</Title>
         <Title level={2}>Kredensial Rekam Medis</Title>
       </div>
-      {/* Right Column */}
       <div style={{ flex: 1 }}>
         <iframe 
           src="manual-kemenkes.pdf"

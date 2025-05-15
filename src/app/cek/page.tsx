@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import {
   Button,
   Form,
+  Flex,
   message,
 } from 'antd';
 import DataPribadi from '../component/DataPribadi';
@@ -94,21 +95,26 @@ const Cek = () => {
               <DataPekerjaan form={form} />
             </div>
           </div>
-
-        <div style={{ display: 'flex', gap: '40px', marginTop: 24 }}>
-          <div style={{ flex: 1 }}>
-            <DataPendidikan form={form} />
+          <div style={{ display: 'flex', gap: '40px', marginTop: 24 }}>
+            <div style={{ flex: 1 }}>
+              <DataPendidikan form={form} />
+            </div>
+            <div style={{ flex: 1 }}>
+              <DataPelatihan form={form} />
+            </div>
           </div>
-          <div style={{ flex: 1 }}>
-            {/* <DataPelatihan form={form} /> */}
+          <div style={{ display: 'flex', marginTop: 24, justifyContent: 'center' }}>
+            <Form.Item>
+              <Flex gap="small" wrap>
+                <Button type="primary" htmlType="submit">
+                  SIMPAN
+                </Button>
+                <Button color="cyan" variant="outlined">
+                  CETAK
+                </Button>
+              </Flex>
+            </Form.Item>
           </div>
-        </div>
-
-          <Form.Item style={{ marginTop: 24, textAlign: 'center' }}>
-            <Button type="primary" htmlType="submit">
-              SIMPAN
-            </Button>
-          </Form.Item>
         </Form>
     </div>
   );

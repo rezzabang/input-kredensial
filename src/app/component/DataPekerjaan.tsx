@@ -13,7 +13,7 @@ const DataPekerjaan = ({ form }) => {
   if (!hydrated) return null;
 
   return (
-    <Card>
+    <>
             <h2>B. Data Pekerjaan</h2>
             <Form.Item
               label="Nama Tempat Kerja"
@@ -43,10 +43,10 @@ const DataPekerjaan = ({ form }) => {
               <Input />
             </Form.Item>
             <Form.Item
-              label="Tanggal Berlaku STR"
+              label="Tanggal Terbit STR"
               name="tanggalStr"
               rules={[
-                { required: true, message: 'Tanggal Berlaku STR mohon untuk diisi!' },
+                { required: true, message: 'Tanggal Terbit STR mohon untuk diisi!' },
               ]}
             >
               <DatePicker style={{ width: '100%' }} />
@@ -61,15 +61,15 @@ const DataPekerjaan = ({ form }) => {
               <Input />
             </Form.Item>
             <Form.Item
-              label="Tanggal Berlaku SIP"
+              label="Tanggal Berakhir SIP"
               name="tanggalSip"
               rules={[
-                { required: true, message: 'Tanggal Berlaku SIP mohon untuk diisi!' },
+                { required: true, message: 'Tanggal Berakhir SIP mohon untuk diisi!' },
               ]}
             >
               <DatePicker style={{ width: '100%' }} />
             </Form.Item>
-    </Card>
+    </>
   );
 };
 

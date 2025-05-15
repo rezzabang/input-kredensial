@@ -3127,7 +3127,7 @@ export namespace Prisma {
     jurusan: string
     noIjazah: string
     tanggalIjazah: Date
-    fileIjazah: string
+    fileIjazah: string | null
     _count: DataPendidikanCountAggregateOutputType | null
     _min: DataPendidikanMinAggregateOutputType | null
     _max: DataPendidikanMaxAggregateOutputType | null
@@ -3184,7 +3184,7 @@ export namespace Prisma {
       jurusan: string
       noIjazah: string
       tanggalIjazah: Date
-      fileIjazah: string
+      fileIjazah: string | null
     }, ExtArgs["result"]["dataPendidikan"]>
     composites: {}
   }
@@ -4007,6 +4007,14 @@ export namespace Prisma {
   export type DataPekerjaanOrderByRelevanceFieldEnum = (typeof DataPekerjaanOrderByRelevanceFieldEnum)[keyof typeof DataPekerjaanOrderByRelevanceFieldEnum]
 
 
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
   export const DataPendidikanOrderByRelevanceFieldEnum: {
     nip: 'nip',
     universitas: 'universitas',
@@ -4196,7 +4204,7 @@ export namespace Prisma {
     jurusan?: StringFilter<"DataPendidikan"> | string
     noIjazah?: StringFilter<"DataPendidikan"> | string
     tanggalIjazah?: DateTimeFilter<"DataPendidikan"> | Date | string
-    fileIjazah?: StringFilter<"DataPendidikan"> | string
+    fileIjazah?: StringNullableFilter<"DataPendidikan"> | string | null
     datapribadi?: XOR<DatapribadiScalarRelationFilter, DatapribadiWhereInput>
   }
 
@@ -4206,7 +4214,7 @@ export namespace Prisma {
     jurusan?: SortOrder
     noIjazah?: SortOrder
     tanggalIjazah?: SortOrder
-    fileIjazah?: SortOrder
+    fileIjazah?: SortOrderInput | SortOrder
     datapribadi?: DatapribadiOrderByWithRelationInput
     _relevance?: DataPendidikanOrderByRelevanceInput
   }
@@ -4220,7 +4228,7 @@ export namespace Prisma {
     jurusan?: StringFilter<"DataPendidikan"> | string
     noIjazah?: StringFilter<"DataPendidikan"> | string
     tanggalIjazah?: DateTimeFilter<"DataPendidikan"> | Date | string
-    fileIjazah?: StringFilter<"DataPendidikan"> | string
+    fileIjazah?: StringNullableFilter<"DataPendidikan"> | string | null
     datapribadi?: XOR<DatapribadiScalarRelationFilter, DatapribadiWhereInput>
   }, "nip">
 
@@ -4230,7 +4238,7 @@ export namespace Prisma {
     jurusan?: SortOrder
     noIjazah?: SortOrder
     tanggalIjazah?: SortOrder
-    fileIjazah?: SortOrder
+    fileIjazah?: SortOrderInput | SortOrder
     _count?: DataPendidikanCountOrderByAggregateInput
     _max?: DataPendidikanMaxOrderByAggregateInput
     _min?: DataPendidikanMinOrderByAggregateInput
@@ -4245,7 +4253,7 @@ export namespace Prisma {
     jurusan?: StringWithAggregatesFilter<"DataPendidikan"> | string
     noIjazah?: StringWithAggregatesFilter<"DataPendidikan"> | string
     tanggalIjazah?: DateTimeWithAggregatesFilter<"DataPendidikan"> | Date | string
-    fileIjazah?: StringWithAggregatesFilter<"DataPendidikan"> | string
+    fileIjazah?: StringNullableWithAggregatesFilter<"DataPendidikan"> | string | null
   }
 
   export type DatapribadiCreateInput = {
@@ -4407,7 +4415,7 @@ export namespace Prisma {
     jurusan: string
     noIjazah: string
     tanggalIjazah: Date | string
-    fileIjazah: string
+    fileIjazah?: string | null
     datapribadi: DatapribadiCreateNestedOneWithoutPendidikanInput
   }
 
@@ -4417,7 +4425,7 @@ export namespace Prisma {
     jurusan: string
     noIjazah: string
     tanggalIjazah: Date | string
-    fileIjazah: string
+    fileIjazah?: string | null
   }
 
   export type DataPendidikanUpdateInput = {
@@ -4425,7 +4433,7 @@ export namespace Prisma {
     jurusan?: StringFieldUpdateOperationsInput | string
     noIjazah?: StringFieldUpdateOperationsInput | string
     tanggalIjazah?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileIjazah?: StringFieldUpdateOperationsInput | string
+    fileIjazah?: NullableStringFieldUpdateOperationsInput | string | null
     datapribadi?: DatapribadiUpdateOneRequiredWithoutPendidikanNestedInput
   }
 
@@ -4435,7 +4443,7 @@ export namespace Prisma {
     jurusan?: StringFieldUpdateOperationsInput | string
     noIjazah?: StringFieldUpdateOperationsInput | string
     tanggalIjazah?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileIjazah?: StringFieldUpdateOperationsInput | string
+    fileIjazah?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DataPendidikanCreateManyInput = {
@@ -4444,7 +4452,7 @@ export namespace Prisma {
     jurusan: string
     noIjazah: string
     tanggalIjazah: Date | string
-    fileIjazah: string
+    fileIjazah?: string | null
   }
 
   export type DataPendidikanUpdateManyMutationInput = {
@@ -4452,7 +4460,7 @@ export namespace Prisma {
     jurusan?: StringFieldUpdateOperationsInput | string
     noIjazah?: StringFieldUpdateOperationsInput | string
     tanggalIjazah?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileIjazah?: StringFieldUpdateOperationsInput | string
+    fileIjazah?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DataPendidikanUncheckedUpdateManyInput = {
@@ -4461,7 +4469,7 @@ export namespace Prisma {
     jurusan?: StringFieldUpdateOperationsInput | string
     noIjazah?: StringFieldUpdateOperationsInput | string
     tanggalIjazah?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileIjazah?: StringFieldUpdateOperationsInput | string
+    fileIjazah?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -4612,6 +4620,26 @@ export namespace Prisma {
     tanggalSip?: SortOrder
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type DataPendidikanOrderByRelevanceInput = {
     fields: DataPendidikanOrderByRelevanceFieldEnum | DataPendidikanOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -4643,6 +4671,24 @@ export namespace Prisma {
     noIjazah?: SortOrder
     tanggalIjazah?: SortOrder
     fileIjazah?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type DataPekerjaanCreateNestedOneWithoutDatapribadiInput = {
@@ -4737,6 +4783,10 @@ export namespace Prisma {
     connect?: DatapribadiWhereUniqueInput
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type DatapribadiUpdateOneRequiredWithoutPendidikanNestedInput = {
     create?: XOR<DatapribadiCreateWithoutPendidikanInput, DatapribadiUncheckedCreateWithoutPendidikanInput>
     connectOrCreate?: DatapribadiCreateOrConnectWithoutPendidikanInput
@@ -4814,6 +4864,50 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type DataPekerjaanCreateWithoutDatapribadiInput = {
     namaTempatBekerja: string
     alamatPekerjaan: string
@@ -4842,7 +4936,7 @@ export namespace Prisma {
     jurusan: string
     noIjazah: string
     tanggalIjazah: Date | string
-    fileIjazah: string
+    fileIjazah?: string | null
   }
 
   export type DataPendidikanUncheckedCreateWithoutDatapribadiInput = {
@@ -4850,7 +4944,7 @@ export namespace Prisma {
     jurusan: string
     noIjazah: string
     tanggalIjazah: Date | string
-    fileIjazah: string
+    fileIjazah?: string | null
   }
 
   export type DataPendidikanCreateOrConnectWithoutDatapribadiInput = {
@@ -4903,7 +4997,7 @@ export namespace Prisma {
     jurusan?: StringFieldUpdateOperationsInput | string
     noIjazah?: StringFieldUpdateOperationsInput | string
     tanggalIjazah?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileIjazah?: StringFieldUpdateOperationsInput | string
+    fileIjazah?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DataPendidikanUncheckedUpdateWithoutDatapribadiInput = {
@@ -4911,7 +5005,7 @@ export namespace Prisma {
     jurusan?: StringFieldUpdateOperationsInput | string
     noIjazah?: StringFieldUpdateOperationsInput | string
     tanggalIjazah?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileIjazah?: StringFieldUpdateOperationsInput | string
+    fileIjazah?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DatapribadiCreateWithoutPekerjaanInput = {

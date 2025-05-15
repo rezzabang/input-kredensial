@@ -46,7 +46,7 @@ model DataPendidikan {
   jurusan       String
   noIjazah      String
   tanggalIjazah DateTime
-  fileIjazah    String
+  fileIjazah    String?
 
   datapribadi   Datapribadi @relation(fields: [nip], references: [nip], onDelete: Cascade)
 }

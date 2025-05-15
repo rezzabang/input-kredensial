@@ -173,6 +173,11 @@ exports.Prisma.DataPekerjaanOrderByRelevanceFieldEnum = {
   noSip: 'noSip'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 exports.Prisma.DataPendidikanOrderByRelevanceFieldEnum = {
   nip: 'nip',
   universitas: 'universitas',

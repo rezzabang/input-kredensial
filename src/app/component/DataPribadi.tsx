@@ -1,8 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { Form, Input, DatePicker, Select, Card, Button, message } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
-import dayjs from 'dayjs';
+import { Form, Input, DatePicker, Select, Card } from 'antd';
+import CariDataAll from './CariDataAll';
 
 
 const DataPribadi = ({ form }) => {
@@ -15,55 +14,8 @@ const DataPribadi = ({ form }) => {
 
   if (!hydrated) return null;
 
-  const fetchData = async () => {
-  const nip = form.getFieldValue('nip')?.trim();
-  if (!nip) {
-    message.warning('Silakan masukkan NIP terlebih dahulu.');
-    return;
-  }
-
-  try {
-    const res = await fetch(`/api/data/${nip}`);
-    const json = await res.json();
-
-    if (!json.success) {
-      message.error(json.message || 'Data tidak ditemukan!');
-      return;
-    }
-
-    const { data } = json;
-
-    form.setFieldsValue({
-      nip: data.nip,
-      nama: data.nama,
-      tempatLahir: data.tempatLahir,
-      tanggalLahir: dayjs(data.tanggalLahir),
-      jenisKelamin: data.jenisKelamin,
-      phone: data.phone,
-      email: data.email,
-      alamat: data.alamat,
-      namaTempatBekerja: data.pekerjaan?.namaTempatBekerja,
-      alamatPekerjaan: data.pekerjaan?.alamatPekerjaan,
-      noStr: data.pekerjaan?.noStr,
-      tanggalStr: data.pekerjaan?.tanggalStr ? dayjs(data.pekerjaan.tanggalStr) : null,
-      noSip: data.pekerjaan?.noSip,
-      tanggalSip: data.pekerjaan?.tanggalSip ? dayjs(data.pekerjaan.tanggalSip) : null,
-      universitas: data.pendidikan?.universitas,
-      jurusan: data.pendidikan?.jurusan,
-      noIjazah: data.pendidikan?.noIjazah,
-      tanggalIjazah: data.pendidikan?.tanggalIjazah ? dayjs(data.pendidikan.tanggalIjazah) : null,
-      fileIjazah: data.pendidikan?.fileIjazah,
-    });
-
-    message.success('Data berhasil dimuat!');
-  } catch (err) {
-    console.error(err);
-    message.error('Terjadi kesalahan saat memuat data.');
-  }
-  };
-
   return (
-    <Card>
+    <>
       <h2>A. Data Pribadi</h2>
 
       <Form.Item
@@ -76,19 +28,12 @@ const DataPribadi = ({ form }) => {
       >
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <Input
-            style={{ flex: 1 }}
-              onPressEnter={(e) => {
-              e.preventDefault();
-              fetchData();
-            }}
+          style={{ flex: 1 }}
+          onPressEnter={(e) => {
+            e.preventDefault();
+          }}
           />
-          <Button 
-            type="dashed" 
-            shape="circle" 
-            icon={<SearchOutlined />} 
-            onClick={fetchData}
-          >
-          </Button>
+          <CariDataAll form={form}/>
         </div>
       </Form.Item>
 
@@ -162,7 +107,7 @@ const DataPribadi = ({ form }) => {
       >
         <Input.TextArea />
       </Form.Item>
-    </Card>
+    </>
   );
 };
 

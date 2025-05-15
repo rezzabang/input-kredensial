@@ -1,26 +1,10 @@
 'use client';
-import React, {useEffect, useState} from 'react';
-import { Button, Input, DatePicker,  Form, Upload, UploadProps, message, Card } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Button, Input, DatePicker, Form, Upload, message, Card } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import type { UploadChangeParam, UploadFile } from 'antd/es/upload/interface';
+import type { UploadChangeParam, UploadFile, UploadProps } from 'antd/es/upload/interface';
 
-const props: UploadProps = {
-  beforeUpload: (file) => {
-    const isPDF = file.type === 'application/pdf';
-    if (!isPDF) {
-      message.error(`${file.name} bukan file PDF`);
-    }
-    return isPDF || Upload.LIST_IGNORE;
-  },
-  onChange: (info) => {
-    console.log(info.fileList);
-  },
-};
-
-const normFile = (
-  e: UploadChangeParam<UploadFile> | UploadFile[]
-): UploadFile[] => {
-  console.log('Upload event:', e);
+const normFile = (e: UploadChangeParam<UploadFile> | UploadFile[]): UploadFile[] => {
   if (Array.isArray(e)) {
     return e;
   }
@@ -28,56 +12,107 @@ const normFile = (
 };
 
 const DataPendidikan = ({ form }) => {
-    const [hydrated, setHydrated] = useState(false);
-  
-    useEffect(() => {
-      setHydrated(true); // Ensures this runs only on the client
-    }, []);
-  
-    if (!hydrated) return null;
-    return (
-    <Card>
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  // ✅ Konfigurasi Upload
+const uploadProps: UploadProps = {
+  beforeUpload: (file) => {
+    const isPDF = file.type === 'application/pdf';
+    if (!isPDF) {
+      message.error(`${file.name} bukan file PDF`);
+    }
+    return isPDF || Upload.LIST_IGNORE;
+  },
+  maxCount: 1,
+  showUploadList: {
+    showRemoveIcon: true,
+    showDownloadIcon: true,
+  },
+  listType: 'text',
+  onRemove: async (file) => {
+    const nip = form.getFieldValue('nip'); // ← you need `form` here
+    if (!nip) {
+      message.error('NIP tidak ditemukan. Tidak bisa hapus file.');
+      return false;
+    }
+
+    try {
+      const res = await fetch(`/api/data/delete-ijazah/${nip}`, {
+        method: 'DELETE',
+      });
+
+      const json = await res.json();
+
+      if (json.success) {
+        message.success('File ijazah berhasil dihapus');
+        form.setFieldsValue({ fileIjazah: [] });
+        return true; // remove from UI
+      } else {
+        message.error(json.message || 'Gagal menghapus file ijazah');
+        return false; // keep file in UI
+      }
+    } catch (err) {
+      console.error(err);
+      message.error('Terjadi kesalahan saat menghapus file ijazah.');
+      return false; // keep file in UI
+    }
+  },
+};
+
+  if (!hydrated) return null;
+
+  return (
+    <>
       <h2>C. Data Pendidikan Terakhir</h2>
-      <Form.Item label="Nama Perguruan Tinggi" name="universitas" rules={[{ required: true, message: 'Nama Sekolah mohon untuk diisi!' }]}>
-          <Input type="text" id="sekolah"/>
+
+      <Form.Item
+        label="Nama Perguruan Tinggi"
+        name="universitas"
+        rules={[{ required: true, message: 'Nama Sekolah mohon untuk diisi!' }]}
+      >
+        <Input />
       </Form.Item>
 
       <Form.Item
-          label="Jurusan/Program"
-          name="jurusan"
-          rules={[{ required: true, message: 'Jurusan/Program mohon diisi!' }]}
+        label="Jurusan/Program"
+        name="jurusan"
+        rules={[{ required: true, message: 'Jurusan/Program mohon diisi!' }]}
       >
-          <Input type="text" id="jurusan"/>
+        <Input />
       </Form.Item>
 
       <Form.Item
-          label="Nomor Ijazah"
-          name="noIjazah"
-          rules={[{ required: true, message: 'Nomor Ijazah mohon diisi!' }]}
+        label="Nomor Ijazah"
+        name="noIjazah"
+        rules={[{ required: true, message: 'Nomor Ijazah mohon diisi!' }]}
       >
-          <Input type="text" id="noijazah"/>
+        <Input />
       </Form.Item>
-      
+
       <Form.Item
-          label="Tanggal Ijazah"
-          name="tanggalIjazah"
-          rules={[{ required: true, message: 'Tanggal Ijazah mohon diisi!' }]}
+        label="Tanggal Ijazah"
+        name="tanggalIjazah"
+        rules={[{ required: true, message: 'Tanggal Ijazah mohon diisi!' }]}
       >
-          <DatePicker id="tanggaijazah" />
+        <DatePicker />
       </Form.Item>
 
       <Form.Item
         label="Upload Ijazah"
         name="fileIjazah"
+        rules={[{ required: true, message: 'Mohon upload file ijazah!' }]}
         valuePropName="fileList"
-        rules={[{ required: true, message: 'File Ijazah mohon diupload!' }]}
         getValueFromEvent={normFile}
       >
-        <Upload {...props}>
+        <Upload {...uploadProps}>
           <Button icon={<UploadOutlined />}>File Ijazah</Button>
         </Upload>
       </Form.Item>
-    </Card>
+    </>
   );
 };
 

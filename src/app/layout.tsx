@@ -27,6 +27,8 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
   const pathname = usePathname();
 
   useEffect(() => {
+    setLoading(true);
+
     if (pathname === '/exam') {
       setCollapsed(true);
     }

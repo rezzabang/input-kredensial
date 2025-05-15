@@ -39,7 +39,7 @@ const DataPelatihan = ({ form }) => {
   if (!hydrated) return null;
   
   return (
-    <Card>
+    <>
       <h2>D. Data Pelatihan</h2>
       <Form.List name="pelatihan">
         {(fields, { add, remove }) => (
@@ -110,7 +110,7 @@ const DataPelatihan = ({ form }) => {
           </>
         )}
       </Form.List>
-    </Card>
+    </>
   );
 };
 
