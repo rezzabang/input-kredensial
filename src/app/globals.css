@@ -33,3 +33,11 @@ body {
 .anticon {
   font-size: 30px;
 }
+.table-kompetensi-keterampilan .ant-form-item {
+  margin-inline-end: 16px !important;
+  margin-bottom: 8px !important;
+}
+.table-kompetensi-keahlian .ant-form-item {
+  margin-inline-end: 16px !important;
+  margin-bottom: 8px !important;
+}

@@ -95,7 +95,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
                   {
                     key: '3',
                     icon: <FileSearchOutlined />,
-                    label: <Link href="/assesmen-mandiri">Assesmen Mandiri</Link>,
+                    label: <Link href="/asesmen-mandiri">Asesmen Mandiri</Link>,
                   },
                   {
                     key: '4',
