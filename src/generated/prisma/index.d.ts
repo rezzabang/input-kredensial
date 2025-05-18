@@ -28,6 +28,11 @@ export type DataPekerjaan = $Result.DefaultSelection<Prisma.$DataPekerjaanPayloa
  * 
  */
 export type DataPendidikan = $Result.DefaultSelection<Prisma.$DataPendidikanPayload>
+/**
+ * Model Kompetensi
+ * 
+ */
+export type Kompetensi = $Result.DefaultSelection<Prisma.$KompetensiPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -183,6 +188,16 @@ export class PrismaClient<
     * ```
     */
   get dataPendidikan(): Prisma.DataPendidikanDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.kompetensi`: Exposes CRUD operations for the **Kompetensi** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Kompetensis
+    * const kompetensis = await prisma.kompetensi.findMany()
+    * ```
+    */
+  get kompetensi(): Prisma.KompetensiDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -625,7 +640,8 @@ export namespace Prisma {
   export const ModelName: {
     Datapribadi: 'Datapribadi',
     DataPekerjaan: 'DataPekerjaan',
-    DataPendidikan: 'DataPendidikan'
+    DataPendidikan: 'DataPendidikan',
+    Kompetensi: 'Kompetensi'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -644,7 +660,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "datapribadi" | "dataPekerjaan" | "dataPendidikan"
+      modelProps: "datapribadi" | "dataPekerjaan" | "dataPendidikan" | "kompetensi"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -846,6 +862,72 @@ export namespace Prisma {
           }
         }
       }
+      Kompetensi: {
+        payload: Prisma.$KompetensiPayload<ExtArgs>
+        fields: Prisma.KompetensiFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.KompetensiFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KompetensiPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.KompetensiFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KompetensiPayload>
+          }
+          findFirst: {
+            args: Prisma.KompetensiFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KompetensiPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.KompetensiFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KompetensiPayload>
+          }
+          findMany: {
+            args: Prisma.KompetensiFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KompetensiPayload>[]
+          }
+          create: {
+            args: Prisma.KompetensiCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KompetensiPayload>
+          }
+          createMany: {
+            args: Prisma.KompetensiCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.KompetensiDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KompetensiPayload>
+          }
+          update: {
+            args: Prisma.KompetensiUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KompetensiPayload>
+          }
+          deleteMany: {
+            args: Prisma.KompetensiDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.KompetensiUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.KompetensiUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KompetensiPayload>
+          }
+          aggregate: {
+            args: Prisma.KompetensiAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateKompetensi>
+          }
+          groupBy: {
+            args: Prisma.KompetensiGroupByArgs<ExtArgs>
+            result: $Utils.Optional<KompetensiGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.KompetensiCountArgs<ExtArgs>
+            result: $Utils.Optional<KompetensiCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -933,6 +1015,7 @@ export namespace Prisma {
     datapribadi?: DatapribadiOmit
     dataPekerjaan?: DataPekerjaanOmit
     dataPendidikan?: DataPendidikanOmit
+    kompetensi?: KompetensiOmit
   }
 
   /* Types for Logging */
@@ -3923,6 +4006,877 @@ export namespace Prisma {
 
 
   /**
+   * Model Kompetensi
+   */
+
+  export type AggregateKompetensi = {
+    _count: KompetensiCountAggregateOutputType | null
+    _min: KompetensiMinAggregateOutputType | null
+    _max: KompetensiMaxAggregateOutputType | null
+  }
+
+  export type KompetensiMinAggregateOutputType = {
+    kuk: string | null
+    detail: string | null
+    kompetensi: string | null
+    kategori: string | null
+  }
+
+  export type KompetensiMaxAggregateOutputType = {
+    kuk: string | null
+    detail: string | null
+    kompetensi: string | null
+    kategori: string | null
+  }
+
+  export type KompetensiCountAggregateOutputType = {
+    kuk: number
+    detail: number
+    kompetensi: number
+    kategori: number
+    _all: number
+  }
+
+
+  export type KompetensiMinAggregateInputType = {
+    kuk?: true
+    detail?: true
+    kompetensi?: true
+    kategori?: true
+  }
+
+  export type KompetensiMaxAggregateInputType = {
+    kuk?: true
+    detail?: true
+    kompetensi?: true
+    kategori?: true
+  }
+
+  export type KompetensiCountAggregateInputType = {
+    kuk?: true
+    detail?: true
+    kompetensi?: true
+    kategori?: true
+    _all?: true
+  }
+
+  export type KompetensiAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Kompetensi to aggregate.
+     */
+    where?: KompetensiWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Kompetensis to fetch.
+     */
+    orderBy?: KompetensiOrderByWithRelationInput | KompetensiOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: KompetensiWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Kompetensis from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Kompetensis.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Kompetensis
+    **/
+    _count?: true | KompetensiCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: KompetensiMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: KompetensiMaxAggregateInputType
+  }
+
+  export type GetKompetensiAggregateType<T extends KompetensiAggregateArgs> = {
+        [P in keyof T & keyof AggregateKompetensi]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateKompetensi[P]>
+      : GetScalarType<T[P], AggregateKompetensi[P]>
+  }
+
+
+
+
+  export type KompetensiGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: KompetensiWhereInput
+    orderBy?: KompetensiOrderByWithAggregationInput | KompetensiOrderByWithAggregationInput[]
+    by: KompetensiScalarFieldEnum[] | KompetensiScalarFieldEnum
+    having?: KompetensiScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: KompetensiCountAggregateInputType | true
+    _min?: KompetensiMinAggregateInputType
+    _max?: KompetensiMaxAggregateInputType
+  }
+
+  export type KompetensiGroupByOutputType = {
+    kuk: string
+    detail: string
+    kompetensi: string
+    kategori: string
+    _count: KompetensiCountAggregateOutputType | null
+    _min: KompetensiMinAggregateOutputType | null
+    _max: KompetensiMaxAggregateOutputType | null
+  }
+
+  type GetKompetensiGroupByPayload<T extends KompetensiGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<KompetensiGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof KompetensiGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], KompetensiGroupByOutputType[P]>
+            : GetScalarType<T[P], KompetensiGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type KompetensiSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    kuk?: boolean
+    detail?: boolean
+    kompetensi?: boolean
+    kategori?: boolean
+  }, ExtArgs["result"]["kompetensi"]>
+
+
+
+  export type KompetensiSelectScalar = {
+    kuk?: boolean
+    detail?: boolean
+    kompetensi?: boolean
+    kategori?: boolean
+  }
+
+  export type KompetensiOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"kuk" | "detail" | "kompetensi" | "kategori", ExtArgs["result"]["kompetensi"]>
+
+  export type $KompetensiPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Kompetensi"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      kuk: string
+      detail: string
+      kompetensi: string
+      kategori: string
+    }, ExtArgs["result"]["kompetensi"]>
+    composites: {}
+  }
+
+  type KompetensiGetPayload<S extends boolean | null | undefined | KompetensiDefaultArgs> = $Result.GetResult<Prisma.$KompetensiPayload, S>
+
+  type KompetensiCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<KompetensiFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: KompetensiCountAggregateInputType | true
+    }
+
+  export interface KompetensiDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Kompetensi'], meta: { name: 'Kompetensi' } }
+    /**
+     * Find zero or one Kompetensi that matches the filter.
+     * @param {KompetensiFindUniqueArgs} args - Arguments to find a Kompetensi
+     * @example
+     * // Get one Kompetensi
+     * const kompetensi = await prisma.kompetensi.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends KompetensiFindUniqueArgs>(args: SelectSubset<T, KompetensiFindUniqueArgs<ExtArgs>>): Prisma__KompetensiClient<$Result.GetResult<Prisma.$KompetensiPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Kompetensi that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {KompetensiFindUniqueOrThrowArgs} args - Arguments to find a Kompetensi
+     * @example
+     * // Get one Kompetensi
+     * const kompetensi = await prisma.kompetensi.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends KompetensiFindUniqueOrThrowArgs>(args: SelectSubset<T, KompetensiFindUniqueOrThrowArgs<ExtArgs>>): Prisma__KompetensiClient<$Result.GetResult<Prisma.$KompetensiPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Kompetensi that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KompetensiFindFirstArgs} args - Arguments to find a Kompetensi
+     * @example
+     * // Get one Kompetensi
+     * const kompetensi = await prisma.kompetensi.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends KompetensiFindFirstArgs>(args?: SelectSubset<T, KompetensiFindFirstArgs<ExtArgs>>): Prisma__KompetensiClient<$Result.GetResult<Prisma.$KompetensiPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Kompetensi that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KompetensiFindFirstOrThrowArgs} args - Arguments to find a Kompetensi
+     * @example
+     * // Get one Kompetensi
+     * const kompetensi = await prisma.kompetensi.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends KompetensiFindFirstOrThrowArgs>(args?: SelectSubset<T, KompetensiFindFirstOrThrowArgs<ExtArgs>>): Prisma__KompetensiClient<$Result.GetResult<Prisma.$KompetensiPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Kompetensis that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KompetensiFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Kompetensis
+     * const kompetensis = await prisma.kompetensi.findMany()
+     * 
+     * // Get first 10 Kompetensis
+     * const kompetensis = await prisma.kompetensi.findMany({ take: 10 })
+     * 
+     * // Only select the `kuk`
+     * const kompetensiWithKukOnly = await prisma.kompetensi.findMany({ select: { kuk: true } })
+     * 
+     */
+    findMany<T extends KompetensiFindManyArgs>(args?: SelectSubset<T, KompetensiFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KompetensiPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Kompetensi.
+     * @param {KompetensiCreateArgs} args - Arguments to create a Kompetensi.
+     * @example
+     * // Create one Kompetensi
+     * const Kompetensi = await prisma.kompetensi.create({
+     *   data: {
+     *     // ... data to create a Kompetensi
+     *   }
+     * })
+     * 
+     */
+    create<T extends KompetensiCreateArgs>(args: SelectSubset<T, KompetensiCreateArgs<ExtArgs>>): Prisma__KompetensiClient<$Result.GetResult<Prisma.$KompetensiPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Kompetensis.
+     * @param {KompetensiCreateManyArgs} args - Arguments to create many Kompetensis.
+     * @example
+     * // Create many Kompetensis
+     * const kompetensi = await prisma.kompetensi.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends KompetensiCreateManyArgs>(args?: SelectSubset<T, KompetensiCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Kompetensi.
+     * @param {KompetensiDeleteArgs} args - Arguments to delete one Kompetensi.
+     * @example
+     * // Delete one Kompetensi
+     * const Kompetensi = await prisma.kompetensi.delete({
+     *   where: {
+     *     // ... filter to delete one Kompetensi
+     *   }
+     * })
+     * 
+     */
+    delete<T extends KompetensiDeleteArgs>(args: SelectSubset<T, KompetensiDeleteArgs<ExtArgs>>): Prisma__KompetensiClient<$Result.GetResult<Prisma.$KompetensiPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Kompetensi.
+     * @param {KompetensiUpdateArgs} args - Arguments to update one Kompetensi.
+     * @example
+     * // Update one Kompetensi
+     * const kompetensi = await prisma.kompetensi.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends KompetensiUpdateArgs>(args: SelectSubset<T, KompetensiUpdateArgs<ExtArgs>>): Prisma__KompetensiClient<$Result.GetResult<Prisma.$KompetensiPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Kompetensis.
+     * @param {KompetensiDeleteManyArgs} args - Arguments to filter Kompetensis to delete.
+     * @example
+     * // Delete a few Kompetensis
+     * const { count } = await prisma.kompetensi.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends KompetensiDeleteManyArgs>(args?: SelectSubset<T, KompetensiDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Kompetensis.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KompetensiUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Kompetensis
+     * const kompetensi = await prisma.kompetensi.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends KompetensiUpdateManyArgs>(args: SelectSubset<T, KompetensiUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Kompetensi.
+     * @param {KompetensiUpsertArgs} args - Arguments to update or create a Kompetensi.
+     * @example
+     * // Update or create a Kompetensi
+     * const kompetensi = await prisma.kompetensi.upsert({
+     *   create: {
+     *     // ... data to create a Kompetensi
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Kompetensi we want to update
+     *   }
+     * })
+     */
+    upsert<T extends KompetensiUpsertArgs>(args: SelectSubset<T, KompetensiUpsertArgs<ExtArgs>>): Prisma__KompetensiClient<$Result.GetResult<Prisma.$KompetensiPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Kompetensis.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KompetensiCountArgs} args - Arguments to filter Kompetensis to count.
+     * @example
+     * // Count the number of Kompetensis
+     * const count = await prisma.kompetensi.count({
+     *   where: {
+     *     // ... the filter for the Kompetensis we want to count
+     *   }
+     * })
+    **/
+    count<T extends KompetensiCountArgs>(
+      args?: Subset<T, KompetensiCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], KompetensiCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Kompetensi.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KompetensiAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends KompetensiAggregateArgs>(args: Subset<T, KompetensiAggregateArgs>): Prisma.PrismaPromise<GetKompetensiAggregateType<T>>
+
+    /**
+     * Group by Kompetensi.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KompetensiGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends KompetensiGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: KompetensiGroupByArgs['orderBy'] }
+        : { orderBy?: KompetensiGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, KompetensiGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetKompetensiGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Kompetensi model
+   */
+  readonly fields: KompetensiFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Kompetensi.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__KompetensiClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Kompetensi model
+   */
+  interface KompetensiFieldRefs {
+    readonly kuk: FieldRef<"Kompetensi", 'String'>
+    readonly detail: FieldRef<"Kompetensi", 'String'>
+    readonly kompetensi: FieldRef<"Kompetensi", 'String'>
+    readonly kategori: FieldRef<"Kompetensi", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Kompetensi findUnique
+   */
+  export type KompetensiFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Kompetensi
+     */
+    select?: KompetensiSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Kompetensi
+     */
+    omit?: KompetensiOmit<ExtArgs> | null
+    /**
+     * Filter, which Kompetensi to fetch.
+     */
+    where: KompetensiWhereUniqueInput
+  }
+
+  /**
+   * Kompetensi findUniqueOrThrow
+   */
+  export type KompetensiFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Kompetensi
+     */
+    select?: KompetensiSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Kompetensi
+     */
+    omit?: KompetensiOmit<ExtArgs> | null
+    /**
+     * Filter, which Kompetensi to fetch.
+     */
+    where: KompetensiWhereUniqueInput
+  }
+
+  /**
+   * Kompetensi findFirst
+   */
+  export type KompetensiFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Kompetensi
+     */
+    select?: KompetensiSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Kompetensi
+     */
+    omit?: KompetensiOmit<ExtArgs> | null
+    /**
+     * Filter, which Kompetensi to fetch.
+     */
+    where?: KompetensiWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Kompetensis to fetch.
+     */
+    orderBy?: KompetensiOrderByWithRelationInput | KompetensiOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Kompetensis.
+     */
+    cursor?: KompetensiWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Kompetensis from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Kompetensis.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Kompetensis.
+     */
+    distinct?: KompetensiScalarFieldEnum | KompetensiScalarFieldEnum[]
+  }
+
+  /**
+   * Kompetensi findFirstOrThrow
+   */
+  export type KompetensiFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Kompetensi
+     */
+    select?: KompetensiSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Kompetensi
+     */
+    omit?: KompetensiOmit<ExtArgs> | null
+    /**
+     * Filter, which Kompetensi to fetch.
+     */
+    where?: KompetensiWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Kompetensis to fetch.
+     */
+    orderBy?: KompetensiOrderByWithRelationInput | KompetensiOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Kompetensis.
+     */
+    cursor?: KompetensiWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Kompetensis from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Kompetensis.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Kompetensis.
+     */
+    distinct?: KompetensiScalarFieldEnum | KompetensiScalarFieldEnum[]
+  }
+
+  /**
+   * Kompetensi findMany
+   */
+  export type KompetensiFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Kompetensi
+     */
+    select?: KompetensiSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Kompetensi
+     */
+    omit?: KompetensiOmit<ExtArgs> | null
+    /**
+     * Filter, which Kompetensis to fetch.
+     */
+    where?: KompetensiWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Kompetensis to fetch.
+     */
+    orderBy?: KompetensiOrderByWithRelationInput | KompetensiOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Kompetensis.
+     */
+    cursor?: KompetensiWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Kompetensis from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Kompetensis.
+     */
+    skip?: number
+    distinct?: KompetensiScalarFieldEnum | KompetensiScalarFieldEnum[]
+  }
+
+  /**
+   * Kompetensi create
+   */
+  export type KompetensiCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Kompetensi
+     */
+    select?: KompetensiSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Kompetensi
+     */
+    omit?: KompetensiOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Kompetensi.
+     */
+    data: XOR<KompetensiCreateInput, KompetensiUncheckedCreateInput>
+  }
+
+  /**
+   * Kompetensi createMany
+   */
+  export type KompetensiCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Kompetensis.
+     */
+    data: KompetensiCreateManyInput | KompetensiCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Kompetensi update
+   */
+  export type KompetensiUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Kompetensi
+     */
+    select?: KompetensiSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Kompetensi
+     */
+    omit?: KompetensiOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Kompetensi.
+     */
+    data: XOR<KompetensiUpdateInput, KompetensiUncheckedUpdateInput>
+    /**
+     * Choose, which Kompetensi to update.
+     */
+    where: KompetensiWhereUniqueInput
+  }
+
+  /**
+   * Kompetensi updateMany
+   */
+  export type KompetensiUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Kompetensis.
+     */
+    data: XOR<KompetensiUpdateManyMutationInput, KompetensiUncheckedUpdateManyInput>
+    /**
+     * Filter which Kompetensis to update
+     */
+    where?: KompetensiWhereInput
+    /**
+     * Limit how many Kompetensis to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Kompetensi upsert
+   */
+  export type KompetensiUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Kompetensi
+     */
+    select?: KompetensiSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Kompetensi
+     */
+    omit?: KompetensiOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Kompetensi to update in case it exists.
+     */
+    where: KompetensiWhereUniqueInput
+    /**
+     * In case the Kompetensi found by the `where` argument doesn't exist, create a new Kompetensi with this data.
+     */
+    create: XOR<KompetensiCreateInput, KompetensiUncheckedCreateInput>
+    /**
+     * In case the Kompetensi was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<KompetensiUpdateInput, KompetensiUncheckedUpdateInput>
+  }
+
+  /**
+   * Kompetensi delete
+   */
+  export type KompetensiDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Kompetensi
+     */
+    select?: KompetensiSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Kompetensi
+     */
+    omit?: KompetensiOmit<ExtArgs> | null
+    /**
+     * Filter which Kompetensi to delete.
+     */
+    where: KompetensiWhereUniqueInput
+  }
+
+  /**
+   * Kompetensi deleteMany
+   */
+  export type KompetensiDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Kompetensis to delete
+     */
+    where?: KompetensiWhereInput
+    /**
+     * Limit how many Kompetensis to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Kompetensi without action
+   */
+  export type KompetensiDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Kompetensi
+     */
+    select?: KompetensiSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Kompetensi
+     */
+    omit?: KompetensiOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3975,6 +4929,16 @@ export namespace Prisma {
   export type DataPendidikanScalarFieldEnum = (typeof DataPendidikanScalarFieldEnum)[keyof typeof DataPendidikanScalarFieldEnum]
 
 
+  export const KompetensiScalarFieldEnum: {
+    kuk: 'kuk',
+    detail: 'detail',
+    kompetensi: 'kompetensi',
+    kategori: 'kategori'
+  };
+
+  export type KompetensiScalarFieldEnum = (typeof KompetensiScalarFieldEnum)[keyof typeof KompetensiScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -4024,6 +4988,16 @@ export namespace Prisma {
   };
 
   export type DataPendidikanOrderByRelevanceFieldEnum = (typeof DataPendidikanOrderByRelevanceFieldEnum)[keyof typeof DataPendidikanOrderByRelevanceFieldEnum]
+
+
+  export const KompetensiOrderByRelevanceFieldEnum: {
+    kuk: 'kuk',
+    detail: 'detail',
+    kompetensi: 'kompetensi',
+    kategori: 'kategori'
+  };
+
+  export type KompetensiOrderByRelevanceFieldEnum = (typeof KompetensiOrderByRelevanceFieldEnum)[keyof typeof KompetensiOrderByRelevanceFieldEnum]
 
 
   /**
@@ -4256,6 +5230,54 @@ export namespace Prisma {
     fileIjazah?: StringNullableWithAggregatesFilter<"DataPendidikan"> | string | null
   }
 
+  export type KompetensiWhereInput = {
+    AND?: KompetensiWhereInput | KompetensiWhereInput[]
+    OR?: KompetensiWhereInput[]
+    NOT?: KompetensiWhereInput | KompetensiWhereInput[]
+    kuk?: StringFilter<"Kompetensi"> | string
+    detail?: StringFilter<"Kompetensi"> | string
+    kompetensi?: StringFilter<"Kompetensi"> | string
+    kategori?: StringFilter<"Kompetensi"> | string
+  }
+
+  export type KompetensiOrderByWithRelationInput = {
+    kuk?: SortOrder
+    detail?: SortOrder
+    kompetensi?: SortOrder
+    kategori?: SortOrder
+    _relevance?: KompetensiOrderByRelevanceInput
+  }
+
+  export type KompetensiWhereUniqueInput = Prisma.AtLeast<{
+    kuk?: string
+    AND?: KompetensiWhereInput | KompetensiWhereInput[]
+    OR?: KompetensiWhereInput[]
+    NOT?: KompetensiWhereInput | KompetensiWhereInput[]
+    detail?: StringFilter<"Kompetensi"> | string
+    kompetensi?: StringFilter<"Kompetensi"> | string
+    kategori?: StringFilter<"Kompetensi"> | string
+  }, "kuk">
+
+  export type KompetensiOrderByWithAggregationInput = {
+    kuk?: SortOrder
+    detail?: SortOrder
+    kompetensi?: SortOrder
+    kategori?: SortOrder
+    _count?: KompetensiCountOrderByAggregateInput
+    _max?: KompetensiMaxOrderByAggregateInput
+    _min?: KompetensiMinOrderByAggregateInput
+  }
+
+  export type KompetensiScalarWhereWithAggregatesInput = {
+    AND?: KompetensiScalarWhereWithAggregatesInput | KompetensiScalarWhereWithAggregatesInput[]
+    OR?: KompetensiScalarWhereWithAggregatesInput[]
+    NOT?: KompetensiScalarWhereWithAggregatesInput | KompetensiScalarWhereWithAggregatesInput[]
+    kuk?: StringWithAggregatesFilter<"Kompetensi"> | string
+    detail?: StringWithAggregatesFilter<"Kompetensi"> | string
+    kompetensi?: StringWithAggregatesFilter<"Kompetensi"> | string
+    kategori?: StringWithAggregatesFilter<"Kompetensi"> | string
+  }
+
   export type DatapribadiCreateInput = {
     nip: string
     nama: string
@@ -4470,6 +5492,55 @@ export namespace Prisma {
     noIjazah?: StringFieldUpdateOperationsInput | string
     tanggalIjazah?: DateTimeFieldUpdateOperationsInput | Date | string
     fileIjazah?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type KompetensiCreateInput = {
+    kuk: string
+    detail: string
+    kompetensi: string
+    kategori: string
+  }
+
+  export type KompetensiUncheckedCreateInput = {
+    kuk: string
+    detail: string
+    kompetensi: string
+    kategori: string
+  }
+
+  export type KompetensiUpdateInput = {
+    kuk?: StringFieldUpdateOperationsInput | string
+    detail?: StringFieldUpdateOperationsInput | string
+    kompetensi?: StringFieldUpdateOperationsInput | string
+    kategori?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type KompetensiUncheckedUpdateInput = {
+    kuk?: StringFieldUpdateOperationsInput | string
+    detail?: StringFieldUpdateOperationsInput | string
+    kompetensi?: StringFieldUpdateOperationsInput | string
+    kategori?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type KompetensiCreateManyInput = {
+    kuk: string
+    detail: string
+    kompetensi: string
+    kategori: string
+  }
+
+  export type KompetensiUpdateManyMutationInput = {
+    kuk?: StringFieldUpdateOperationsInput | string
+    detail?: StringFieldUpdateOperationsInput | string
+    kompetensi?: StringFieldUpdateOperationsInput | string
+    kategori?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type KompetensiUncheckedUpdateManyInput = {
+    kuk?: StringFieldUpdateOperationsInput | string
+    detail?: StringFieldUpdateOperationsInput | string
+    kompetensi?: StringFieldUpdateOperationsInput | string
+    kategori?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -4689,6 +5760,33 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type KompetensiOrderByRelevanceInput = {
+    fields: KompetensiOrderByRelevanceFieldEnum | KompetensiOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type KompetensiCountOrderByAggregateInput = {
+    kuk?: SortOrder
+    detail?: SortOrder
+    kompetensi?: SortOrder
+    kategori?: SortOrder
+  }
+
+  export type KompetensiMaxOrderByAggregateInput = {
+    kuk?: SortOrder
+    detail?: SortOrder
+    kompetensi?: SortOrder
+    kategori?: SortOrder
+  }
+
+  export type KompetensiMinOrderByAggregateInput = {
+    kuk?: SortOrder
+    detail?: SortOrder
+    kompetensi?: SortOrder
+    kategori?: SortOrder
   }
 
   export type DataPekerjaanCreateNestedOneWithoutDatapribadiInput = {

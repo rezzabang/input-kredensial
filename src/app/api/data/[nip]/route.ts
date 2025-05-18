@@ -1,9 +1,10 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 
-export async function GET(request: Request, context: { params: { nip: string } }) {
+
+export async function GET(request: NextRequest, { params }: { params: { nip: string } }) {
+  const { nip } = params;
   try {
-    const { nip } = context.params;
 
     const datapribadi = await prisma.datapribadi.findUnique({
       where: { nip },

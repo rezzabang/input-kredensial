@@ -150,6 +150,13 @@ exports.Prisma.DataPendidikanScalarFieldEnum = {
   fileIjazah: 'fileIjazah'
 };
 
+exports.Prisma.KompetensiScalarFieldEnum = {
+  kuk: 'kuk',
+  detail: 'detail',
+  kompetensi: 'kompetensi',
+  kategori: 'kategori'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -186,11 +193,19 @@ exports.Prisma.DataPendidikanOrderByRelevanceFieldEnum = {
   fileIjazah: 'fileIjazah'
 };
 
+exports.Prisma.KompetensiOrderByRelevanceFieldEnum = {
+  kuk: 'kuk',
+  detail: 'detail',
+  kompetensi: 'kompetensi',
+  kategori: 'kategori'
+};
+
 
 exports.Prisma.ModelName = {
   Datapribadi: 'Datapribadi',
   DataPekerjaan: 'DataPekerjaan',
-  DataPendidikan: 'DataPendidikan'
+  DataPendidikan: 'DataPendidikan',
+  Kompetensi: 'Kompetensi'
 };
 
 /**

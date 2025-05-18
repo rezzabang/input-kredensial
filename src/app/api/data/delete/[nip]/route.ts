@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 import fs from "fs";
 import path from "path";
 
-export async function DELETE(request: Request, context: { params: { nip: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: { nip: string } }) {
+  const { nip } = params;
   try {
-    const { nip } = context.params;
 
     // Find existing record with related file info
     const pendidikanRecord = await prisma.dataPendidikan.findUnique({

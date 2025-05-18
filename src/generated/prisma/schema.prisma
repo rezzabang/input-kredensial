@@ -50,3 +50,10 @@ model DataPendidikan {
 
   datapribadi Datapribadi @relation(fields: [nip], references: [nip], onDelete: Cascade)
 }
+
+model Kompetensi {
+  kuk        String @id
+  detail     String
+  kompetensi String
+  kategori   String
+}

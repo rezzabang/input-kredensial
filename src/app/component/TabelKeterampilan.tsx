@@ -1,48 +1,101 @@
 'use client';
-
+import React, { useState, useEffect } from 'react';
 import { Table, Select, Button } from 'antd';
 import type { TableProps } from 'antd';
-import React from 'react';
 
-interface DataType {
-  key: string;
-  name: string;
-}
-interface DataTypes {
+interface KompetensiItem {
   key: string;
   kuk: string;
   desc: string;
   asesmen?: string;
 }
 
-const columns: TableProps<DataType>['columns'] = [
-  {
-    title: 'Kategori Kompetensi',
-    dataIndex: 'name',
-  },
-];
+interface KategoriGroup {
+  key: string;
+  name: string; // kategori
+  kompetensi: KompetensiItem[];
+}
 
-const data: DataType[] = [
-  { key: '1', name: 'Arsip' },
-  { key: '2', name: 'Koding' },
-  { key: '3', name: 'Pelaporan' },
-  { key: '4', name: 'Pendaftaran' },
-  { key: '5', name: 'Pelepasan Informasi' },
-];
+// Add typings for your API response items
+interface ApiItem {
+  kategori: string;
+  kuk: string;
+  detail: string;
+  asesmen?: string;
+}
 
-const App: React.FC = () => {
+interface ApiResponse {
+  data: ApiItem[];
+}
+
+const TabelKeterampilan: React.FC = () => {
+  const [data, setData] = useState<KategoriGroup[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [selectedKeysMap, setSelectedKeysMap] = useState<Record<string, React.Key[]>>({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch('/api/kompetensi');
+        const json: ApiResponse = await res.json();
+
+        if (res.ok) {
+          // Group items by kategori
+          const grouped = json.data.reduce((acc: Record<string, KompetensiItem[]>, item: ApiItem) => {
+            const kategori = item.kategori || 'Lainnya';
+            if (!acc[kategori]) acc[kategori] = [];
+            acc[kategori].push({
+              key: item.kuk,
+              kuk: item.kuk,
+              desc: item.detail,
+              asesmen: item.asesmen,
+            });
+            return acc;
+          }, {});
+
+          // Transform to KategoriGroup[]
+          const transformed: KategoriGroup[] = Object.entries(grouped).map(
+            ([kategori, kompetensi], index) => ({
+              key: String(index + 1),
+              name: kategori,
+              kompetensi,
+            })
+          );
+
+          setData(transformed);
+        }
+      } catch (err) {
+        console.error('Gagal mengambil data:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <Table
         bordered={false}
-        loading={false}
+        loading={loading}
         size="large"
-        columns={columns}
+        columns={[{ title: 'Kategori Kompetensi', dataIndex: 'name' }]}
         dataSource={data}
-        footer={() => '*) Pilih minimal 3 kompetensi'}
+        footer={() => '*) Pilih minimal 7 kompetensi'}
         expandable={{
-          expandedRowRender: () => {
-            const innerColumns: TableProps<DataTypes>['columns'] = [
+          expandedRowRender: (record) => {
+            const selectedKeys = selectedKeysMap[record.key] || [];
+
+            const onSelectChange = (newSelectedKeys: React.Key[]) => {
+              setSelectedKeysMap((prev) => ({
+                ...prev,
+                [record.key]: newSelectedKeys,
+              }));
+            };
+
+            const innerColumns: TableProps<KompetensiItem>['columns'] = [
               {
                 title: 'Kode Kompetensi',
                 dataIndex: 'kuk',
@@ -55,55 +108,47 @@ const App: React.FC = () => {
               {
                 title: 'Asesmen Mandiri',
                 dataIndex: 'asesmen',
-                render: (_, record) => (
+                render: (_: unknown, rowRecord: KompetensiItem) => (
                   <Select
                     defaultValue="Pilih"
                     style={{ width: 160 }}
                     options={[
                       { value: 'Dengan Supervisi', label: 'Dengan Supervisi' },
-                      { value: 'Kompeten', label: 'Kompeten' },
+                      { value: 'Mandiri', label: 'Mandiri' },
                     ]}
-                    onChange={(value) => {
-                      console.log(`Changed to "${value}" for KUK: ${record.kuk}`);
+                    onChange={(value: string) => {
+                      rowRecord.asesmen = value;
+                      if (!selectedKeys.includes(rowRecord.key)) {
+                        onSelectChange([...selectedKeys, rowRecord.key]);
+                      }
                     }}
                   />
                 ),
               },
             ];
 
-            const innerData: DataTypes[] = [
-              { key: '1', kuk: 'Q123456', desc: 'Mampu mengelola arsip' },
-              { key: '2', kuk: 'Q234567', desc: 'Menguasai prosedur pengkodean' },
-            ];
-
-            const rowSelection: TableProps<DataTypes>['rowSelection'] = {
-              type: 'checkbox',
-              onChange: (selectedRowKeys, selectedRows) => {
-                console.log('Selected inner table:', selectedRowKeys, selectedRows);
-              },
-            };
-
             return (
               <Table
                 columns={innerColumns}
-                dataSource={innerData}
-                rowSelection={rowSelection}
+                dataSource={record.kompetensi}
                 pagination={false}
                 size="small"
+                rowSelection={{
+                  type: 'checkbox',
+                  selectedRowKeys: selectedKeys,
+                  onChange: onSelectChange, 
+                }}
               />
             );
           },
         }}
-        rowSelection={undefined}
         pagination={false}
       />
       <div style={{ textAlign: 'center', marginTop: 24 }}>
-        <Button type="primary">
-          Simpan Hasil Asesmen Mandiri
-        </Button>
+        <Button type="primary">Simpan Hasil Asesmen Mandiri</Button>
       </div>
     </>
   );
 };
 
-export default App;
+export default TabelKeterampilan;
