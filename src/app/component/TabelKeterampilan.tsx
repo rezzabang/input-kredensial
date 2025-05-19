@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Table, Select, Button } from 'antd';
 import type { TableProps } from 'antd';
 
+const wikiUrl = process.env.NEXT_PUBLIC_WIKI_URL || '';
+
 interface KompetensiItem {
   key: string;
   kuk: string;
@@ -12,11 +14,10 @@ interface KompetensiItem {
 
 interface KategoriGroup {
   key: string;
-  name: string; // kategori
+  name: string;
   kompetensi: KompetensiItem[];
 }
 
-// Add typings for your API response items
 interface ApiItem {
   kategori: string;
   kuk: string;
@@ -27,6 +28,11 @@ interface ApiItem {
 interface ApiResponse {
   data: ApiItem[];
 }
+
+const kategoriMap: Record<string, string> = {
+  'koding': 'koder',
+  'pelepasan informasi': 'ppid',
+};
 
 const TabelKeterampilan: React.FC = () => {
   const [data, setData] = useState<KategoriGroup[]>([]);
@@ -41,7 +47,6 @@ const TabelKeterampilan: React.FC = () => {
         const json: ApiResponse = await res.json();
 
         if (res.ok) {
-          // Group items by kategori
           const grouped = json.data.reduce((acc: Record<string, KompetensiItem[]>, item: ApiItem) => {
             const kategori = item.kategori || 'Lainnya';
             if (!acc[kategori]) acc[kategori] = [];
@@ -54,7 +59,6 @@ const TabelKeterampilan: React.FC = () => {
             return acc;
           }, {});
 
-          // Transform to KategoriGroup[]
           const transformed: KategoriGroup[] = Object.entries(grouped).map(
             ([kategori, kompetensi], index) => ({
               key: String(index + 1),
@@ -83,7 +87,13 @@ const TabelKeterampilan: React.FC = () => {
         size="large"
         columns={[{ title: 'Kategori Kompetensi', dataIndex: 'name' }]}
         dataSource={data}
-        footer={() => '*) Pilih minimal 7 kompetensi'}
+        footer={() => (
+          <div>
+            Untuk melihat deskripsi lengkap kompetensi klik <strong>Kode Kompetensi</strong>
+            <br />
+            *) Pilih minimal 7 kompetensi
+          </div>
+        )}
         expandable={{
           expandedRowRender: (record) => {
             const selectedKeys = selectedKeysMap[record.key] || [];
@@ -95,37 +105,50 @@ const TabelKeterampilan: React.FC = () => {
               }));
             };
 
-            const innerColumns: TableProps<KompetensiItem>['columns'] = [
-              {
-                title: 'Kode Kompetensi',
-                dataIndex: 'kuk',
-                render: (text) => <a>{text}</a>,
-              },
-              {
-                title: 'Deskripsi Kompetensi',
-                dataIndex: 'desc',
-              },
-              {
-                title: 'Asesmen Mandiri',
-                dataIndex: 'asesmen',
-                render: (_: unknown, rowRecord: KompetensiItem) => (
-                  <Select
-                    defaultValue="Pilih"
-                    style={{ width: 160 }}
-                    options={[
-                      { value: 'Dengan Supervisi', label: 'Dengan Supervisi' },
-                      { value: 'Mandiri', label: 'Mandiri' },
-                    ]}
-                    onChange={(value: string) => {
-                      rowRecord.asesmen = value;
-                      if (!selectedKeys.includes(rowRecord.key)) {
-                        onSelectChange([...selectedKeys, rowRecord.key]);
-                      }
-                    }}
-                  />
-                ),
-              },
-            ];
+        const innerColumns: TableProps<KompetensiItem>['columns'] = [
+          {
+            title: 'Kode Kompetensi',
+            dataIndex: 'kuk',
+            render: (text) => {
+              const sanitizedKuk = text.replace(/\./g, '');
+
+              const mappedKategori = kategoriMap[record.name.toLowerCase()] || record.name;
+
+              const url = `${wikiUrl}terampil/${mappedKategori}/${sanitizedKuk}`;
+
+              return (
+                <a href={url} target="_blank" rel="noopener noreferrer">
+                  {text}
+                </a>
+              );
+            },
+          },
+          {
+            title: 'Deskripsi Kompetensi',
+            dataIndex: 'desc',
+          },
+          {
+            title: 'Asesmen Mandiri',
+            dataIndex: 'asesmen',
+            render: (_: unknown, rowRecord: KompetensiItem) => (
+              <Select
+                defaultValue="Pilih"
+                style={{ width: 160 }}
+                options={[
+                  { value: 'Dengan Supervisi', label: 'Dengan Supervisi' },
+                  { value: 'Mandiri', label: 'Mandiri' },
+                ]}
+                onChange={(value: string) => {
+                  rowRecord.asesmen = value;
+                  if (!selectedKeys.includes(rowRecord.key)) {
+                    onSelectChange([...selectedKeys, rowRecord.key]);
+                  }
+                }}
+              />
+            ),
+          },
+        ];
+
 
             return (
               <Table

@@ -15,7 +15,7 @@ datasource db {
 }
 
 model Datapribadi {
-  nip          String         @id
+  nip          String   @id
   nama         String
   tempatLahir  String
   tanggalLahir DateTime
@@ -24,20 +24,21 @@ model Datapribadi {
   email        String
   alamat       String
 
-  pekerjaan    DataPekerjaan?
-  pendidikan   DataPendidikan?
+  pekerjaan      DataPekerjaan?
+  pendidikan     DataPendidikan?
+  asesmenMandiri AsesmenMandiri[]
 }
 
 model DataPekerjaan {
-  nip                String      @id
-  namaTempatBekerja  String
-  alamatPekerjaan    String
-  noStr              String
-  tanggalStr         DateTime
-  noSip              String
-  tanggalSip         DateTime
+  nip               String   @id
+  namaTempatBekerja String
+  alamatPekerjaan   String
+  noStr             String
+  tanggalStr        DateTime
+  noSip             String
+  tanggalSip        DateTime
 
-  datapribadi        Datapribadi @relation(fields: [nip], references: [nip], onDelete: Cascade)
+  datapribadi Datapribadi @relation(fields: [nip], references: [nip], onDelete: Cascade)
 }
 
 model DataPendidikan {
@@ -48,12 +49,25 @@ model DataPendidikan {
   tanggalIjazah DateTime
   fileIjazah    String?
 
-  datapribadi   Datapribadi @relation(fields: [nip], references: [nip], onDelete: Cascade)
+  datapribadi Datapribadi @relation(fields: [nip], references: [nip], onDelete: Cascade)
 }
 
 model Kompetensi {
-  kuk        String   @id
+  kuk        String @id
   detail     String
   kompetensi String
   kategori   String
+
+  asesmenMandiri AsesmenMandiri[]
+}
+
+model AsesmenMandiri {
+  nip     String
+  kuk     String
+  asesmen String
+
+  datapribadi Datapribadi @relation(fields: [nip], references: [nip], onDelete: Cascade)
+  kompetensi  Kompetensi  @relation(fields: [kuk], references: [kuk], onDelete: Cascade)
+
+  @@id([nip, kuk])
 }

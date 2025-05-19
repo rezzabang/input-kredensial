@@ -33,6 +33,11 @@ export type DataPendidikan = $Result.DefaultSelection<Prisma.$DataPendidikanPayl
  * 
  */
 export type Kompetensi = $Result.DefaultSelection<Prisma.$KompetensiPayload>
+/**
+ * Model AsesmenMandiri
+ * 
+ */
+export type AsesmenMandiri = $Result.DefaultSelection<Prisma.$AsesmenMandiriPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -198,6 +203,16 @@ export class PrismaClient<
     * ```
     */
   get kompetensi(): Prisma.KompetensiDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.asesmenMandiri`: Exposes CRUD operations for the **AsesmenMandiri** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AsesmenMandiris
+    * const asesmenMandiris = await prisma.asesmenMandiri.findMany()
+    * ```
+    */
+  get asesmenMandiri(): Prisma.AsesmenMandiriDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -641,7 +656,8 @@ export namespace Prisma {
     Datapribadi: 'Datapribadi',
     DataPekerjaan: 'DataPekerjaan',
     DataPendidikan: 'DataPendidikan',
-    Kompetensi: 'Kompetensi'
+    Kompetensi: 'Kompetensi',
+    AsesmenMandiri: 'AsesmenMandiri'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -660,7 +676,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "datapribadi" | "dataPekerjaan" | "dataPendidikan" | "kompetensi"
+      modelProps: "datapribadi" | "dataPekerjaan" | "dataPendidikan" | "kompetensi" | "asesmenMandiri"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -928,6 +944,72 @@ export namespace Prisma {
           }
         }
       }
+      AsesmenMandiri: {
+        payload: Prisma.$AsesmenMandiriPayload<ExtArgs>
+        fields: Prisma.AsesmenMandiriFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AsesmenMandiriFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AsesmenMandiriPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AsesmenMandiriFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AsesmenMandiriPayload>
+          }
+          findFirst: {
+            args: Prisma.AsesmenMandiriFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AsesmenMandiriPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AsesmenMandiriFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AsesmenMandiriPayload>
+          }
+          findMany: {
+            args: Prisma.AsesmenMandiriFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AsesmenMandiriPayload>[]
+          }
+          create: {
+            args: Prisma.AsesmenMandiriCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AsesmenMandiriPayload>
+          }
+          createMany: {
+            args: Prisma.AsesmenMandiriCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AsesmenMandiriDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AsesmenMandiriPayload>
+          }
+          update: {
+            args: Prisma.AsesmenMandiriUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AsesmenMandiriPayload>
+          }
+          deleteMany: {
+            args: Prisma.AsesmenMandiriDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AsesmenMandiriUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AsesmenMandiriUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AsesmenMandiriPayload>
+          }
+          aggregate: {
+            args: Prisma.AsesmenMandiriAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAsesmenMandiri>
+          }
+          groupBy: {
+            args: Prisma.AsesmenMandiriGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AsesmenMandiriGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AsesmenMandiriCountArgs<ExtArgs>
+            result: $Utils.Optional<AsesmenMandiriCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1016,6 +1098,7 @@ export namespace Prisma {
     dataPekerjaan?: DataPekerjaanOmit
     dataPendidikan?: DataPendidikanOmit
     kompetensi?: KompetensiOmit
+    asesmenMandiri?: AsesmenMandiriOmit
   }
 
   /* Types for Logging */
@@ -1104,6 +1187,67 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type DatapribadiCountOutputType
+   */
+
+  export type DatapribadiCountOutputType = {
+    asesmenMandiri: number
+  }
+
+  export type DatapribadiCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    asesmenMandiri?: boolean | DatapribadiCountOutputTypeCountAsesmenMandiriArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DatapribadiCountOutputType without action
+   */
+  export type DatapribadiCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DatapribadiCountOutputType
+     */
+    select?: DatapribadiCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DatapribadiCountOutputType without action
+   */
+  export type DatapribadiCountOutputTypeCountAsesmenMandiriArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AsesmenMandiriWhereInput
+  }
+
+
+  /**
+   * Count Type KompetensiCountOutputType
+   */
+
+  export type KompetensiCountOutputType = {
+    asesmenMandiri: number
+  }
+
+  export type KompetensiCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    asesmenMandiri?: boolean | KompetensiCountOutputTypeCountAsesmenMandiriArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * KompetensiCountOutputType without action
+   */
+  export type KompetensiCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KompetensiCountOutputType
+     */
+    select?: KompetensiCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * KompetensiCountOutputType without action
+   */
+  export type KompetensiCountOutputTypeCountAsesmenMandiriArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AsesmenMandiriWhereInput
+  }
 
 
   /**
@@ -1300,6 +1444,8 @@ export namespace Prisma {
     alamat?: boolean
     pekerjaan?: boolean | Datapribadi$pekerjaanArgs<ExtArgs>
     pendidikan?: boolean | Datapribadi$pendidikanArgs<ExtArgs>
+    asesmenMandiri?: boolean | Datapribadi$asesmenMandiriArgs<ExtArgs>
+    _count?: boolean | DatapribadiCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["datapribadi"]>
 
 
@@ -1319,6 +1465,8 @@ export namespace Prisma {
   export type DatapribadiInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pekerjaan?: boolean | Datapribadi$pekerjaanArgs<ExtArgs>
     pendidikan?: boolean | Datapribadi$pendidikanArgs<ExtArgs>
+    asesmenMandiri?: boolean | Datapribadi$asesmenMandiriArgs<ExtArgs>
+    _count?: boolean | DatapribadiCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $DatapribadiPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1326,6 +1474,7 @@ export namespace Prisma {
     objects: {
       pekerjaan: Prisma.$DataPekerjaanPayload<ExtArgs> | null
       pendidikan: Prisma.$DataPendidikanPayload<ExtArgs> | null
+      asesmenMandiri: Prisma.$AsesmenMandiriPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       nip: string
@@ -1678,6 +1827,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     pekerjaan<T extends Datapribadi$pekerjaanArgs<ExtArgs> = {}>(args?: Subset<T, Datapribadi$pekerjaanArgs<ExtArgs>>): Prisma__DataPekerjaanClient<$Result.GetResult<Prisma.$DataPekerjaanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     pendidikan<T extends Datapribadi$pendidikanArgs<ExtArgs> = {}>(args?: Subset<T, Datapribadi$pendidikanArgs<ExtArgs>>): Prisma__DataPendidikanClient<$Result.GetResult<Prisma.$DataPendidikanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    asesmenMandiri<T extends Datapribadi$asesmenMandiriArgs<ExtArgs> = {}>(args?: Subset<T, Datapribadi$asesmenMandiriArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AsesmenMandiriPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2093,6 +2243,30 @@ export namespace Prisma {
      */
     include?: DataPendidikanInclude<ExtArgs> | null
     where?: DataPendidikanWhereInput
+  }
+
+  /**
+   * Datapribadi.asesmenMandiri
+   */
+  export type Datapribadi$asesmenMandiriArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AsesmenMandiri
+     */
+    select?: AsesmenMandiriSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AsesmenMandiri
+     */
+    omit?: AsesmenMandiriOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AsesmenMandiriInclude<ExtArgs> | null
+    where?: AsesmenMandiriWhereInput
+    orderBy?: AsesmenMandiriOrderByWithRelationInput | AsesmenMandiriOrderByWithRelationInput[]
+    cursor?: AsesmenMandiriWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AsesmenMandiriScalarFieldEnum | AsesmenMandiriScalarFieldEnum[]
   }
 
   /**
@@ -4161,6 +4335,8 @@ export namespace Prisma {
     detail?: boolean
     kompetensi?: boolean
     kategori?: boolean
+    asesmenMandiri?: boolean | Kompetensi$asesmenMandiriArgs<ExtArgs>
+    _count?: boolean | KompetensiCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["kompetensi"]>
 
 
@@ -4173,10 +4349,16 @@ export namespace Prisma {
   }
 
   export type KompetensiOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"kuk" | "detail" | "kompetensi" | "kategori", ExtArgs["result"]["kompetensi"]>
+  export type KompetensiInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    asesmenMandiri?: boolean | Kompetensi$asesmenMandiriArgs<ExtArgs>
+    _count?: boolean | KompetensiCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
   export type $KompetensiPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Kompetensi"
-    objects: {}
+    objects: {
+      asesmenMandiri: Prisma.$AsesmenMandiriPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       kuk: string
       detail: string
@@ -4522,6 +4704,7 @@ export namespace Prisma {
    */
   export interface Prisma__KompetensiClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    asesmenMandiri<T extends Kompetensi$asesmenMandiriArgs<ExtArgs> = {}>(args?: Subset<T, Kompetensi$asesmenMandiriArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AsesmenMandiriPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4572,6 +4755,10 @@ export namespace Prisma {
      */
     omit?: KompetensiOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KompetensiInclude<ExtArgs> | null
+    /**
      * Filter, which Kompetensi to fetch.
      */
     where: KompetensiWhereUniqueInput
@@ -4590,6 +4777,10 @@ export namespace Prisma {
      */
     omit?: KompetensiOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KompetensiInclude<ExtArgs> | null
+    /**
      * Filter, which Kompetensi to fetch.
      */
     where: KompetensiWhereUniqueInput
@@ -4607,6 +4798,10 @@ export namespace Prisma {
      * Omit specific fields from the Kompetensi
      */
     omit?: KompetensiOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KompetensiInclude<ExtArgs> | null
     /**
      * Filter, which Kompetensi to fetch.
      */
@@ -4656,6 +4851,10 @@ export namespace Prisma {
      */
     omit?: KompetensiOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KompetensiInclude<ExtArgs> | null
+    /**
      * Filter, which Kompetensi to fetch.
      */
     where?: KompetensiWhereInput
@@ -4704,6 +4903,10 @@ export namespace Prisma {
      */
     omit?: KompetensiOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KompetensiInclude<ExtArgs> | null
+    /**
      * Filter, which Kompetensis to fetch.
      */
     where?: KompetensiWhereInput
@@ -4747,6 +4950,10 @@ export namespace Prisma {
      */
     omit?: KompetensiOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KompetensiInclude<ExtArgs> | null
+    /**
      * The data needed to create a Kompetensi.
      */
     data: XOR<KompetensiCreateInput, KompetensiUncheckedCreateInput>
@@ -4775,6 +4982,10 @@ export namespace Prisma {
      * Omit specific fields from the Kompetensi
      */
     omit?: KompetensiOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KompetensiInclude<ExtArgs> | null
     /**
      * The data needed to update a Kompetensi.
      */
@@ -4816,6 +5027,10 @@ export namespace Prisma {
      */
     omit?: KompetensiOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KompetensiInclude<ExtArgs> | null
+    /**
      * The filter to search for the Kompetensi to update in case it exists.
      */
     where: KompetensiWhereUniqueInput
@@ -4842,6 +5057,10 @@ export namespace Prisma {
      */
     omit?: KompetensiOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KompetensiInclude<ExtArgs> | null
+    /**
      * Filter which Kompetensi to delete.
      */
     where: KompetensiWhereUniqueInput
@@ -4862,6 +5081,30 @@ export namespace Prisma {
   }
 
   /**
+   * Kompetensi.asesmenMandiri
+   */
+  export type Kompetensi$asesmenMandiriArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AsesmenMandiri
+     */
+    select?: AsesmenMandiriSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AsesmenMandiri
+     */
+    omit?: AsesmenMandiriOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AsesmenMandiriInclude<ExtArgs> | null
+    where?: AsesmenMandiriWhereInput
+    orderBy?: AsesmenMandiriOrderByWithRelationInput | AsesmenMandiriOrderByWithRelationInput[]
+    cursor?: AsesmenMandiriWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AsesmenMandiriScalarFieldEnum | AsesmenMandiriScalarFieldEnum[]
+  }
+
+  /**
    * Kompetensi without action
    */
   export type KompetensiDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4873,6 +5116,921 @@ export namespace Prisma {
      * Omit specific fields from the Kompetensi
      */
     omit?: KompetensiOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KompetensiInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AsesmenMandiri
+   */
+
+  export type AggregateAsesmenMandiri = {
+    _count: AsesmenMandiriCountAggregateOutputType | null
+    _min: AsesmenMandiriMinAggregateOutputType | null
+    _max: AsesmenMandiriMaxAggregateOutputType | null
+  }
+
+  export type AsesmenMandiriMinAggregateOutputType = {
+    nip: string | null
+    kuk: string | null
+    asesmen: string | null
+  }
+
+  export type AsesmenMandiriMaxAggregateOutputType = {
+    nip: string | null
+    kuk: string | null
+    asesmen: string | null
+  }
+
+  export type AsesmenMandiriCountAggregateOutputType = {
+    nip: number
+    kuk: number
+    asesmen: number
+    _all: number
+  }
+
+
+  export type AsesmenMandiriMinAggregateInputType = {
+    nip?: true
+    kuk?: true
+    asesmen?: true
+  }
+
+  export type AsesmenMandiriMaxAggregateInputType = {
+    nip?: true
+    kuk?: true
+    asesmen?: true
+  }
+
+  export type AsesmenMandiriCountAggregateInputType = {
+    nip?: true
+    kuk?: true
+    asesmen?: true
+    _all?: true
+  }
+
+  export type AsesmenMandiriAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AsesmenMandiri to aggregate.
+     */
+    where?: AsesmenMandiriWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AsesmenMandiris to fetch.
+     */
+    orderBy?: AsesmenMandiriOrderByWithRelationInput | AsesmenMandiriOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AsesmenMandiriWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AsesmenMandiris from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AsesmenMandiris.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AsesmenMandiris
+    **/
+    _count?: true | AsesmenMandiriCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AsesmenMandiriMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AsesmenMandiriMaxAggregateInputType
+  }
+
+  export type GetAsesmenMandiriAggregateType<T extends AsesmenMandiriAggregateArgs> = {
+        [P in keyof T & keyof AggregateAsesmenMandiri]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAsesmenMandiri[P]>
+      : GetScalarType<T[P], AggregateAsesmenMandiri[P]>
+  }
+
+
+
+
+  export type AsesmenMandiriGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AsesmenMandiriWhereInput
+    orderBy?: AsesmenMandiriOrderByWithAggregationInput | AsesmenMandiriOrderByWithAggregationInput[]
+    by: AsesmenMandiriScalarFieldEnum[] | AsesmenMandiriScalarFieldEnum
+    having?: AsesmenMandiriScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AsesmenMandiriCountAggregateInputType | true
+    _min?: AsesmenMandiriMinAggregateInputType
+    _max?: AsesmenMandiriMaxAggregateInputType
+  }
+
+  export type AsesmenMandiriGroupByOutputType = {
+    nip: string
+    kuk: string
+    asesmen: string
+    _count: AsesmenMandiriCountAggregateOutputType | null
+    _min: AsesmenMandiriMinAggregateOutputType | null
+    _max: AsesmenMandiriMaxAggregateOutputType | null
+  }
+
+  type GetAsesmenMandiriGroupByPayload<T extends AsesmenMandiriGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AsesmenMandiriGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AsesmenMandiriGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AsesmenMandiriGroupByOutputType[P]>
+            : GetScalarType<T[P], AsesmenMandiriGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AsesmenMandiriSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    nip?: boolean
+    kuk?: boolean
+    asesmen?: boolean
+    datapribadi?: boolean | DatapribadiDefaultArgs<ExtArgs>
+    kompetensi?: boolean | KompetensiDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["asesmenMandiri"]>
+
+
+
+  export type AsesmenMandiriSelectScalar = {
+    nip?: boolean
+    kuk?: boolean
+    asesmen?: boolean
+  }
+
+  export type AsesmenMandiriOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nip" | "kuk" | "asesmen", ExtArgs["result"]["asesmenMandiri"]>
+  export type AsesmenMandiriInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    datapribadi?: boolean | DatapribadiDefaultArgs<ExtArgs>
+    kompetensi?: boolean | KompetensiDefaultArgs<ExtArgs>
+  }
+
+  export type $AsesmenMandiriPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AsesmenMandiri"
+    objects: {
+      datapribadi: Prisma.$DatapribadiPayload<ExtArgs>
+      kompetensi: Prisma.$KompetensiPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      nip: string
+      kuk: string
+      asesmen: string
+    }, ExtArgs["result"]["asesmenMandiri"]>
+    composites: {}
+  }
+
+  type AsesmenMandiriGetPayload<S extends boolean | null | undefined | AsesmenMandiriDefaultArgs> = $Result.GetResult<Prisma.$AsesmenMandiriPayload, S>
+
+  type AsesmenMandiriCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AsesmenMandiriFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AsesmenMandiriCountAggregateInputType | true
+    }
+
+  export interface AsesmenMandiriDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AsesmenMandiri'], meta: { name: 'AsesmenMandiri' } }
+    /**
+     * Find zero or one AsesmenMandiri that matches the filter.
+     * @param {AsesmenMandiriFindUniqueArgs} args - Arguments to find a AsesmenMandiri
+     * @example
+     * // Get one AsesmenMandiri
+     * const asesmenMandiri = await prisma.asesmenMandiri.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AsesmenMandiriFindUniqueArgs>(args: SelectSubset<T, AsesmenMandiriFindUniqueArgs<ExtArgs>>): Prisma__AsesmenMandiriClient<$Result.GetResult<Prisma.$AsesmenMandiriPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AsesmenMandiri that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AsesmenMandiriFindUniqueOrThrowArgs} args - Arguments to find a AsesmenMandiri
+     * @example
+     * // Get one AsesmenMandiri
+     * const asesmenMandiri = await prisma.asesmenMandiri.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AsesmenMandiriFindUniqueOrThrowArgs>(args: SelectSubset<T, AsesmenMandiriFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AsesmenMandiriClient<$Result.GetResult<Prisma.$AsesmenMandiriPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AsesmenMandiri that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AsesmenMandiriFindFirstArgs} args - Arguments to find a AsesmenMandiri
+     * @example
+     * // Get one AsesmenMandiri
+     * const asesmenMandiri = await prisma.asesmenMandiri.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AsesmenMandiriFindFirstArgs>(args?: SelectSubset<T, AsesmenMandiriFindFirstArgs<ExtArgs>>): Prisma__AsesmenMandiriClient<$Result.GetResult<Prisma.$AsesmenMandiriPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AsesmenMandiri that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AsesmenMandiriFindFirstOrThrowArgs} args - Arguments to find a AsesmenMandiri
+     * @example
+     * // Get one AsesmenMandiri
+     * const asesmenMandiri = await prisma.asesmenMandiri.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AsesmenMandiriFindFirstOrThrowArgs>(args?: SelectSubset<T, AsesmenMandiriFindFirstOrThrowArgs<ExtArgs>>): Prisma__AsesmenMandiriClient<$Result.GetResult<Prisma.$AsesmenMandiriPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AsesmenMandiris that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AsesmenMandiriFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AsesmenMandiris
+     * const asesmenMandiris = await prisma.asesmenMandiri.findMany()
+     * 
+     * // Get first 10 AsesmenMandiris
+     * const asesmenMandiris = await prisma.asesmenMandiri.findMany({ take: 10 })
+     * 
+     * // Only select the `nip`
+     * const asesmenMandiriWithNipOnly = await prisma.asesmenMandiri.findMany({ select: { nip: true } })
+     * 
+     */
+    findMany<T extends AsesmenMandiriFindManyArgs>(args?: SelectSubset<T, AsesmenMandiriFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AsesmenMandiriPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AsesmenMandiri.
+     * @param {AsesmenMandiriCreateArgs} args - Arguments to create a AsesmenMandiri.
+     * @example
+     * // Create one AsesmenMandiri
+     * const AsesmenMandiri = await prisma.asesmenMandiri.create({
+     *   data: {
+     *     // ... data to create a AsesmenMandiri
+     *   }
+     * })
+     * 
+     */
+    create<T extends AsesmenMandiriCreateArgs>(args: SelectSubset<T, AsesmenMandiriCreateArgs<ExtArgs>>): Prisma__AsesmenMandiriClient<$Result.GetResult<Prisma.$AsesmenMandiriPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AsesmenMandiris.
+     * @param {AsesmenMandiriCreateManyArgs} args - Arguments to create many AsesmenMandiris.
+     * @example
+     * // Create many AsesmenMandiris
+     * const asesmenMandiri = await prisma.asesmenMandiri.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AsesmenMandiriCreateManyArgs>(args?: SelectSubset<T, AsesmenMandiriCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AsesmenMandiri.
+     * @param {AsesmenMandiriDeleteArgs} args - Arguments to delete one AsesmenMandiri.
+     * @example
+     * // Delete one AsesmenMandiri
+     * const AsesmenMandiri = await prisma.asesmenMandiri.delete({
+     *   where: {
+     *     // ... filter to delete one AsesmenMandiri
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AsesmenMandiriDeleteArgs>(args: SelectSubset<T, AsesmenMandiriDeleteArgs<ExtArgs>>): Prisma__AsesmenMandiriClient<$Result.GetResult<Prisma.$AsesmenMandiriPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AsesmenMandiri.
+     * @param {AsesmenMandiriUpdateArgs} args - Arguments to update one AsesmenMandiri.
+     * @example
+     * // Update one AsesmenMandiri
+     * const asesmenMandiri = await prisma.asesmenMandiri.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AsesmenMandiriUpdateArgs>(args: SelectSubset<T, AsesmenMandiriUpdateArgs<ExtArgs>>): Prisma__AsesmenMandiriClient<$Result.GetResult<Prisma.$AsesmenMandiriPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AsesmenMandiris.
+     * @param {AsesmenMandiriDeleteManyArgs} args - Arguments to filter AsesmenMandiris to delete.
+     * @example
+     * // Delete a few AsesmenMandiris
+     * const { count } = await prisma.asesmenMandiri.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AsesmenMandiriDeleteManyArgs>(args?: SelectSubset<T, AsesmenMandiriDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AsesmenMandiris.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AsesmenMandiriUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AsesmenMandiris
+     * const asesmenMandiri = await prisma.asesmenMandiri.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AsesmenMandiriUpdateManyArgs>(args: SelectSubset<T, AsesmenMandiriUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AsesmenMandiri.
+     * @param {AsesmenMandiriUpsertArgs} args - Arguments to update or create a AsesmenMandiri.
+     * @example
+     * // Update or create a AsesmenMandiri
+     * const asesmenMandiri = await prisma.asesmenMandiri.upsert({
+     *   create: {
+     *     // ... data to create a AsesmenMandiri
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AsesmenMandiri we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AsesmenMandiriUpsertArgs>(args: SelectSubset<T, AsesmenMandiriUpsertArgs<ExtArgs>>): Prisma__AsesmenMandiriClient<$Result.GetResult<Prisma.$AsesmenMandiriPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AsesmenMandiris.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AsesmenMandiriCountArgs} args - Arguments to filter AsesmenMandiris to count.
+     * @example
+     * // Count the number of AsesmenMandiris
+     * const count = await prisma.asesmenMandiri.count({
+     *   where: {
+     *     // ... the filter for the AsesmenMandiris we want to count
+     *   }
+     * })
+    **/
+    count<T extends AsesmenMandiriCountArgs>(
+      args?: Subset<T, AsesmenMandiriCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AsesmenMandiriCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AsesmenMandiri.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AsesmenMandiriAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AsesmenMandiriAggregateArgs>(args: Subset<T, AsesmenMandiriAggregateArgs>): Prisma.PrismaPromise<GetAsesmenMandiriAggregateType<T>>
+
+    /**
+     * Group by AsesmenMandiri.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AsesmenMandiriGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AsesmenMandiriGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AsesmenMandiriGroupByArgs['orderBy'] }
+        : { orderBy?: AsesmenMandiriGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AsesmenMandiriGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAsesmenMandiriGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AsesmenMandiri model
+   */
+  readonly fields: AsesmenMandiriFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AsesmenMandiri.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AsesmenMandiriClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    datapribadi<T extends DatapribadiDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DatapribadiDefaultArgs<ExtArgs>>): Prisma__DatapribadiClient<$Result.GetResult<Prisma.$DatapribadiPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    kompetensi<T extends KompetensiDefaultArgs<ExtArgs> = {}>(args?: Subset<T, KompetensiDefaultArgs<ExtArgs>>): Prisma__KompetensiClient<$Result.GetResult<Prisma.$KompetensiPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AsesmenMandiri model
+   */
+  interface AsesmenMandiriFieldRefs {
+    readonly nip: FieldRef<"AsesmenMandiri", 'String'>
+    readonly kuk: FieldRef<"AsesmenMandiri", 'String'>
+    readonly asesmen: FieldRef<"AsesmenMandiri", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AsesmenMandiri findUnique
+   */
+  export type AsesmenMandiriFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AsesmenMandiri
+     */
+    select?: AsesmenMandiriSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AsesmenMandiri
+     */
+    omit?: AsesmenMandiriOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AsesmenMandiriInclude<ExtArgs> | null
+    /**
+     * Filter, which AsesmenMandiri to fetch.
+     */
+    where: AsesmenMandiriWhereUniqueInput
+  }
+
+  /**
+   * AsesmenMandiri findUniqueOrThrow
+   */
+  export type AsesmenMandiriFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AsesmenMandiri
+     */
+    select?: AsesmenMandiriSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AsesmenMandiri
+     */
+    omit?: AsesmenMandiriOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AsesmenMandiriInclude<ExtArgs> | null
+    /**
+     * Filter, which AsesmenMandiri to fetch.
+     */
+    where: AsesmenMandiriWhereUniqueInput
+  }
+
+  /**
+   * AsesmenMandiri findFirst
+   */
+  export type AsesmenMandiriFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AsesmenMandiri
+     */
+    select?: AsesmenMandiriSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AsesmenMandiri
+     */
+    omit?: AsesmenMandiriOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AsesmenMandiriInclude<ExtArgs> | null
+    /**
+     * Filter, which AsesmenMandiri to fetch.
+     */
+    where?: AsesmenMandiriWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AsesmenMandiris to fetch.
+     */
+    orderBy?: AsesmenMandiriOrderByWithRelationInput | AsesmenMandiriOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AsesmenMandiris.
+     */
+    cursor?: AsesmenMandiriWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AsesmenMandiris from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AsesmenMandiris.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AsesmenMandiris.
+     */
+    distinct?: AsesmenMandiriScalarFieldEnum | AsesmenMandiriScalarFieldEnum[]
+  }
+
+  /**
+   * AsesmenMandiri findFirstOrThrow
+   */
+  export type AsesmenMandiriFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AsesmenMandiri
+     */
+    select?: AsesmenMandiriSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AsesmenMandiri
+     */
+    omit?: AsesmenMandiriOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AsesmenMandiriInclude<ExtArgs> | null
+    /**
+     * Filter, which AsesmenMandiri to fetch.
+     */
+    where?: AsesmenMandiriWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AsesmenMandiris to fetch.
+     */
+    orderBy?: AsesmenMandiriOrderByWithRelationInput | AsesmenMandiriOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AsesmenMandiris.
+     */
+    cursor?: AsesmenMandiriWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AsesmenMandiris from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AsesmenMandiris.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AsesmenMandiris.
+     */
+    distinct?: AsesmenMandiriScalarFieldEnum | AsesmenMandiriScalarFieldEnum[]
+  }
+
+  /**
+   * AsesmenMandiri findMany
+   */
+  export type AsesmenMandiriFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AsesmenMandiri
+     */
+    select?: AsesmenMandiriSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AsesmenMandiri
+     */
+    omit?: AsesmenMandiriOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AsesmenMandiriInclude<ExtArgs> | null
+    /**
+     * Filter, which AsesmenMandiris to fetch.
+     */
+    where?: AsesmenMandiriWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AsesmenMandiris to fetch.
+     */
+    orderBy?: AsesmenMandiriOrderByWithRelationInput | AsesmenMandiriOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AsesmenMandiris.
+     */
+    cursor?: AsesmenMandiriWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AsesmenMandiris from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AsesmenMandiris.
+     */
+    skip?: number
+    distinct?: AsesmenMandiriScalarFieldEnum | AsesmenMandiriScalarFieldEnum[]
+  }
+
+  /**
+   * AsesmenMandiri create
+   */
+  export type AsesmenMandiriCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AsesmenMandiri
+     */
+    select?: AsesmenMandiriSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AsesmenMandiri
+     */
+    omit?: AsesmenMandiriOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AsesmenMandiriInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AsesmenMandiri.
+     */
+    data: XOR<AsesmenMandiriCreateInput, AsesmenMandiriUncheckedCreateInput>
+  }
+
+  /**
+   * AsesmenMandiri createMany
+   */
+  export type AsesmenMandiriCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AsesmenMandiris.
+     */
+    data: AsesmenMandiriCreateManyInput | AsesmenMandiriCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AsesmenMandiri update
+   */
+  export type AsesmenMandiriUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AsesmenMandiri
+     */
+    select?: AsesmenMandiriSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AsesmenMandiri
+     */
+    omit?: AsesmenMandiriOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AsesmenMandiriInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AsesmenMandiri.
+     */
+    data: XOR<AsesmenMandiriUpdateInput, AsesmenMandiriUncheckedUpdateInput>
+    /**
+     * Choose, which AsesmenMandiri to update.
+     */
+    where: AsesmenMandiriWhereUniqueInput
+  }
+
+  /**
+   * AsesmenMandiri updateMany
+   */
+  export type AsesmenMandiriUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AsesmenMandiris.
+     */
+    data: XOR<AsesmenMandiriUpdateManyMutationInput, AsesmenMandiriUncheckedUpdateManyInput>
+    /**
+     * Filter which AsesmenMandiris to update
+     */
+    where?: AsesmenMandiriWhereInput
+    /**
+     * Limit how many AsesmenMandiris to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AsesmenMandiri upsert
+   */
+  export type AsesmenMandiriUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AsesmenMandiri
+     */
+    select?: AsesmenMandiriSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AsesmenMandiri
+     */
+    omit?: AsesmenMandiriOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AsesmenMandiriInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AsesmenMandiri to update in case it exists.
+     */
+    where: AsesmenMandiriWhereUniqueInput
+    /**
+     * In case the AsesmenMandiri found by the `where` argument doesn't exist, create a new AsesmenMandiri with this data.
+     */
+    create: XOR<AsesmenMandiriCreateInput, AsesmenMandiriUncheckedCreateInput>
+    /**
+     * In case the AsesmenMandiri was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AsesmenMandiriUpdateInput, AsesmenMandiriUncheckedUpdateInput>
+  }
+
+  /**
+   * AsesmenMandiri delete
+   */
+  export type AsesmenMandiriDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AsesmenMandiri
+     */
+    select?: AsesmenMandiriSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AsesmenMandiri
+     */
+    omit?: AsesmenMandiriOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AsesmenMandiriInclude<ExtArgs> | null
+    /**
+     * Filter which AsesmenMandiri to delete.
+     */
+    where: AsesmenMandiriWhereUniqueInput
+  }
+
+  /**
+   * AsesmenMandiri deleteMany
+   */
+  export type AsesmenMandiriDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AsesmenMandiris to delete
+     */
+    where?: AsesmenMandiriWhereInput
+    /**
+     * Limit how many AsesmenMandiris to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AsesmenMandiri without action
+   */
+  export type AsesmenMandiriDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AsesmenMandiri
+     */
+    select?: AsesmenMandiriSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AsesmenMandiri
+     */
+    omit?: AsesmenMandiriOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AsesmenMandiriInclude<ExtArgs> | null
   }
 
 
@@ -4939,6 +6097,15 @@ export namespace Prisma {
   export type KompetensiScalarFieldEnum = (typeof KompetensiScalarFieldEnum)[keyof typeof KompetensiScalarFieldEnum]
 
 
+  export const AsesmenMandiriScalarFieldEnum: {
+    nip: 'nip',
+    kuk: 'kuk',
+    asesmen: 'asesmen'
+  };
+
+  export type AsesmenMandiriScalarFieldEnum = (typeof AsesmenMandiriScalarFieldEnum)[keyof typeof AsesmenMandiriScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -5000,6 +6167,15 @@ export namespace Prisma {
   export type KompetensiOrderByRelevanceFieldEnum = (typeof KompetensiOrderByRelevanceFieldEnum)[keyof typeof KompetensiOrderByRelevanceFieldEnum]
 
 
+  export const AsesmenMandiriOrderByRelevanceFieldEnum: {
+    nip: 'nip',
+    kuk: 'kuk',
+    asesmen: 'asesmen'
+  };
+
+  export type AsesmenMandiriOrderByRelevanceFieldEnum = (typeof AsesmenMandiriOrderByRelevanceFieldEnum)[keyof typeof AsesmenMandiriOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -5043,6 +6219,7 @@ export namespace Prisma {
     alamat?: StringFilter<"Datapribadi"> | string
     pekerjaan?: XOR<DataPekerjaanNullableScalarRelationFilter, DataPekerjaanWhereInput> | null
     pendidikan?: XOR<DataPendidikanNullableScalarRelationFilter, DataPendidikanWhereInput> | null
+    asesmenMandiri?: AsesmenMandiriListRelationFilter
   }
 
   export type DatapribadiOrderByWithRelationInput = {
@@ -5056,6 +6233,7 @@ export namespace Prisma {
     alamat?: SortOrder
     pekerjaan?: DataPekerjaanOrderByWithRelationInput
     pendidikan?: DataPendidikanOrderByWithRelationInput
+    asesmenMandiri?: AsesmenMandiriOrderByRelationAggregateInput
     _relevance?: DatapribadiOrderByRelevanceInput
   }
 
@@ -5073,6 +6251,7 @@ export namespace Prisma {
     alamat?: StringFilter<"Datapribadi"> | string
     pekerjaan?: XOR<DataPekerjaanNullableScalarRelationFilter, DataPekerjaanWhereInput> | null
     pendidikan?: XOR<DataPendidikanNullableScalarRelationFilter, DataPendidikanWhereInput> | null
+    asesmenMandiri?: AsesmenMandiriListRelationFilter
   }, "nip">
 
   export type DatapribadiOrderByWithAggregationInput = {
@@ -5238,6 +6417,7 @@ export namespace Prisma {
     detail?: StringFilter<"Kompetensi"> | string
     kompetensi?: StringFilter<"Kompetensi"> | string
     kategori?: StringFilter<"Kompetensi"> | string
+    asesmenMandiri?: AsesmenMandiriListRelationFilter
   }
 
   export type KompetensiOrderByWithRelationInput = {
@@ -5245,6 +6425,7 @@ export namespace Prisma {
     detail?: SortOrder
     kompetensi?: SortOrder
     kategori?: SortOrder
+    asesmenMandiri?: AsesmenMandiriOrderByRelationAggregateInput
     _relevance?: KompetensiOrderByRelevanceInput
   }
 
@@ -5256,6 +6437,7 @@ export namespace Prisma {
     detail?: StringFilter<"Kompetensi"> | string
     kompetensi?: StringFilter<"Kompetensi"> | string
     kategori?: StringFilter<"Kompetensi"> | string
+    asesmenMandiri?: AsesmenMandiriListRelationFilter
   }, "kuk">
 
   export type KompetensiOrderByWithAggregationInput = {
@@ -5278,6 +6460,56 @@ export namespace Prisma {
     kategori?: StringWithAggregatesFilter<"Kompetensi"> | string
   }
 
+  export type AsesmenMandiriWhereInput = {
+    AND?: AsesmenMandiriWhereInput | AsesmenMandiriWhereInput[]
+    OR?: AsesmenMandiriWhereInput[]
+    NOT?: AsesmenMandiriWhereInput | AsesmenMandiriWhereInput[]
+    nip?: StringFilter<"AsesmenMandiri"> | string
+    kuk?: StringFilter<"AsesmenMandiri"> | string
+    asesmen?: StringFilter<"AsesmenMandiri"> | string
+    datapribadi?: XOR<DatapribadiScalarRelationFilter, DatapribadiWhereInput>
+    kompetensi?: XOR<KompetensiScalarRelationFilter, KompetensiWhereInput>
+  }
+
+  export type AsesmenMandiriOrderByWithRelationInput = {
+    nip?: SortOrder
+    kuk?: SortOrder
+    asesmen?: SortOrder
+    datapribadi?: DatapribadiOrderByWithRelationInput
+    kompetensi?: KompetensiOrderByWithRelationInput
+    _relevance?: AsesmenMandiriOrderByRelevanceInput
+  }
+
+  export type AsesmenMandiriWhereUniqueInput = Prisma.AtLeast<{
+    nip_kuk?: AsesmenMandiriNipKukCompoundUniqueInput
+    AND?: AsesmenMandiriWhereInput | AsesmenMandiriWhereInput[]
+    OR?: AsesmenMandiriWhereInput[]
+    NOT?: AsesmenMandiriWhereInput | AsesmenMandiriWhereInput[]
+    nip?: StringFilter<"AsesmenMandiri"> | string
+    kuk?: StringFilter<"AsesmenMandiri"> | string
+    asesmen?: StringFilter<"AsesmenMandiri"> | string
+    datapribadi?: XOR<DatapribadiScalarRelationFilter, DatapribadiWhereInput>
+    kompetensi?: XOR<KompetensiScalarRelationFilter, KompetensiWhereInput>
+  }, "nip_kuk">
+
+  export type AsesmenMandiriOrderByWithAggregationInput = {
+    nip?: SortOrder
+    kuk?: SortOrder
+    asesmen?: SortOrder
+    _count?: AsesmenMandiriCountOrderByAggregateInput
+    _max?: AsesmenMandiriMaxOrderByAggregateInput
+    _min?: AsesmenMandiriMinOrderByAggregateInput
+  }
+
+  export type AsesmenMandiriScalarWhereWithAggregatesInput = {
+    AND?: AsesmenMandiriScalarWhereWithAggregatesInput | AsesmenMandiriScalarWhereWithAggregatesInput[]
+    OR?: AsesmenMandiriScalarWhereWithAggregatesInput[]
+    NOT?: AsesmenMandiriScalarWhereWithAggregatesInput | AsesmenMandiriScalarWhereWithAggregatesInput[]
+    nip?: StringWithAggregatesFilter<"AsesmenMandiri"> | string
+    kuk?: StringWithAggregatesFilter<"AsesmenMandiri"> | string
+    asesmen?: StringWithAggregatesFilter<"AsesmenMandiri"> | string
+  }
+
   export type DatapribadiCreateInput = {
     nip: string
     nama: string
@@ -5289,6 +6521,7 @@ export namespace Prisma {
     alamat: string
     pekerjaan?: DataPekerjaanCreateNestedOneWithoutDatapribadiInput
     pendidikan?: DataPendidikanCreateNestedOneWithoutDatapribadiInput
+    asesmenMandiri?: AsesmenMandiriCreateNestedManyWithoutDatapribadiInput
   }
 
   export type DatapribadiUncheckedCreateInput = {
@@ -5302,6 +6535,7 @@ export namespace Prisma {
     alamat: string
     pekerjaan?: DataPekerjaanUncheckedCreateNestedOneWithoutDatapribadiInput
     pendidikan?: DataPendidikanUncheckedCreateNestedOneWithoutDatapribadiInput
+    asesmenMandiri?: AsesmenMandiriUncheckedCreateNestedManyWithoutDatapribadiInput
   }
 
   export type DatapribadiUpdateInput = {
@@ -5315,6 +6549,7 @@ export namespace Prisma {
     alamat?: StringFieldUpdateOperationsInput | string
     pekerjaan?: DataPekerjaanUpdateOneWithoutDatapribadiNestedInput
     pendidikan?: DataPendidikanUpdateOneWithoutDatapribadiNestedInput
+    asesmenMandiri?: AsesmenMandiriUpdateManyWithoutDatapribadiNestedInput
   }
 
   export type DatapribadiUncheckedUpdateInput = {
@@ -5328,6 +6563,7 @@ export namespace Prisma {
     alamat?: StringFieldUpdateOperationsInput | string
     pekerjaan?: DataPekerjaanUncheckedUpdateOneWithoutDatapribadiNestedInput
     pendidikan?: DataPendidikanUncheckedUpdateOneWithoutDatapribadiNestedInput
+    asesmenMandiri?: AsesmenMandiriUncheckedUpdateManyWithoutDatapribadiNestedInput
   }
 
   export type DatapribadiCreateManyInput = {
@@ -5499,6 +6735,7 @@ export namespace Prisma {
     detail: string
     kompetensi: string
     kategori: string
+    asesmenMandiri?: AsesmenMandiriCreateNestedManyWithoutKompetensiInput
   }
 
   export type KompetensiUncheckedCreateInput = {
@@ -5506,6 +6743,7 @@ export namespace Prisma {
     detail: string
     kompetensi: string
     kategori: string
+    asesmenMandiri?: AsesmenMandiriUncheckedCreateNestedManyWithoutKompetensiInput
   }
 
   export type KompetensiUpdateInput = {
@@ -5513,6 +6751,7 @@ export namespace Prisma {
     detail?: StringFieldUpdateOperationsInput | string
     kompetensi?: StringFieldUpdateOperationsInput | string
     kategori?: StringFieldUpdateOperationsInput | string
+    asesmenMandiri?: AsesmenMandiriUpdateManyWithoutKompetensiNestedInput
   }
 
   export type KompetensiUncheckedUpdateInput = {
@@ -5520,6 +6759,7 @@ export namespace Prisma {
     detail?: StringFieldUpdateOperationsInput | string
     kompetensi?: StringFieldUpdateOperationsInput | string
     kategori?: StringFieldUpdateOperationsInput | string
+    asesmenMandiri?: AsesmenMandiriUncheckedUpdateManyWithoutKompetensiNestedInput
   }
 
   export type KompetensiCreateManyInput = {
@@ -5541,6 +6781,46 @@ export namespace Prisma {
     detail?: StringFieldUpdateOperationsInput | string
     kompetensi?: StringFieldUpdateOperationsInput | string
     kategori?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AsesmenMandiriCreateInput = {
+    asesmen: string
+    datapribadi: DatapribadiCreateNestedOneWithoutAsesmenMandiriInput
+    kompetensi: KompetensiCreateNestedOneWithoutAsesmenMandiriInput
+  }
+
+  export type AsesmenMandiriUncheckedCreateInput = {
+    nip: string
+    kuk: string
+    asesmen: string
+  }
+
+  export type AsesmenMandiriUpdateInput = {
+    asesmen?: StringFieldUpdateOperationsInput | string
+    datapribadi?: DatapribadiUpdateOneRequiredWithoutAsesmenMandiriNestedInput
+    kompetensi?: KompetensiUpdateOneRequiredWithoutAsesmenMandiriNestedInput
+  }
+
+  export type AsesmenMandiriUncheckedUpdateInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    kuk?: StringFieldUpdateOperationsInput | string
+    asesmen?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AsesmenMandiriCreateManyInput = {
+    nip: string
+    kuk: string
+    asesmen: string
+  }
+
+  export type AsesmenMandiriUpdateManyMutationInput = {
+    asesmen?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AsesmenMandiriUncheckedUpdateManyInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    kuk?: StringFieldUpdateOperationsInput | string
+    asesmen?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -5577,6 +6857,16 @@ export namespace Prisma {
   export type DataPendidikanNullableScalarRelationFilter = {
     is?: DataPendidikanWhereInput | null
     isNot?: DataPendidikanWhereInput | null
+  }
+
+  export type AsesmenMandiriListRelationFilter = {
+    every?: AsesmenMandiriWhereInput
+    some?: AsesmenMandiriWhereInput
+    none?: AsesmenMandiriWhereInput
+  }
+
+  export type AsesmenMandiriOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type DatapribadiOrderByRelevanceInput = {
@@ -5789,6 +7079,40 @@ export namespace Prisma {
     kategori?: SortOrder
   }
 
+  export type KompetensiScalarRelationFilter = {
+    is?: KompetensiWhereInput
+    isNot?: KompetensiWhereInput
+  }
+
+  export type AsesmenMandiriOrderByRelevanceInput = {
+    fields: AsesmenMandiriOrderByRelevanceFieldEnum | AsesmenMandiriOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type AsesmenMandiriNipKukCompoundUniqueInput = {
+    nip: string
+    kuk: string
+  }
+
+  export type AsesmenMandiriCountOrderByAggregateInput = {
+    nip?: SortOrder
+    kuk?: SortOrder
+    asesmen?: SortOrder
+  }
+
+  export type AsesmenMandiriMaxOrderByAggregateInput = {
+    nip?: SortOrder
+    kuk?: SortOrder
+    asesmen?: SortOrder
+  }
+
+  export type AsesmenMandiriMinOrderByAggregateInput = {
+    nip?: SortOrder
+    kuk?: SortOrder
+    asesmen?: SortOrder
+  }
+
   export type DataPekerjaanCreateNestedOneWithoutDatapribadiInput = {
     create?: XOR<DataPekerjaanCreateWithoutDatapribadiInput, DataPekerjaanUncheckedCreateWithoutDatapribadiInput>
     connectOrCreate?: DataPekerjaanCreateOrConnectWithoutDatapribadiInput
@@ -5801,6 +7125,13 @@ export namespace Prisma {
     connect?: DataPendidikanWhereUniqueInput
   }
 
+  export type AsesmenMandiriCreateNestedManyWithoutDatapribadiInput = {
+    create?: XOR<AsesmenMandiriCreateWithoutDatapribadiInput, AsesmenMandiriUncheckedCreateWithoutDatapribadiInput> | AsesmenMandiriCreateWithoutDatapribadiInput[] | AsesmenMandiriUncheckedCreateWithoutDatapribadiInput[]
+    connectOrCreate?: AsesmenMandiriCreateOrConnectWithoutDatapribadiInput | AsesmenMandiriCreateOrConnectWithoutDatapribadiInput[]
+    createMany?: AsesmenMandiriCreateManyDatapribadiInputEnvelope
+    connect?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+  }
+
   export type DataPekerjaanUncheckedCreateNestedOneWithoutDatapribadiInput = {
     create?: XOR<DataPekerjaanCreateWithoutDatapribadiInput, DataPekerjaanUncheckedCreateWithoutDatapribadiInput>
     connectOrCreate?: DataPekerjaanCreateOrConnectWithoutDatapribadiInput
@@ -5811,6 +7142,13 @@ export namespace Prisma {
     create?: XOR<DataPendidikanCreateWithoutDatapribadiInput, DataPendidikanUncheckedCreateWithoutDatapribadiInput>
     connectOrCreate?: DataPendidikanCreateOrConnectWithoutDatapribadiInput
     connect?: DataPendidikanWhereUniqueInput
+  }
+
+  export type AsesmenMandiriUncheckedCreateNestedManyWithoutDatapribadiInput = {
+    create?: XOR<AsesmenMandiriCreateWithoutDatapribadiInput, AsesmenMandiriUncheckedCreateWithoutDatapribadiInput> | AsesmenMandiriCreateWithoutDatapribadiInput[] | AsesmenMandiriUncheckedCreateWithoutDatapribadiInput[]
+    connectOrCreate?: AsesmenMandiriCreateOrConnectWithoutDatapribadiInput | AsesmenMandiriCreateOrConnectWithoutDatapribadiInput[]
+    createMany?: AsesmenMandiriCreateManyDatapribadiInputEnvelope
+    connect?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -5841,6 +7179,20 @@ export namespace Prisma {
     update?: XOR<XOR<DataPendidikanUpdateToOneWithWhereWithoutDatapribadiInput, DataPendidikanUpdateWithoutDatapribadiInput>, DataPendidikanUncheckedUpdateWithoutDatapribadiInput>
   }
 
+  export type AsesmenMandiriUpdateManyWithoutDatapribadiNestedInput = {
+    create?: XOR<AsesmenMandiriCreateWithoutDatapribadiInput, AsesmenMandiriUncheckedCreateWithoutDatapribadiInput> | AsesmenMandiriCreateWithoutDatapribadiInput[] | AsesmenMandiriUncheckedCreateWithoutDatapribadiInput[]
+    connectOrCreate?: AsesmenMandiriCreateOrConnectWithoutDatapribadiInput | AsesmenMandiriCreateOrConnectWithoutDatapribadiInput[]
+    upsert?: AsesmenMandiriUpsertWithWhereUniqueWithoutDatapribadiInput | AsesmenMandiriUpsertWithWhereUniqueWithoutDatapribadiInput[]
+    createMany?: AsesmenMandiriCreateManyDatapribadiInputEnvelope
+    set?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    disconnect?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    delete?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    connect?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    update?: AsesmenMandiriUpdateWithWhereUniqueWithoutDatapribadiInput | AsesmenMandiriUpdateWithWhereUniqueWithoutDatapribadiInput[]
+    updateMany?: AsesmenMandiriUpdateManyWithWhereWithoutDatapribadiInput | AsesmenMandiriUpdateManyWithWhereWithoutDatapribadiInput[]
+    deleteMany?: AsesmenMandiriScalarWhereInput | AsesmenMandiriScalarWhereInput[]
+  }
+
   export type DataPekerjaanUncheckedUpdateOneWithoutDatapribadiNestedInput = {
     create?: XOR<DataPekerjaanCreateWithoutDatapribadiInput, DataPekerjaanUncheckedCreateWithoutDatapribadiInput>
     connectOrCreate?: DataPekerjaanCreateOrConnectWithoutDatapribadiInput
@@ -5859,6 +7211,20 @@ export namespace Prisma {
     delete?: DataPendidikanWhereInput | boolean
     connect?: DataPendidikanWhereUniqueInput
     update?: XOR<XOR<DataPendidikanUpdateToOneWithWhereWithoutDatapribadiInput, DataPendidikanUpdateWithoutDatapribadiInput>, DataPendidikanUncheckedUpdateWithoutDatapribadiInput>
+  }
+
+  export type AsesmenMandiriUncheckedUpdateManyWithoutDatapribadiNestedInput = {
+    create?: XOR<AsesmenMandiriCreateWithoutDatapribadiInput, AsesmenMandiriUncheckedCreateWithoutDatapribadiInput> | AsesmenMandiriCreateWithoutDatapribadiInput[] | AsesmenMandiriUncheckedCreateWithoutDatapribadiInput[]
+    connectOrCreate?: AsesmenMandiriCreateOrConnectWithoutDatapribadiInput | AsesmenMandiriCreateOrConnectWithoutDatapribadiInput[]
+    upsert?: AsesmenMandiriUpsertWithWhereUniqueWithoutDatapribadiInput | AsesmenMandiriUpsertWithWhereUniqueWithoutDatapribadiInput[]
+    createMany?: AsesmenMandiriCreateManyDatapribadiInputEnvelope
+    set?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    disconnect?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    delete?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    connect?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    update?: AsesmenMandiriUpdateWithWhereUniqueWithoutDatapribadiInput | AsesmenMandiriUpdateWithWhereUniqueWithoutDatapribadiInput[]
+    updateMany?: AsesmenMandiriUpdateManyWithWhereWithoutDatapribadiInput | AsesmenMandiriUpdateManyWithWhereWithoutDatapribadiInput[]
+    deleteMany?: AsesmenMandiriScalarWhereInput | AsesmenMandiriScalarWhereInput[]
   }
 
   export type DatapribadiCreateNestedOneWithoutPekerjaanInput = {
@@ -5891,6 +7257,76 @@ export namespace Prisma {
     upsert?: DatapribadiUpsertWithoutPendidikanInput
     connect?: DatapribadiWhereUniqueInput
     update?: XOR<XOR<DatapribadiUpdateToOneWithWhereWithoutPendidikanInput, DatapribadiUpdateWithoutPendidikanInput>, DatapribadiUncheckedUpdateWithoutPendidikanInput>
+  }
+
+  export type AsesmenMandiriCreateNestedManyWithoutKompetensiInput = {
+    create?: XOR<AsesmenMandiriCreateWithoutKompetensiInput, AsesmenMandiriUncheckedCreateWithoutKompetensiInput> | AsesmenMandiriCreateWithoutKompetensiInput[] | AsesmenMandiriUncheckedCreateWithoutKompetensiInput[]
+    connectOrCreate?: AsesmenMandiriCreateOrConnectWithoutKompetensiInput | AsesmenMandiriCreateOrConnectWithoutKompetensiInput[]
+    createMany?: AsesmenMandiriCreateManyKompetensiInputEnvelope
+    connect?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+  }
+
+  export type AsesmenMandiriUncheckedCreateNestedManyWithoutKompetensiInput = {
+    create?: XOR<AsesmenMandiriCreateWithoutKompetensiInput, AsesmenMandiriUncheckedCreateWithoutKompetensiInput> | AsesmenMandiriCreateWithoutKompetensiInput[] | AsesmenMandiriUncheckedCreateWithoutKompetensiInput[]
+    connectOrCreate?: AsesmenMandiriCreateOrConnectWithoutKompetensiInput | AsesmenMandiriCreateOrConnectWithoutKompetensiInput[]
+    createMany?: AsesmenMandiriCreateManyKompetensiInputEnvelope
+    connect?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+  }
+
+  export type AsesmenMandiriUpdateManyWithoutKompetensiNestedInput = {
+    create?: XOR<AsesmenMandiriCreateWithoutKompetensiInput, AsesmenMandiriUncheckedCreateWithoutKompetensiInput> | AsesmenMandiriCreateWithoutKompetensiInput[] | AsesmenMandiriUncheckedCreateWithoutKompetensiInput[]
+    connectOrCreate?: AsesmenMandiriCreateOrConnectWithoutKompetensiInput | AsesmenMandiriCreateOrConnectWithoutKompetensiInput[]
+    upsert?: AsesmenMandiriUpsertWithWhereUniqueWithoutKompetensiInput | AsesmenMandiriUpsertWithWhereUniqueWithoutKompetensiInput[]
+    createMany?: AsesmenMandiriCreateManyKompetensiInputEnvelope
+    set?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    disconnect?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    delete?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    connect?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    update?: AsesmenMandiriUpdateWithWhereUniqueWithoutKompetensiInput | AsesmenMandiriUpdateWithWhereUniqueWithoutKompetensiInput[]
+    updateMany?: AsesmenMandiriUpdateManyWithWhereWithoutKompetensiInput | AsesmenMandiriUpdateManyWithWhereWithoutKompetensiInput[]
+    deleteMany?: AsesmenMandiriScalarWhereInput | AsesmenMandiriScalarWhereInput[]
+  }
+
+  export type AsesmenMandiriUncheckedUpdateManyWithoutKompetensiNestedInput = {
+    create?: XOR<AsesmenMandiriCreateWithoutKompetensiInput, AsesmenMandiriUncheckedCreateWithoutKompetensiInput> | AsesmenMandiriCreateWithoutKompetensiInput[] | AsesmenMandiriUncheckedCreateWithoutKompetensiInput[]
+    connectOrCreate?: AsesmenMandiriCreateOrConnectWithoutKompetensiInput | AsesmenMandiriCreateOrConnectWithoutKompetensiInput[]
+    upsert?: AsesmenMandiriUpsertWithWhereUniqueWithoutKompetensiInput | AsesmenMandiriUpsertWithWhereUniqueWithoutKompetensiInput[]
+    createMany?: AsesmenMandiriCreateManyKompetensiInputEnvelope
+    set?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    disconnect?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    delete?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    connect?: AsesmenMandiriWhereUniqueInput | AsesmenMandiriWhereUniqueInput[]
+    update?: AsesmenMandiriUpdateWithWhereUniqueWithoutKompetensiInput | AsesmenMandiriUpdateWithWhereUniqueWithoutKompetensiInput[]
+    updateMany?: AsesmenMandiriUpdateManyWithWhereWithoutKompetensiInput | AsesmenMandiriUpdateManyWithWhereWithoutKompetensiInput[]
+    deleteMany?: AsesmenMandiriScalarWhereInput | AsesmenMandiriScalarWhereInput[]
+  }
+
+  export type DatapribadiCreateNestedOneWithoutAsesmenMandiriInput = {
+    create?: XOR<DatapribadiCreateWithoutAsesmenMandiriInput, DatapribadiUncheckedCreateWithoutAsesmenMandiriInput>
+    connectOrCreate?: DatapribadiCreateOrConnectWithoutAsesmenMandiriInput
+    connect?: DatapribadiWhereUniqueInput
+  }
+
+  export type KompetensiCreateNestedOneWithoutAsesmenMandiriInput = {
+    create?: XOR<KompetensiCreateWithoutAsesmenMandiriInput, KompetensiUncheckedCreateWithoutAsesmenMandiriInput>
+    connectOrCreate?: KompetensiCreateOrConnectWithoutAsesmenMandiriInput
+    connect?: KompetensiWhereUniqueInput
+  }
+
+  export type DatapribadiUpdateOneRequiredWithoutAsesmenMandiriNestedInput = {
+    create?: XOR<DatapribadiCreateWithoutAsesmenMandiriInput, DatapribadiUncheckedCreateWithoutAsesmenMandiriInput>
+    connectOrCreate?: DatapribadiCreateOrConnectWithoutAsesmenMandiriInput
+    upsert?: DatapribadiUpsertWithoutAsesmenMandiriInput
+    connect?: DatapribadiWhereUniqueInput
+    update?: XOR<XOR<DatapribadiUpdateToOneWithWhereWithoutAsesmenMandiriInput, DatapribadiUpdateWithoutAsesmenMandiriInput>, DatapribadiUncheckedUpdateWithoutAsesmenMandiriInput>
+  }
+
+  export type KompetensiUpdateOneRequiredWithoutAsesmenMandiriNestedInput = {
+    create?: XOR<KompetensiCreateWithoutAsesmenMandiriInput, KompetensiUncheckedCreateWithoutAsesmenMandiriInput>
+    connectOrCreate?: KompetensiCreateOrConnectWithoutAsesmenMandiriInput
+    upsert?: KompetensiUpsertWithoutAsesmenMandiriInput
+    connect?: KompetensiWhereUniqueInput
+    update?: XOR<XOR<KompetensiUpdateToOneWithWhereWithoutAsesmenMandiriInput, KompetensiUpdateWithoutAsesmenMandiriInput>, KompetensiUncheckedUpdateWithoutAsesmenMandiriInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -6050,6 +7486,26 @@ export namespace Prisma {
     create: XOR<DataPendidikanCreateWithoutDatapribadiInput, DataPendidikanUncheckedCreateWithoutDatapribadiInput>
   }
 
+  export type AsesmenMandiriCreateWithoutDatapribadiInput = {
+    asesmen: string
+    kompetensi: KompetensiCreateNestedOneWithoutAsesmenMandiriInput
+  }
+
+  export type AsesmenMandiriUncheckedCreateWithoutDatapribadiInput = {
+    kuk: string
+    asesmen: string
+  }
+
+  export type AsesmenMandiriCreateOrConnectWithoutDatapribadiInput = {
+    where: AsesmenMandiriWhereUniqueInput
+    create: XOR<AsesmenMandiriCreateWithoutDatapribadiInput, AsesmenMandiriUncheckedCreateWithoutDatapribadiInput>
+  }
+
+  export type AsesmenMandiriCreateManyDatapribadiInputEnvelope = {
+    data: AsesmenMandiriCreateManyDatapribadiInput | AsesmenMandiriCreateManyDatapribadiInput[]
+    skipDuplicates?: boolean
+  }
+
   export type DataPekerjaanUpsertWithoutDatapribadiInput = {
     update: XOR<DataPekerjaanUpdateWithoutDatapribadiInput, DataPekerjaanUncheckedUpdateWithoutDatapribadiInput>
     create: XOR<DataPekerjaanCreateWithoutDatapribadiInput, DataPekerjaanUncheckedCreateWithoutDatapribadiInput>
@@ -6106,6 +7562,31 @@ export namespace Prisma {
     fileIjazah?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type AsesmenMandiriUpsertWithWhereUniqueWithoutDatapribadiInput = {
+    where: AsesmenMandiriWhereUniqueInput
+    update: XOR<AsesmenMandiriUpdateWithoutDatapribadiInput, AsesmenMandiriUncheckedUpdateWithoutDatapribadiInput>
+    create: XOR<AsesmenMandiriCreateWithoutDatapribadiInput, AsesmenMandiriUncheckedCreateWithoutDatapribadiInput>
+  }
+
+  export type AsesmenMandiriUpdateWithWhereUniqueWithoutDatapribadiInput = {
+    where: AsesmenMandiriWhereUniqueInput
+    data: XOR<AsesmenMandiriUpdateWithoutDatapribadiInput, AsesmenMandiriUncheckedUpdateWithoutDatapribadiInput>
+  }
+
+  export type AsesmenMandiriUpdateManyWithWhereWithoutDatapribadiInput = {
+    where: AsesmenMandiriScalarWhereInput
+    data: XOR<AsesmenMandiriUpdateManyMutationInput, AsesmenMandiriUncheckedUpdateManyWithoutDatapribadiInput>
+  }
+
+  export type AsesmenMandiriScalarWhereInput = {
+    AND?: AsesmenMandiriScalarWhereInput | AsesmenMandiriScalarWhereInput[]
+    OR?: AsesmenMandiriScalarWhereInput[]
+    NOT?: AsesmenMandiriScalarWhereInput | AsesmenMandiriScalarWhereInput[]
+    nip?: StringFilter<"AsesmenMandiri"> | string
+    kuk?: StringFilter<"AsesmenMandiri"> | string
+    asesmen?: StringFilter<"AsesmenMandiri"> | string
+  }
+
   export type DatapribadiCreateWithoutPekerjaanInput = {
     nip: string
     nama: string
@@ -6116,6 +7597,7 @@ export namespace Prisma {
     email: string
     alamat: string
     pendidikan?: DataPendidikanCreateNestedOneWithoutDatapribadiInput
+    asesmenMandiri?: AsesmenMandiriCreateNestedManyWithoutDatapribadiInput
   }
 
   export type DatapribadiUncheckedCreateWithoutPekerjaanInput = {
@@ -6128,6 +7610,7 @@ export namespace Prisma {
     email: string
     alamat: string
     pendidikan?: DataPendidikanUncheckedCreateNestedOneWithoutDatapribadiInput
+    asesmenMandiri?: AsesmenMandiriUncheckedCreateNestedManyWithoutDatapribadiInput
   }
 
   export type DatapribadiCreateOrConnectWithoutPekerjaanInput = {
@@ -6156,6 +7639,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     alamat?: StringFieldUpdateOperationsInput | string
     pendidikan?: DataPendidikanUpdateOneWithoutDatapribadiNestedInput
+    asesmenMandiri?: AsesmenMandiriUpdateManyWithoutDatapribadiNestedInput
   }
 
   export type DatapribadiUncheckedUpdateWithoutPekerjaanInput = {
@@ -6168,6 +7652,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     alamat?: StringFieldUpdateOperationsInput | string
     pendidikan?: DataPendidikanUncheckedUpdateOneWithoutDatapribadiNestedInput
+    asesmenMandiri?: AsesmenMandiriUncheckedUpdateManyWithoutDatapribadiNestedInput
   }
 
   export type DatapribadiCreateWithoutPendidikanInput = {
@@ -6180,6 +7665,7 @@ export namespace Prisma {
     email: string
     alamat: string
     pekerjaan?: DataPekerjaanCreateNestedOneWithoutDatapribadiInput
+    asesmenMandiri?: AsesmenMandiriCreateNestedManyWithoutDatapribadiInput
   }
 
   export type DatapribadiUncheckedCreateWithoutPendidikanInput = {
@@ -6192,6 +7678,7 @@ export namespace Prisma {
     email: string
     alamat: string
     pekerjaan?: DataPekerjaanUncheckedCreateNestedOneWithoutDatapribadiInput
+    asesmenMandiri?: AsesmenMandiriUncheckedCreateNestedManyWithoutDatapribadiInput
   }
 
   export type DatapribadiCreateOrConnectWithoutPendidikanInput = {
@@ -6220,6 +7707,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     alamat?: StringFieldUpdateOperationsInput | string
     pekerjaan?: DataPekerjaanUpdateOneWithoutDatapribadiNestedInput
+    asesmenMandiri?: AsesmenMandiriUpdateManyWithoutDatapribadiNestedInput
   }
 
   export type DatapribadiUncheckedUpdateWithoutPendidikanInput = {
@@ -6232,6 +7720,195 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     alamat?: StringFieldUpdateOperationsInput | string
     pekerjaan?: DataPekerjaanUncheckedUpdateOneWithoutDatapribadiNestedInput
+    asesmenMandiri?: AsesmenMandiriUncheckedUpdateManyWithoutDatapribadiNestedInput
+  }
+
+  export type AsesmenMandiriCreateWithoutKompetensiInput = {
+    asesmen: string
+    datapribadi: DatapribadiCreateNestedOneWithoutAsesmenMandiriInput
+  }
+
+  export type AsesmenMandiriUncheckedCreateWithoutKompetensiInput = {
+    nip: string
+    asesmen: string
+  }
+
+  export type AsesmenMandiriCreateOrConnectWithoutKompetensiInput = {
+    where: AsesmenMandiriWhereUniqueInput
+    create: XOR<AsesmenMandiriCreateWithoutKompetensiInput, AsesmenMandiriUncheckedCreateWithoutKompetensiInput>
+  }
+
+  export type AsesmenMandiriCreateManyKompetensiInputEnvelope = {
+    data: AsesmenMandiriCreateManyKompetensiInput | AsesmenMandiriCreateManyKompetensiInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AsesmenMandiriUpsertWithWhereUniqueWithoutKompetensiInput = {
+    where: AsesmenMandiriWhereUniqueInput
+    update: XOR<AsesmenMandiriUpdateWithoutKompetensiInput, AsesmenMandiriUncheckedUpdateWithoutKompetensiInput>
+    create: XOR<AsesmenMandiriCreateWithoutKompetensiInput, AsesmenMandiriUncheckedCreateWithoutKompetensiInput>
+  }
+
+  export type AsesmenMandiriUpdateWithWhereUniqueWithoutKompetensiInput = {
+    where: AsesmenMandiriWhereUniqueInput
+    data: XOR<AsesmenMandiriUpdateWithoutKompetensiInput, AsesmenMandiriUncheckedUpdateWithoutKompetensiInput>
+  }
+
+  export type AsesmenMandiriUpdateManyWithWhereWithoutKompetensiInput = {
+    where: AsesmenMandiriScalarWhereInput
+    data: XOR<AsesmenMandiriUpdateManyMutationInput, AsesmenMandiriUncheckedUpdateManyWithoutKompetensiInput>
+  }
+
+  export type DatapribadiCreateWithoutAsesmenMandiriInput = {
+    nip: string
+    nama: string
+    tempatLahir: string
+    tanggalLahir: Date | string
+    jenisKelamin: string
+    phone: string
+    email: string
+    alamat: string
+    pekerjaan?: DataPekerjaanCreateNestedOneWithoutDatapribadiInput
+    pendidikan?: DataPendidikanCreateNestedOneWithoutDatapribadiInput
+  }
+
+  export type DatapribadiUncheckedCreateWithoutAsesmenMandiriInput = {
+    nip: string
+    nama: string
+    tempatLahir: string
+    tanggalLahir: Date | string
+    jenisKelamin: string
+    phone: string
+    email: string
+    alamat: string
+    pekerjaan?: DataPekerjaanUncheckedCreateNestedOneWithoutDatapribadiInput
+    pendidikan?: DataPendidikanUncheckedCreateNestedOneWithoutDatapribadiInput
+  }
+
+  export type DatapribadiCreateOrConnectWithoutAsesmenMandiriInput = {
+    where: DatapribadiWhereUniqueInput
+    create: XOR<DatapribadiCreateWithoutAsesmenMandiriInput, DatapribadiUncheckedCreateWithoutAsesmenMandiriInput>
+  }
+
+  export type KompetensiCreateWithoutAsesmenMandiriInput = {
+    kuk: string
+    detail: string
+    kompetensi: string
+    kategori: string
+  }
+
+  export type KompetensiUncheckedCreateWithoutAsesmenMandiriInput = {
+    kuk: string
+    detail: string
+    kompetensi: string
+    kategori: string
+  }
+
+  export type KompetensiCreateOrConnectWithoutAsesmenMandiriInput = {
+    where: KompetensiWhereUniqueInput
+    create: XOR<KompetensiCreateWithoutAsesmenMandiriInput, KompetensiUncheckedCreateWithoutAsesmenMandiriInput>
+  }
+
+  export type DatapribadiUpsertWithoutAsesmenMandiriInput = {
+    update: XOR<DatapribadiUpdateWithoutAsesmenMandiriInput, DatapribadiUncheckedUpdateWithoutAsesmenMandiriInput>
+    create: XOR<DatapribadiCreateWithoutAsesmenMandiriInput, DatapribadiUncheckedCreateWithoutAsesmenMandiriInput>
+    where?: DatapribadiWhereInput
+  }
+
+  export type DatapribadiUpdateToOneWithWhereWithoutAsesmenMandiriInput = {
+    where?: DatapribadiWhereInput
+    data: XOR<DatapribadiUpdateWithoutAsesmenMandiriInput, DatapribadiUncheckedUpdateWithoutAsesmenMandiriInput>
+  }
+
+  export type DatapribadiUpdateWithoutAsesmenMandiriInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    pekerjaan?: DataPekerjaanUpdateOneWithoutDatapribadiNestedInput
+    pendidikan?: DataPendidikanUpdateOneWithoutDatapribadiNestedInput
+  }
+
+  export type DatapribadiUncheckedUpdateWithoutAsesmenMandiriInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    pekerjaan?: DataPekerjaanUncheckedUpdateOneWithoutDatapribadiNestedInput
+    pendidikan?: DataPendidikanUncheckedUpdateOneWithoutDatapribadiNestedInput
+  }
+
+  export type KompetensiUpsertWithoutAsesmenMandiriInput = {
+    update: XOR<KompetensiUpdateWithoutAsesmenMandiriInput, KompetensiUncheckedUpdateWithoutAsesmenMandiriInput>
+    create: XOR<KompetensiCreateWithoutAsesmenMandiriInput, KompetensiUncheckedCreateWithoutAsesmenMandiriInput>
+    where?: KompetensiWhereInput
+  }
+
+  export type KompetensiUpdateToOneWithWhereWithoutAsesmenMandiriInput = {
+    where?: KompetensiWhereInput
+    data: XOR<KompetensiUpdateWithoutAsesmenMandiriInput, KompetensiUncheckedUpdateWithoutAsesmenMandiriInput>
+  }
+
+  export type KompetensiUpdateWithoutAsesmenMandiriInput = {
+    kuk?: StringFieldUpdateOperationsInput | string
+    detail?: StringFieldUpdateOperationsInput | string
+    kompetensi?: StringFieldUpdateOperationsInput | string
+    kategori?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type KompetensiUncheckedUpdateWithoutAsesmenMandiriInput = {
+    kuk?: StringFieldUpdateOperationsInput | string
+    detail?: StringFieldUpdateOperationsInput | string
+    kompetensi?: StringFieldUpdateOperationsInput | string
+    kategori?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AsesmenMandiriCreateManyDatapribadiInput = {
+    kuk: string
+    asesmen: string
+  }
+
+  export type AsesmenMandiriUpdateWithoutDatapribadiInput = {
+    asesmen?: StringFieldUpdateOperationsInput | string
+    kompetensi?: KompetensiUpdateOneRequiredWithoutAsesmenMandiriNestedInput
+  }
+
+  export type AsesmenMandiriUncheckedUpdateWithoutDatapribadiInput = {
+    kuk?: StringFieldUpdateOperationsInput | string
+    asesmen?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AsesmenMandiriUncheckedUpdateManyWithoutDatapribadiInput = {
+    kuk?: StringFieldUpdateOperationsInput | string
+    asesmen?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AsesmenMandiriCreateManyKompetensiInput = {
+    nip: string
+    asesmen: string
+  }
+
+  export type AsesmenMandiriUpdateWithoutKompetensiInput = {
+    asesmen?: StringFieldUpdateOperationsInput | string
+    datapribadi?: DatapribadiUpdateOneRequiredWithoutAsesmenMandiriNestedInput
+  }
+
+  export type AsesmenMandiriUncheckedUpdateWithoutKompetensiInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    asesmen?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AsesmenMandiriUncheckedUpdateManyWithoutKompetensiInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    asesmen?: StringFieldUpdateOperationsInput | string
   }
 
 

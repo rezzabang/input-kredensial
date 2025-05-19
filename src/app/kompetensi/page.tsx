@@ -64,7 +64,7 @@ const Kompetensi: React.FC = () => {
       const result = await response.json();
       setData(result.data);
     } catch (error) {
-      message.error('Gagal mengambil data.');
+      message.error(error + 'Gagal mengambil data.');
     } finally {
       setLoading(false);
     }
@@ -175,6 +175,22 @@ const Kompetensi: React.FC = () => {
       key: 'kuk',
       width: '16%',
       ...getColumnSearchProps('kuk'),
+      render: (text, record) => {
+        const wikiUrl = process.env.NEXT_PUBLIC_WIKI_URL || '';
+        const kategoriMap: Record<string, string> = {
+          'koding': 'koder',
+          'pelepasan informasi': 'ppid',
+        };
+        const kategoriSlug = kategoriMap[record.kategori.toLowerCase()] || record.kategori.toLowerCase();
+        const sanitizedKuk = text.replace(/\./g, '');
+        const url = `${wikiUrl}terampil/${kategoriSlug}/${sanitizedKuk}`;
+
+        return (
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            {text}
+          </a>
+        );
+      },
     },
     {
       title: 'Detail',
@@ -194,7 +210,6 @@ const Kompetensi: React.FC = () => {
       dataIndex: 'kategori',
       key: 'kategori',
       width: '15%',
-      ...getColumnSearchProps('kategori'),
       sorter: (a, b) => a.kategori.length - b.kategori.length,
       sortDirections: ['descend', 'ascend'],
     },
@@ -217,7 +232,6 @@ const Kompetensi: React.FC = () => {
         <Button type="primary" onClick={showModal}>Tambah Kompetensi</Button>
       </div>
 
-      {/* 🏗 Modal with TambahKompetensi Component */}
       <Modal 
         title="Tambah Kompetensi" 
         open={isModalVisible} 
@@ -232,7 +246,6 @@ const Kompetensi: React.FC = () => {
         }} />
       </Modal>
 
-      {/* 📊 Kompetensi Table */}
       <Table<DataType>
         columns={columns}
         rowKey={(record) => record.kuk}

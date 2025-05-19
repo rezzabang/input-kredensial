@@ -1,9 +1,14 @@
 'use client';
 import React, { useState } from 'react';
-import { Card, Input, Form } from 'antd';
+import { Card, Input, Form, Button } from 'antd';
+import {
+  BookOutlined
+} from '@ant-design/icons';
 import TabelKeterampilan from '../component/TabelKeterampilan';
 import TabelKeahlian from '../component/TabelKeahlian';
 import CariDataNama from '../component/CariDataNama';
+
+const wikiUrl = process.env.NEXT_PUBLIC_WIKI_URL || '';
 
 const tabList = [
   {
@@ -72,7 +77,12 @@ const SelfAssesment: React.FC = () => {
             </div>
           </div>
         }
-        extra={<a href="#">Wiki</a>}
+        extra={
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+            <h3>Panduan Kompetensi?</h3>
+            <Button color="default" variant="solid" onClick={() => window.open(wikiUrl, "_blank")}><BookOutlined />Wiki</Button>
+          </div>
+        }
         tabList={tabList}
         activeTabKey={activeTabKey1}
         onTabChange={onTab1Change}

@@ -24,8 +24,9 @@ model Datapribadi {
   email        String
   alamat       String
 
-  pekerjaan  DataPekerjaan?
-  pendidikan DataPendidikan?
+  pekerjaan      DataPekerjaan?
+  pendidikan     DataPendidikan?
+  asesmenMandiri AsesmenMandiri[]
 }
 
 model DataPekerjaan {
@@ -56,4 +57,17 @@ model Kompetensi {
   detail     String
   kompetensi String
   kategori   String
+
+  asesmenMandiri AsesmenMandiri[]
+}
+
+model AsesmenMandiri {
+  nip     String
+  kuk     String
+  asesmen String
+
+  datapribadi Datapribadi @relation(fields: [nip], references: [nip], onDelete: Cascade)
+  kompetensi  Kompetensi  @relation(fields: [kuk], references: [kuk], onDelete: Cascade)
+
+  @@id([nip, kuk])
 }

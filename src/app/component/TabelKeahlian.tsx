@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Select, Button } from 'antd';
 import type { TableProps } from 'antd';
 
@@ -11,23 +11,50 @@ interface DataTypes {
   asesmen?: string;
 }
 
-const App: React.FC = () => {
-  const [innerData, setInnerData] = useState<DataTypes[]>([
-    { key: '1', kuk: 'Q123456', desc: 'Mampu mengelola arsip' },
-    { key: '2', kuk: 'Q234567', desc: 'Menguasai prosedur pengkodean' },
-    { key: '3', kuk: 'Q123456', desc: 'Mampu mengelola arsip' },
-    { key: '4', kuk: 'Q234567', desc: 'Menguasai prosedur pengkodean' },
-    { key: '5', kuk: 'Q123456', desc: 'Mampu mengelola arsip' },
-    { key: '6', kuk: 'Q234567', desc: 'Menguasai prosedur pengkodean' },
-    { key: '7', kuk: 'Q123456', desc: 'Mampu mengelola arsip' },
-    { key: '8', kuk: 'Q234567', desc: 'Menguasai prosedur pengkodean' },
-  ]);
+const TabelKeahlian: React.FC = () => {
+  const [innerData, setInnerData] = useState<DataTypes[]>([]);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchKompetensi = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch('/api/kompetensi');
+        const json = await res.json();
+
+        if (res.ok) {
+          const filtered = json.data
+            .filter((item: any) => item.kompetensi === 'Keahlian')
+            .map((item: any, index: number) => ({
+              key: `${index + 1}`,
+              kuk: item.kuk,
+              desc: item.detail,
+            }));
+
+          setInnerData(filtered);
+        }
+      } catch (err) {
+        console.error('Gagal mengambil data:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchKompetensi();
+  }, []);
 
   const handleAsesmenChange = (value: string, key: string) => {
     const updatedData = innerData.map((item) =>
       item.key === key ? { ...item, asesmen: value } : item
     );
     setInnerData(updatedData);
+
+    // Auto-select checkbox
+    setSelectedRowKeys((prevKeys) =>
+      prevKeys.includes(key) ? prevKeys : [...prevKeys, key]
+    );
+
     console.log(`Changed to "${value}" for KUK: ${key}`);
   };
 
@@ -51,7 +78,7 @@ const App: React.FC = () => {
           style={{ width: 160 }}
           options={[
             { value: 'Dengan Supervisi', label: 'Dengan Supervisi' },
-            { value: 'Kompeten', label: 'Kompeten' },
+            { value: 'Mandiri', label: 'Mandiri' },
           ]}
           onChange={(value) => handleAsesmenChange(value, record.key)}
         />
@@ -61,18 +88,25 @@ const App: React.FC = () => {
 
   const rowSelection: TableProps<DataTypes>['rowSelection'] = {
     type: 'checkbox',
-    onChange: (selectedRowKeys, selectedRows) => {
-      console.log('Selected inner table:', selectedRowKeys, selectedRows);
-    },
+    selectedRowKeys,
+    onChange: (keys) => setSelectedRowKeys(keys),
   };
 
   return (
     <>
+      <h2 style={{ marginBottom: 16 }}>Kompetensi: Keahlian</h2>
       <Table
         columns={columns}
         dataSource={innerData}
         rowSelection={rowSelection}
-        footer={() => '*) Pilih minimal 3 kompetensi'}
+        loading={loading}
+        footer={() => (
+          <div>
+            Untuk melihat deskripsi lengkap kompetensi klik <strong>Kode Kompetensi</strong>
+            <br />
+            *) Pilih minimal 7 kompetensi
+          </div>
+        )}
         pagination={false}
         size="small"
       />
@@ -85,4 +119,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default TabelKeahlian;
