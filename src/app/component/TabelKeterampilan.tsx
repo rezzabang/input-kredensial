@@ -47,7 +47,13 @@ const TabelKeterampilan: React.FC = () => {
         const json: ApiResponse = await res.json();
 
         if (res.ok) {
-          const grouped = json.data.reduce((acc: Record<string, KompetensiItem[]>, item: ApiItem) => {
+          // ✅ Step 1: Filter where kompetensi === 'Keterampilan'
+          const keterampilanOnly = json.data.filter(
+            (item) => item.kompetensi === 'Keterampilan'
+          );
+
+          // ✅ Step 2: Group by kategori
+          const grouped = keterampilanOnly.reduce((acc: Record<string, KompetensiItem[]>, item: ApiItem) => {
             const kategori = item.kategori || 'Lainnya';
             if (!acc[kategori]) acc[kategori] = [];
             acc[kategori].push({
@@ -59,13 +65,14 @@ const TabelKeterampilan: React.FC = () => {
             return acc;
           }, {});
 
-          const transformed: KategoriGroup[] = Object.entries(grouped).map(
-            ([kategori, kompetensi], index) => ({
+          // ✅ Step 3: Transform into KategoriGroup format (sorted alphabetically by kategori)
+          const transformed: KategoriGroup[] = Object.entries(grouped)
+            .sort(([a], [b]) => a.localeCompare(b)) // Sort kategori names
+            .map(([kategori, kompetensi], index) => ({
               key: String(index + 1),
               name: kategori,
               kompetensi,
-            })
-          );
+            }));
 
           setData(transformed);
         }
@@ -78,6 +85,7 @@ const TabelKeterampilan: React.FC = () => {
 
     fetchData();
   }, []);
+
 
   return (
     <>
