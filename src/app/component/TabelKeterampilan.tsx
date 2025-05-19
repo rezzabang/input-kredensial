@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Table, Select, Button } from 'antd';
+import { Table, Select, Button, message } from 'antd';
 import type { TableProps } from 'antd';
 
 const wikiUrl = process.env.NEXT_PUBLIC_WIKI_URL || '';
@@ -23,10 +23,17 @@ interface ApiItem {
   kuk: string;
   detail: string;
   asesmen?: string;
+  kompetensi: string;
 }
 
 interface ApiResponse {
   data: ApiItem[];
+}
+
+interface TabelKeterampilanProps {
+  nip: string;
+  nama: string;
+  onReset?: () => void;
 }
 
 const kategoriMap: Record<string, string> = {
@@ -34,10 +41,72 @@ const kategoriMap: Record<string, string> = {
   'pelepasan informasi': 'ppid',
 };
 
-const TabelKeterampilan: React.FC = () => {
+
+const TabelKeterampilan: React.FC<TabelKeterampilanProps> = ({ nip, nama, onReset }) => {
   const [data, setData] = useState<KategoriGroup[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedKeysMap, setSelectedKeysMap] = useState<Record<string, React.Key[]>>({});
+  
+  const handleSubmit = async () => {
+    const selectedKompetensi: { kuk: string; asesmen: string }[] = [];
+
+      data.forEach((group) => {
+        const selectedKeys = selectedKeysMap[group.key] || [];
+        selectedKeys.forEach((key) => {
+          const item = group.kompetensi.find((k) => k.key === key);
+          if (item && item.asesmen) {
+            selectedKompetensi.push({ kuk: item.kuk, asesmen: item.asesmen });
+          }
+        });
+      });
+
+      if (!nip || !nama) {
+        return message.warning('NIP dan Nama wajib diisi!');
+      }
+
+      if (selectedKompetensi.length < 7) {
+        return message.warning('Pilih minimal 7 kompetensi!');
+      }
+
+      try {
+        const res = await fetch('/api/asesmen/mandiri/create', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ nip, kompetensi: selectedKompetensi }),
+        });
+
+        const text = await res.text();
+        let result;
+        try {
+          result = JSON.parse(text);
+        } catch (err) {
+          message.error('Respons server tidak valid!' + err);
+          return;
+        }
+
+        if (res.ok) {
+          message.success(result.message || 'Data berhasil disimpan!');
+
+          const resetData = data.map(group => ({
+            ...group,
+            kompetensi: group.kompetensi.map(item => ({
+              ...item,
+              asesmen: undefined,
+            })),
+          }));
+
+          setData(resetData);
+          setSelectedKeysMap({});
+          onReset?.();
+        } else {
+          message.warning(`Gagal menyimpan: ${result.message || 'Terjadi kesalahan'}`);
+        }
+      } catch (err) {
+        message.error('Terjadi kesalahan saat menyimpan.' + err);
+      }
+    };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,12 +116,7 @@ const TabelKeterampilan: React.FC = () => {
         const json: ApiResponse = await res.json();
 
         if (res.ok) {
-          // ✅ Step 1: Filter where kompetensi === 'Keterampilan'
-          const keterampilanOnly = json.data.filter(
-            (item) => item.kompetensi === 'Keterampilan'
-          );
-
-          // ✅ Step 2: Group by kategori
+          const keterampilanOnly = json.data.filter(item => item.kompetensi === 'Keterampilan');
           const grouped = keterampilanOnly.reduce((acc: Record<string, KompetensiItem[]>, item: ApiItem) => {
             const kategori = item.kategori || 'Lainnya';
             if (!acc[kategori]) acc[kategori] = [];
@@ -60,32 +124,54 @@ const TabelKeterampilan: React.FC = () => {
               key: item.kuk,
               kuk: item.kuk,
               desc: item.detail,
-              asesmen: item.asesmen,
+              asesmen: undefined,
             });
             return acc;
           }, {});
 
-          // ✅ Step 3: Transform into KategoriGroup format (sorted alphabetically by kategori)
           const transformed: KategoriGroup[] = Object.entries(grouped)
-            .sort(([a], [b]) => a.localeCompare(b)) // Sort kategori names
+            .sort(([a], [b]) => a.localeCompare(b))
             .map(([kategori, kompetensi], index) => ({
               key: String(index + 1),
               name: kategori,
               kompetensi,
             }));
 
+          if (nip) {
+            const asesmenRes = await fetch(`/api/asesmen/mandiri/${nip}`);
+            if (asesmenRes.ok) {
+              const { data: existing } = await asesmenRes.json();
+              const keysMap: Record<string, React.Key[]> = {};
+
+              transformed.forEach((group) => {
+                const selected: React.Key[] = [];
+
+                group.kompetensi.forEach((item) => {
+                  const match = existing.find((e: any) => e.kuk === item.kuk);
+                  if (match) {
+                    item.asesmen = match.asesmen;
+                    selected.push(item.key);
+                  }
+                });
+
+                if (selected.length) keysMap[group.key] = selected;
+              });
+
+              setSelectedKeysMap(keysMap);
+            }
+          }
+
           setData(transformed);
         }
       } catch (err) {
-        console.error('Gagal mengambil data:', err);
+        message.error('Gagal mengambil data:' + err);
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, []);
-
+  }, [nip]);
 
   return (
     <>
@@ -97,9 +183,8 @@ const TabelKeterampilan: React.FC = () => {
         dataSource={data}
         footer={() => (
           <div>
-            Untuk melihat deskripsi lengkap kompetensi klik <strong>Kode Kompetensi</strong>
-            <br />
-            *) Pilih minimal 7 kompetensi
+            <p>Klik <a><strong>Kode Kompetensi</strong></a> untuk melihat deskripsi lengkap setiap kompetensi.</p>
+            <p style={{color: "red"}}>*) Pilih minimal 7 kompetensi</p>
           </div>
         )}
         expandable={{
@@ -126,7 +211,7 @@ const TabelKeterampilan: React.FC = () => {
 
               return (
                 <a href={url} target="_blank" rel="noopener noreferrer">
-                  {text}
+                  <strong>{text}</strong>
                 </a>
               );
             },
@@ -139,20 +224,21 @@ const TabelKeterampilan: React.FC = () => {
             title: 'Asesmen Mandiri',
             dataIndex: 'asesmen',
             render: (_: unknown, rowRecord: KompetensiItem) => (
-              <Select
-                defaultValue="Pilih"
-                style={{ width: 160 }}
-                options={[
-                  { value: 'Dengan Supervisi', label: 'Dengan Supervisi' },
-                  { value: 'Mandiri', label: 'Mandiri' },
-                ]}
-                onChange={(value: string) => {
-                  rowRecord.asesmen = value;
-                  if (!selectedKeys.includes(rowRecord.key)) {
-                    onSelectChange([...selectedKeys, rowRecord.key]);
-                  }
-                }}
-              />
+            <Select
+              value={rowRecord.asesmen || "Pilih"}
+              style={{ width: 160 }}
+              options={[
+                { value: 'Dengan Supervisi', label: 'Dengan Supervisi' },
+                { value: 'Mandiri', label: 'Mandiri' },
+              ]}
+              onChange={(value: string) => {
+                rowRecord.asesmen = value;
+                if (!selectedKeys.includes(rowRecord.key)) {
+                  onSelectChange([...selectedKeys, rowRecord.key]);
+                }
+                setData([...data]);
+              }}
+            />
             ),
           },
         ];
@@ -175,7 +261,7 @@ const TabelKeterampilan: React.FC = () => {
         }}
         pagination={false}
       />
-      <div style={{ textAlign: 'center', marginTop: 24 }}>
+      <div onClick={handleSubmit} style={{ textAlign: 'center', marginTop: 24 }}>
         <Button type="primary">Simpan Hasil Asesmen Mandiri</Button>
       </div>
     </>

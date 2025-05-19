@@ -9,8 +9,8 @@ export async function GET(request: NextRequest, { params }: { params: { nip: str
     const datapribadi = await prisma.datapribadi.findUnique({
       where: { nip },
       include: {
-        pekerjaan: true,       // Include related pekerjaan (assuming your relation model name is "pekerjaan")
-        pendidikan: true,      // If you want to include pendidikan as well
+        pekerjaan: true,
+        pendidikan: true,
       },
     });
 

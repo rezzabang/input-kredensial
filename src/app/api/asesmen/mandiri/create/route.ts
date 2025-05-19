@@ -1,37 +1,27 @@
-// pages/api/asesmen/mandiri/create.ts
-import { NextApiRequest, NextApiResponse } from 'next';
-import prisma from "@/lib/prisma";
+import { NextRequest, NextResponse } from 'next/server';
+import prisma from '@/lib/prisma';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
-  }
-
-  const { nip, nama, kompetensi } = req.body;
-
-  if (!nip || !Array.isArray(kompetensi)) {
-    return res.status(400).json({ message: 'Invalid request body' });
-  }
-
+export async function POST(req: NextRequest) {
   try {
-    // Optional: Delete existing entries for the user
-    await prisma.asesmenMandiri.deleteMany({
-      where: { nip },
-    });
+    const { nip, kompetensi } = await req.json();
 
-    // Create new entries
+    if (!nip || !Array.isArray(kompetensi)) {
+      return NextResponse.json({ message: 'Invalid request body' }, { status: 400 });
+    }
+
+    await prisma.asesmenMandiri.deleteMany({ where: { nip } });
+
     const data = kompetensi.map((item: { kuk: string; asesmen: string }) => ({
       nip,
-      nama,
       kuk: item.kuk,
       asesmen: item.asesmen,
     }));
 
     await prisma.asesmenMandiri.createMany({ data });
 
-    return res.status(200).json({ message: 'Data saved successfully' });
-  } catch (error) {
-    console.error('Error saving data:', error);
-    return res.status(500).json({ message: 'Internal server error' });
+    return NextResponse.json({ message: 'Data saved successfully' }, { status: 200 });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
   }
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Table, Select, Button } from 'antd';
+import { Table, Select, Button, message } from 'antd';
 import type { TableProps } from 'antd';
 
 interface DataTypes {
@@ -11,58 +11,149 @@ interface DataTypes {
   asesmen?: string;
 }
 
-const TabelKeahlian: React.FC = () => {
+interface TabelKeahlianProps {
+  nip: string;
+  nama: string;
+}
+
+const TabelKeahlian: React.FC<TabelKeahlianProps> = ({ nip, nama }) => {
   const [innerData, setInnerData] = useState<DataTypes[]>([]);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [loading, setLoading] = useState(false);
 
+  // Reset data to initial empty state (clear selections and data)
+  const resetData = () => {
+    setSelectedRowKeys([]);
+    setInnerData([]);
+  };
+
   useEffect(() => {
-    const fetchKompetensi = async () => {
+    const fetchData = async () => {
+      if (!nip) return;
+
       setLoading(true);
       try {
-        const res = await fetch('/api/kompetensi');
-        const json = await res.json();
+        // Fetch all kompetensi with type 'Keahlian'
+        const kompetensiRes = await fetch('/api/kompetensi');
+        const kompetensiJson = await kompetensiRes.json();
 
-        if (res.ok) {
-          const filtered = json.data
-            .filter((item: any) => item.kompetensi === 'Keahlian')
-            .map((item: any, index: number) => ({
-              key: `${index + 1}`,
-              kuk: item.kuk,
-              desc: item.detail,
-            }));
+        let kompetensiData: DataTypes[] = kompetensiJson.data
+          .filter((item: any) => item.kompetensi === 'Keahlian')
+          .map((item: any) => ({
+            key: item.kuk,
+            kuk: item.kuk,
+            desc: item.detail,
+            asesmen: '',
+          }));
 
-          setInnerData(filtered);
+        // Fetch existing asesmen for this nip
+        const asesmenRes = await fetch(`/api/asesmen/mandiri/${nip}`);
+        const asesmenJson = await asesmenRes.json();
+
+        if (Array.isArray(asesmenJson.data)) {
+          // Map existing asesmen by kuk
+          const asesmenMap = new Map(
+            asesmenJson.data
+              .filter((item: any) => item.tipe === 'Keahlian')
+              .map((item: any) => [item.kuk, item.asesmen])
+          );
+
+          // Merge asesmen into kompetensi data
+          kompetensiData = kompetensiData.map((item) => {
+            const asesmenValue = asesmenMap.get(item.kuk);
+            return {
+              ...item,
+              asesmen: typeof asesmenValue === 'string' ? asesmenValue : '',
+            };
+          });
+
+          // Select rows which have an assessment value
+          const selectedKeys = kompetensiData
+            .filter((item) => item.asesmen && item.asesmen.length > 0)
+            .map((item) => item.kuk);
+
+          setSelectedRowKeys(selectedKeys);
         }
+
+        setInnerData(kompetensiData);
       } catch (err) {
         console.error('Gagal mengambil data:', err);
+        message.error('Gagal mengambil data kompetensi');
       } finally {
         setLoading(false);
       }
     };
 
-    fetchKompetensi();
-  }, []);
+    fetchData();
+  }, [nip]);
+
 
   const handleAsesmenChange = (value: string, key: string) => {
-    const updatedData = innerData.map((item) =>
-      item.key === key ? { ...item, asesmen: value } : item
+    setInnerData((prevData) =>
+      prevData.map((item) =>
+        item.key === key ? { ...item, asesmen: value } : item
+      )
     );
-    setInnerData(updatedData);
 
-    // Auto-select checkbox
+    // Automatically select row if not selected
     setSelectedRowKeys((prevKeys) =>
       prevKeys.includes(key) ? prevKeys : [...prevKeys, key]
     );
+  };
 
-    console.log(`Changed to "${value}" for KUK: ${key}`);
+  const handleSubmit = async () => {
+    if (!nip || !nama) {
+      message.warning('NIP dan Nama wajib diisi!');
+      return;
+    }
+
+    // Filter selected competencies and validate
+    const selectedData = innerData
+      .filter((item) => selectedRowKeys.includes(item.key))
+      .map((item) => ({
+        nip,
+        kuk: item.kuk,
+        asesmen: item.asesmen,
+        tipe: 'Keahlian',
+      }));
+
+    if (selectedData.length < 7) {
+      message.warning('Pilih minimal 7 kompetensi keahlian.');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/asesmen/mandiri/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nip, kompetensi: selectedData }),
+      });
+
+      const text = await res.text();
+      let result;
+      try {
+        result = JSON.parse(text);
+      } catch (err) {
+        message.error('Respons server tidak valid! ' + err);
+        return;
+      }
+
+      if (res.ok) {
+        resetData();
+        message.success(result.message || 'Data berhasil disimpan!');
+      } else {
+        message.warning(`Gagal menyimpan: ${result.message || 'Terjadi kesalahan'}`);
+      }
+    } catch (err) {
+      message.error('Terjadi kesalahan saat menyimpan. ' + err);
+    }
   };
 
   const columns: TableProps<DataTypes>['columns'] = [
     {
       title: 'Kode Kompetensi',
       dataIndex: 'kuk',
-      render: (text: string) => <a>{text}</a>,
+      render: (text: string) => <a><strong>{text}</strong></a>,
     },
     {
       title: 'Deskripsi Kompetensi',
@@ -89,7 +180,15 @@ const TabelKeahlian: React.FC = () => {
   const rowSelection: TableProps<DataTypes>['rowSelection'] = {
     type: 'checkbox',
     selectedRowKeys,
-    onChange: (keys) => setSelectedRowKeys(keys),
+    onChange: (keys) => {
+      setSelectedRowKeys(keys);
+      // Clear asesmen for rows that are no longer selected
+      setInnerData((prev) =>
+        prev.map((item) =>
+          keys.includes(item.key) ? item : { ...item, asesmen: '' }
+        )
+      );
+    },
   };
 
   return (
@@ -100,18 +199,22 @@ const TabelKeahlian: React.FC = () => {
         dataSource={innerData}
         rowSelection={rowSelection}
         loading={loading}
+        pagination={false}
+        size="small"
         footer={() => (
           <div>
-            Untuk melihat deskripsi lengkap kompetensi klik <strong>Kode Kompetensi</strong>
+            Klik <a><strong>Kode Kompetensi</strong></a> untuk melihat deskripsi lengkap setiap kompetensi.
             <br />
             *) Pilih minimal 7 kompetensi
           </div>
         )}
-        pagination={false}
-        size="small"
       />
       <div style={{ textAlign: 'center', marginTop: 24 }}>
-        <Button type="primary">
+        <Button
+          type="primary"
+          loading={loading}
+          onClick={handleSubmit}
+        >
           Simpan Hasil Asesmen Mandiri
         </Button>
       </div>

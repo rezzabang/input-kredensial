@@ -21,14 +21,19 @@ const tabList = [
   },
 ];
 
-const contentList: Record<string, React.ReactNode> = {
-  Keterampilan: <TabelKeterampilan />,
-  Keahlian: <TabelKeahlian />,
-};
-
 const SelfAssesment: React.FC = () => {
   const [form] = Form.useForm();
-  const [activeTabKey1, setActiveTabKey1] = useState<string>('tab1');
+  const [nip, setNip] = useState('');
+  const [nama, setNama] = useState('');
+  const [activeTabKey1, setActiveTabKey1] = useState<string>('Keterampilan');
+  const contentList: Record<string, React.ReactNode> = {
+    Keterampilan: <TabelKeterampilan nip={nip} nama={nama} onReset={() => {
+      setNip('');
+      setNama('');
+      form.resetFields(); // reset form inputs
+    }} />,
+    Keahlian: <TabelKeahlian nip={nip} nama={nama}/>,
+  };
 
   const onTab1Change = (key: string) => {
     setActiveTabKey1(key);
@@ -59,7 +64,7 @@ const SelfAssesment: React.FC = () => {
                       style={{ width: 170, borderRadius: 6 }} // ✅ Limit width here
                       onPressEnter={(e) => e.preventDefault()}
                     />
-                    <CariDataNama form={form} />
+                    <CariDataNama form={form} setNip={setNip} setNama={setNama} />
                   </div>
                 </Form.Item>
 

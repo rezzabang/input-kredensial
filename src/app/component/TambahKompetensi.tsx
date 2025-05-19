@@ -43,6 +43,7 @@ const TambahKompetensi = ({ onSuccess }: { onSuccess: () => void }) => {
       onFinish={handleSubmit}
       style={{ maxWidth: 800 }}
       autoComplete="off"
+      initialValues={{ kompetensi: [{}]}}
     >
       <Form.List name="kompetensi">
         {(fields, { add, remove }) => (
