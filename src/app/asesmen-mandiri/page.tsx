@@ -32,7 +32,11 @@ const SelfAssesment: React.FC = () => {
       setNama('');
       form.resetFields(); // reset form inputs
     }} />,
-    Keahlian: <TabelKeahlian nip={nip} nama={nama}/>,
+    Keahlian: <TabelKeahlian nip={nip} nama={nama} onReset={() => {
+      setNip('');
+      setNama('');
+      form.resetFields(); // reset form inputs
+    }}/>,
   };
 
   const onTab1Change = (key: string) => {

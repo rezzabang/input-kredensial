@@ -105,7 +105,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
                   {
                     key: '5',
                     icon: <FileDoneOutlined />,
-                    label: 'Penilaian',
+                    label: <Link href="/penilaian">Penilaian</Link>,
                   },
                 ]}
               />

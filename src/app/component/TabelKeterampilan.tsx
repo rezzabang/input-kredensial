@@ -61,7 +61,7 @@ const TabelKeterampilan: React.FC<TabelKeterampilanProps> = ({ nip, nama, onRese
       });
 
       if (!nip || !nama) {
-        return message.warning('NIP dan Nama wajib diisi!');
+        return message.warning('NIP dan Nama wajib terisi!');
       }
 
       if (selectedKompetensi.length < 7) {
@@ -69,7 +69,7 @@ const TabelKeterampilan: React.FC<TabelKeterampilanProps> = ({ nip, nama, onRese
       }
 
       try {
-        const res = await fetch('/api/asesmen/mandiri/create', {
+        const res = await fetch('api/asesmen/mandiri/create', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ const TabelKeterampilan: React.FC<TabelKeterampilanProps> = ({ nip, nama, onRese
     const fetchData = async () => {
       setLoading(true);
       try {
-        const res = await fetch('/api/kompetensi');
+        const res = await fetch('api/kompetensi');
         const json: ApiResponse = await res.json();
 
         if (res.ok) {
@@ -225,8 +225,9 @@ const TabelKeterampilan: React.FC<TabelKeterampilanProps> = ({ nip, nama, onRese
             dataIndex: 'asesmen',
             render: (_: unknown, rowRecord: KompetensiItem) => (
             <Select
-              value={rowRecord.asesmen || "Pilih"}
+              value={rowRecord.asesmen || undefined}
               style={{ width: 160 }}
+              placeholder='Pilih'
               options={[
                 { value: 'Dengan Supervisi', label: 'Dengan Supervisi' },
                 { value: 'Mandiri', label: 'Mandiri' },

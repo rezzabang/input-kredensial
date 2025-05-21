@@ -15,7 +15,7 @@ export async function GET() {
 
   return NextResponse.json(
     {
-      sucess: true,
+      success: true,
       message: "List Data Pribadi",
       data: { Dataribadi },
     },
