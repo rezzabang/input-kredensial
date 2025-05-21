@@ -28,6 +28,7 @@ const DataPribadi = ({ form }) => {
       >
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <Input
+          placeholder='Penulisan NIP tanpa spasi!'
           style={{ flex: 1 }}
           onPressEnter={(e) => {
             e.preventDefault();
@@ -43,7 +44,7 @@ const DataPribadi = ({ form }) => {
         name="nama"
         rules={[{ required: true, message: 'Nama mohon untuk diisi!' }]}
       >
-        <Input />
+        <Input placeholder='Nama lengkap & Gelar' />
       </Form.Item>
 
       <Form.Item
@@ -51,7 +52,7 @@ const DataPribadi = ({ form }) => {
         name="tempatLahir"
         rules={[{ required: true, message: 'Tempat Lahir mohon untuk diisi!' }]}
       >
-        <Input />
+        <Input placeholder='Kota kelahiran'/>
       </Form.Item>
 
       <Form.Item
@@ -59,7 +60,7 @@ const DataPribadi = ({ form }) => {
         name="tanggalLahir"
         rules={[{ required: true, message: 'Tanggal Lahir mohon untuk diisi!' }]}
       >
-        <DatePicker style={{ width: '100%' }} />
+        <DatePicker placeholder="Pilih Tanggal" style={{ width: '100%' }} />
       </Form.Item>
 
       <Form.Item
@@ -89,7 +90,7 @@ const DataPribadi = ({ form }) => {
         name="phone"
         rules={[{ required: true, message: 'No. Handphone mohon untuk diisi!' }]}
       >
-        <Input />
+        <Input placeholder='08xxxxxx'/>
       </Form.Item>
 
       <Form.Item
@@ -97,7 +98,7 @@ const DataPribadi = ({ form }) => {
         name="email"
         rules={[{ required: true, message: 'E-mail mohon untuk diisi!' }]}
       >
-        <Input />
+        <Input placeholder='contoh@gmail.com'/>
       </Form.Item>
 
       <Form.Item
@@ -105,7 +106,7 @@ const DataPribadi = ({ form }) => {
         name="alamat"
         rules={[{ required: true, message: 'Alamat mohon untuk diisi!' }]}
       >
-        <Input.TextArea />
+        <Input.TextArea placeholder='Isikan alamat lengkap'/>
       </Form.Item>
     </>
   );

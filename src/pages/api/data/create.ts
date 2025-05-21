@@ -39,27 +39,27 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     const nipValue = getField(fields.nip);
+    let savedFileName = "";
+
     const fileIjazahObj = files.fileIjazah?.[0];
 
-    if (!fileIjazahObj) {
+    if (fileIjazahObj) {
+      const filename = fileIjazahObj.newFilename;
+      const tempFilePath = fileIjazahObj.filepath;
+      const finalDir = path.join(tempUploadDir, nipValue);
+      const finalFilePath = path.join(finalDir, filename);
+
+      if (!fs.existsSync(finalDir)) {
+        fs.mkdirSync(finalDir, { recursive: true });
+      }
+
+      fs.renameSync(tempFilePath, finalFilePath);
+      savedFileName = filename;
+    } else if (fields.fileIjazah_existing) {
+      savedFileName = getField(fields.fileIjazah_existing);
+    } else {
       return res.status(400).json({ success: false, message: "File ijazah tidak ditemukan." });
     }
-
-    const filename = fileIjazahObj.newFilename;
-    const tempFilePath = fileIjazahObj.filepath;
-    const finalDir = path.join(tempUploadDir, nipValue);
-    const finalFilePath = path.join(finalDir, filename);
-
-    // Create <nip> directory if not exists
-    if (!fs.existsSync(finalDir)) {
-      fs.mkdirSync(finalDir, { recursive: true });
-    }
-
-    // Move file to the <nip> directory
-    fs.renameSync(tempFilePath, finalFilePath);
-
-    // Save relative path (or just filename if you're always referencing from /public/uploads/<nip>/)
-    const savedFileName = filename;
 
     // Upsert DataPribadi
     await prisma.datapribadi.upsert({
@@ -133,10 +133,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       data: pendidikan,
     });
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error saving data:", error);
-    return res.status(500).json({ success: false, message: "Terjadi kesalahan saat menyimpan data." });
+    return res.status(500).json({
+      success: false,
+      message: "Terjadi kesalahan saat menyimpan data.",
+      error: error?.message || error,
+    });
   }
+
 };
 
 export default handler;

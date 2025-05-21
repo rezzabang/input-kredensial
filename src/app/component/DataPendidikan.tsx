@@ -18,7 +18,6 @@ const DataPendidikan = ({ form }) => {
     setHydrated(true);
   }, []);
 
-  // ✅ Konfigurasi Upload
 const uploadProps: UploadProps = {
   beforeUpload: (file) => {
     const isPDF = file.type === 'application/pdf';
@@ -56,7 +55,6 @@ const uploadProps: UploadProps = {
         return false; // keep file in UI
       }
     } catch (err) {
-      console.error(err);
       message.error('Terjadi kesalahan saat menghapus file ijazah.');
       return false; // keep file in UI
     }
@@ -74,15 +72,15 @@ const uploadProps: UploadProps = {
         name="universitas"
         rules={[{ required: true, message: 'Nama Sekolah mohon untuk diisi!' }]}
       >
-        <Input />
+        <Input placeholder='Universitas Apa Aja'/>
       </Form.Item>
 
       <Form.Item
-        label="Jurusan/Program"
+        label="Program Studi"
         name="jurusan"
-        rules={[{ required: true, message: 'Jurusan/Program mohon diisi!' }]}
+        rules={[{ required: true, message: 'Program Studi mohon diisi!' }]}
       >
-        <Input />
+        <Input placeholder='D-III Rekam Medis dan Informasi Kesehatan'/>
       </Form.Item>
 
       <Form.Item
@@ -90,7 +88,7 @@ const uploadProps: UploadProps = {
         name="noIjazah"
         rules={[{ required: true, message: 'Nomor Ijazah mohon diisi!' }]}
       >
-        <Input />
+        <Input placeholder='12345-12'/>
       </Form.Item>
 
       <Form.Item
@@ -98,7 +96,7 @@ const uploadProps: UploadProps = {
         name="tanggalIjazah"
         rules={[{ required: true, message: 'Tanggal Ijazah mohon diisi!' }]}
       >
-        <DatePicker />
+        <DatePicker placeholder='Pilih Tanggal'/>
       </Form.Item>
 
       <Form.Item

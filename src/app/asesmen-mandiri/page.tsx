@@ -61,8 +61,9 @@ const SelfAssesment: React.FC = () => {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Input
                       size="middle"
-                      style={{ width: 170, borderRadius: 6 }} // ✅ Limit width here
+                      style={{ width: 170, borderRadius: 6 }}
                       onPressEnter={(e) => e.preventDefault()}
+                      placeholder='Masukkan NIP, klik -->'
                     />
                     <CariDataNama form={form} setNip={setNip} setNama={setNama} />
                   </div>

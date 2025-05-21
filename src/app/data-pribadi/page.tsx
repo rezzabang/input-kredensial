@@ -53,9 +53,14 @@ const Cek = () => {
       formData.append("noIjazah", values.noIjazah);
       formData.append("tanggalIjazah", values.tanggalIjazah.toDate().toISOString());
 
-      const fileList = values.fileIjazah?.[0]?.originFileObj;
-      if (fileList) {
-        formData.append("fileIjazah", fileList);
+      // Penanganan fileIjazah
+      const fileItem = values.fileIjazah?.[0];
+      if (fileItem?.originFileObj) {
+        // Jika user mengupload file baru
+        formData.append("fileIjazah", fileItem.originFileObj);
+      } else if (fileItem?.url) {
+        // Jika file lama tidak diubah, bisa kirim nama file saja (optional)
+        formData.append("fileIjazah_existing", fileItem.name); // backend harus handle ini
       }
 
       const response = await fetch("/api/data/create", {
@@ -102,9 +107,9 @@ const Cek = () => {
           <Col xs={24} sm={24} md={12}  lg={12}>
             <DataPendidikan form={form} />
           </Col>
-          <Col xs={24} sm={24} md={12}  lg={12}>
+          {/* <Col xs={24} sm={24} md={12}  lg={12}>
             <DataPelatihan form={form} />
-          </Col>
+          </Col> */}
         </Row>
           <div style={{ display: 'flex', marginTop: 24, justifyContent: 'center' }}>
             <Form.Item>

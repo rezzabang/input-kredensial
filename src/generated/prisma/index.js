@@ -204,7 +204,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\rezza\\Documents\\next-js\\input-kredensial\\src\\generated\\prisma",
+      "value": "D:\\mamang\\input-kredensial\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -218,7 +218,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\rezza\\Documents\\next-js\\input-kredensial\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\mamang\\input-kredensial\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -236,7 +236,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "mysql://mamang:45312%40Bg@localhost:3306/input-kredensial"
+        "value": "mysql://mamang:45312%40Bg@localhost:3306/input"
       }
     }
   },

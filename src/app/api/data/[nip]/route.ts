@@ -18,7 +18,7 @@ export async function GET(request: NextRequest, { params }: { params: { nip: str
       return NextResponse.json(
         {
           success: false,
-          message: "Detail NIP tidak ditemukan!",
+          message: "NIP tidak ditemukan!",
           data: null,
         },
         { status: 404 }

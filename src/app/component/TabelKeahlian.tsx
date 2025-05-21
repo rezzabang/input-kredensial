@@ -4,81 +4,108 @@ import React, { useState, useEffect } from 'react';
 import { Table, Select, Button, message } from 'antd';
 import type { TableProps } from 'antd';
 
-interface DataTypes {
+interface KompetensiItem {
   key: string;
   kuk: string;
   desc: string;
   asesmen?: string;
 }
 
+interface ApiItem {
+  kategori: string;
+  kuk: string;
+  detail: string;
+  kompetensi: string;
+}
+
+interface ApiResponse {
+  success: boolean;
+  data: ApiItem[];
+}
+
 interface TabelKeahlianProps {
   nip: string;
   nama: string;
+  onReset?: () => void;
 }
 
-const TabelKeahlian: React.FC<TabelKeahlianProps> = ({ nip, nama }) => {
-  const [innerData, setInnerData] = useState<DataTypes[]>([]);
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+const TabelKeahlian: React.FC<TabelKeahlianProps> = ({ nip, nama, onReset }) => {
+  const [data, setData] = useState<KompetensiItem[]>([]);
   const [loading, setLoading] = useState(false);
+  const [selectedKeys, setSelectedKeys] = useState<React.Key[]>([]);
+  const wikiUrl = process.env.NEXT_PUBLIC_WIKI_URL || '';
 
-  // Reset data to initial empty state (clear selections and data)
-  const resetData = () => {
-    setSelectedRowKeys([]);
-    setInnerData([]);
+  const handleSubmit = async () => {
+    const selectedKompetensi: { kuk: string; asesmen: string }[] = [];
+
+    selectedKeys.forEach((key) => {
+      const item = data.find((k) => k.key === key);
+      if (item && item.asesmen) {
+        selectedKompetensi.push({ kuk: item.kuk, asesmen: item.asesmen });
+      }
+    });
+
+    if (!nip || !nama) {
+      return message.warning('NIP dan Nama wajib diisi!');
+    }
+
+    if (selectedKompetensi.length < 7) {
+      return message.warning('Pilih minimal 7 kompetensi!');
+    }
+
+    try {
+      const res = await fetch('/api/asesmen/mandiri/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ nip, kompetensi: selectedKompetensi }),
+      });
+
+      const text = await res.text();
+      let result;
+      try {
+        result = JSON.parse(text);
+      } catch (err) {
+        message.error('Respons server tidak valid!' + err);
+        return;
+      }
+
+      if (res.ok) {
+        message.success(result.message || 'Data berhasil disimpan!');
+        setData((prevData) =>
+          prevData.map((item) => ({ ...item, asesmen: undefined }))
+        );
+        setSelectedKeys([]);
+        onReset?.();
+      } else {
+        message.warning(`Gagal menyimpan: ${result.message || 'Terjadi kesalahan'}`);
+      }
+    } catch (err) {
+      message.error('Terjadi kesalahan saat menyimpan.' + err);
+    }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!nip) return;
-
       setLoading(true);
       try {
-        // Fetch all kompetensi with type 'Keahlian'
-        const kompetensiRes = await fetch('/api/kompetensi');
-        const kompetensiJson = await kompetensiRes.json();
+        const res = await fetch('/api/kompetensi');
+        const json: ApiResponse = await res.json();
 
-        let kompetensiData: DataTypes[] = kompetensiJson.data
-          .filter((item: any) => item.kompetensi === 'Keahlian')
-          .map((item: any) => ({
+        if (res.ok && json.success) {
+          const keahlianOnly = json.data.filter(item => item.kompetensi === 'Keahlian');
+          const kompetensiData: KompetensiItem[] = keahlianOnly.map(item => ({
             key: item.kuk,
             kuk: item.kuk,
             desc: item.detail,
-            asesmen: '',
+            asesmen: undefined,
           }));
 
-        // Fetch existing asesmen for this nip
-        const asesmenRes = await fetch(`/api/asesmen/mandiri/${nip}`);
-        const asesmenJson = await asesmenRes.json();
-
-        if (Array.isArray(asesmenJson.data)) {
-          // Map existing asesmen by kuk
-          const asesmenMap = new Map(
-            asesmenJson.data
-              .filter((item: any) => item.tipe === 'Keahlian')
-              .map((item: any) => [item.kuk, item.asesmen])
-          );
-
-          // Merge asesmen into kompetensi data
-          kompetensiData = kompetensiData.map((item) => {
-            const asesmenValue = asesmenMap.get(item.kuk);
-            return {
-              ...item,
-              asesmen: typeof asesmenValue === 'string' ? asesmenValue : '',
-            };
-          });
-
-          // Select rows which have an assessment value
-          const selectedKeys = kompetensiData
-            .filter((item) => item.asesmen && item.asesmen.length > 0)
-            .map((item) => item.kuk);
-
-          setSelectedRowKeys(selectedKeys);
+          setData(kompetensiData);
         }
-
-        setInnerData(kompetensiData);
       } catch (err) {
-        console.error('Gagal mengambil data:', err);
-        message.error('Gagal mengambil data kompetensi');
+        message.error('Gagal mengambil data:' + err);
       } finally {
         setLoading(false);
       }
@@ -87,73 +114,21 @@ const TabelKeahlian: React.FC<TabelKeahlianProps> = ({ nip, nama }) => {
     fetchData();
   }, [nip]);
 
-
-  const handleAsesmenChange = (value: string, key: string) => {
-    setInnerData((prevData) =>
-      prevData.map((item) =>
-        item.key === key ? { ...item, asesmen: value } : item
-      )
-    );
-
-    // Automatically select row if not selected
-    setSelectedRowKeys((prevKeys) =>
-      prevKeys.includes(key) ? prevKeys : [...prevKeys, key]
-    );
-  };
-
-  const handleSubmit = async () => {
-    if (!nip || !nama) {
-      message.warning('NIP dan Nama wajib diisi!');
-      return;
-    }
-
-    // Filter selected competencies and validate
-    const selectedData = innerData
-      .filter((item) => selectedRowKeys.includes(item.key))
-      .map((item) => ({
-        nip,
-        kuk: item.kuk,
-        asesmen: item.asesmen,
-        tipe: 'Keahlian',
-      }));
-
-    if (selectedData.length < 7) {
-      message.warning('Pilih minimal 7 kompetensi keahlian.');
-      return;
-    }
-
-    try {
-      const res = await fetch('/api/asesmen/mandiri/create', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nip, kompetensi: selectedData }),
-      });
-
-      const text = await res.text();
-      let result;
-      try {
-        result = JSON.parse(text);
-      } catch (err) {
-        message.error('Respons server tidak valid! ' + err);
-        return;
-      }
-
-      if (res.ok) {
-        resetData();
-        message.success(result.message || 'Data berhasil disimpan!');
-      } else {
-        message.warning(`Gagal menyimpan: ${result.message || 'Terjadi kesalahan'}`);
-      }
-    } catch (err) {
-      message.error('Terjadi kesalahan saat menyimpan. ' + err);
-    }
-  };
-
-  const columns: TableProps<DataTypes>['columns'] = [
+  const columns: TableProps<KompetensiItem>['columns'] = [
     {
       title: 'Kode Kompetensi',
       dataIndex: 'kuk',
-      render: (text: string) => <a><strong>{text}</strong></a>,
+      render: (text: string) => {
+        const sanitizedKuk = text.replace(/\./g, '');
+        const mappedKategori = 'ahli'; // Adjust this if you have a mapping for categories
+        const url = `${wikiUrl}${mappedKategori}/${sanitizedKuk}`;
+
+        return (
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            <strong>{text}</strong>
+          </a>
+        );
+      },
     },
     {
       title: 'Deskripsi Kompetensi',
@@ -162,45 +137,52 @@ const TabelKeahlian: React.FC<TabelKeahlianProps> = ({ nip, nama }) => {
     {
       title: 'Asesmen Mandiri',
       dataIndex: 'asesmen',
-      render: (_, record) => (
+      render: (_: unknown, record: KompetensiItem) => (
         <Select
           value={record.asesmen || undefined}
           placeholder="Pilih"
           style={{ width: 160 }}
           options={[
-            { value: 'Dengan Supervisi', label: 'Dengan Supervisi' },
             { value: 'Mandiri', label: 'Mandiri' },
+            { value: 'Dengan Supervisi', label: 'Dengan Supervisi' }
           ]}
-          onChange={(value) => handleAsesmenChange(value, record.key)}
+          onChange={(value: string) => {
+            // Set asesmen value
+            record.asesmen = value;
+            // Update data state to trigger re-render
+            setData([...data]);
+
+            if (value === 'Dengan Supervisi' || value === 'Mandiri') {
+              if (!selectedKeys.includes(record.key)) {
+                setSelectedKeys((prev) => [...prev, record.key]);
+              }
+            } else {
+              // If value not in these, uncheck the row
+              if (selectedKeys.includes(record.key)) {
+                setSelectedKeys((prev) => prev.filter(key => key !== record.key));
+              }
+            }
+          }}
         />
       ),
     },
   ];
 
-  const rowSelection: TableProps<DataTypes>['rowSelection'] = {
-    type: 'checkbox',
-    selectedRowKeys,
-    onChange: (keys) => {
-      setSelectedRowKeys(keys);
-      // Clear asesmen for rows that are no longer selected
-      setInnerData((prev) =>
-        prev.map((item) =>
-          keys.includes(item.key) ? item : { ...item, asesmen: '' }
-        )
-      );
-    },
-  };
-
   return (
     <>
       <h2 style={{ marginBottom: 16 }}>Kompetensi: Keahlian</h2>
       <Table
-        columns={columns}
-        dataSource={innerData}
-        rowSelection={rowSelection}
+        bordered={false}
         loading={loading}
+        size="large"
+        columns={columns}
+        dataSource={data}
+        rowSelection={{
+          type: 'checkbox',
+          selectedRowKeys: selectedKeys,
+          onChange: (keys) => setSelectedKeys(keys),
+        }}
         pagination={false}
-        size="small"
         footer={() => (
           <div>
             Klik <a><strong>Kode Kompetensi</strong></a> untuk melihat deskripsi lengkap setiap kompetensi.
@@ -210,13 +192,7 @@ const TabelKeahlian: React.FC<TabelKeahlianProps> = ({ nip, nama }) => {
         )}
       />
       <div style={{ textAlign: 'center', marginTop: 24 }}>
-        <Button
-          type="primary"
-          loading={loading}
-          onClick={handleSubmit}
-        >
-          Simpan Hasil Asesmen Mandiri
-        </Button>
+        <Button type="primary" onClick={handleSubmit}>Simpan Hasil Asesmen Mandiri</Button>
       </div>
     </>
   );

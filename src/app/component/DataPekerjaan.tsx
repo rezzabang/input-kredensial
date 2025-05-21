@@ -18,20 +18,22 @@ const DataPekerjaan = ({ form }) => {
             <Form.Item
               label="Nama Tempat Kerja"
               name="namaTempatBekerja"
+              initialValue="RSUD Prof. Dr. Margono Soekarjo"
               rules={[
                 { required: true, message: 'Nama Tempat Kerja mohon untuk diisi!' },
               ]}
             >
-              <Input/>
+              <Input placeholder="RSUD Prof. Dr. Margono Soekarjo" value="RSUD Prof. Dr. Margono Soekarjo" disabled/>
             </Form.Item>
             <Form.Item
               label="Alamat Tempat Kerja"
               name="alamatPekerjaan"
+              initialValue="Jl. Dr. Gumbreg No 1, Berkoh, Purwokerto Selatan, Banyumas"
               rules={[
                 { required: true, message: 'Alamat Tempat Kerja mohon untuk diisi!' },
               ]}
             >
-              <Input.TextArea/>
+              <Input.TextArea placeholder="Jl. Dr. Gumbreg No 1, Berkoh, Purwokerto Selatan, Banyumas" value="Jl. Dr. Gumbreg No 1, Berkoh, Purwokerto Selatan, Banyumas" disabled/>
             </Form.Item>
             <Form.Item
               label="Nomor STR"
@@ -40,7 +42,7 @@ const DataPekerjaan = ({ form }) => {
                 { required: true, message: 'Nomor STR mohon untuk diisi!' },
               ]}
             >
-              <Input />
+              <Input placeholder='TE000000XXXXX'/>
             </Form.Item>
             <Form.Item
               label="Tanggal Terbit STR"
@@ -49,7 +51,7 @@ const DataPekerjaan = ({ form }) => {
                 { required: true, message: 'Tanggal Terbit STR mohon untuk diisi!' },
               ]}
             >
-              <DatePicker style={{ width: '100%' }} />
+              <DatePicker placeholder="Pilih Tanggal" style={{ width: '100%' }} />
             </Form.Item>
             <Form.Item
               label="Nomor SIP"
@@ -58,7 +60,7 @@ const DataPekerjaan = ({ form }) => {
                 { required: true, message: 'Nomor SIP mohon untuk diisi!' },
               ]}
             >
-              <Input />
+              <Input placeholder='Perizinan/xxxx/xxxx'/>
             </Form.Item>
             <Form.Item
               label="Tanggal Berakhir SIP"
@@ -67,7 +69,7 @@ const DataPekerjaan = ({ form }) => {
                 { required: true, message: 'Tanggal Berakhir SIP mohon untuk diisi!' },
               ]}
             >
-              <DatePicker style={{ width: '100%' }} />
+              <DatePicker placeholder="Pilih Tanggal" style={{ width: '100%' }} />
             </Form.Item>
     </>
   );

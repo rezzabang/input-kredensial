@@ -17,7 +17,7 @@ const CariDataAll = ({ form }) => {
       const json = await res.json();
 
       if (!json.success) {
-        message.error(json.message || 'Data tidak ditemukan!');
+        message.warning(json.message || 'Data tidak ditemukan!');
         return;
       }
 
@@ -54,7 +54,6 @@ const CariDataAll = ({ form }) => {
 
       message.success('Data berhasil dimuat!');
     } catch (err) {
-      console.error(err);
       message.error('Terjadi kesalahan saat memuat data.');
     }
   };

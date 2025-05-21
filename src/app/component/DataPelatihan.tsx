@@ -45,15 +45,15 @@ const DataPelatihan = ({ form }) => {
         {(fields, { add, remove }) => (
           <>
             {fields.map(({ key, name, ...restField }) => (
-              <Card key={key} style={{ marginBottom: 10 }}>
-                <Row gutter={6}>
-                  <Col xs={24} sm={12}>
-                    <Form.Item {...restField} name={[name, 'namaPelatihan']}>
+              <Card key={key} style={{ padding: 8, marginBottom: 10 }}>
+                <Row gutter={[4, 4]}>
+                  <Col xs={24} sm={16}>
+                    <Form.Item {...restField} name={[name, 'namaPelatihan']} style={{ marginBottom: 8 }}>
                       <Input placeholder="Nama Pelatihan" />
                     </Form.Item>
                   </Col>
-                  <Col xs={24} sm={12}>
-                    <Form.Item {...restField} name={[name, 'jenisPelatihan']}>
+                  <Col xs={24} sm={8}>
+                    <Form.Item {...restField} name={[name, 'jenisPelatihan']} style={{ marginBottom: 8 }}>
                       <Select
                         placeholder="Kategori"
                         options={[
@@ -71,6 +71,7 @@ const DataPelatihan = ({ form }) => {
                       name={[name, 'filePelatihan']}
                       valuePropName="fileList"
                       getValueFromEvent={normFile}
+                      style={{ marginBottom: 8 }}
                     >
                       <Upload {...uploadProps}>
                         <Button icon={<UploadOutlined />}>Unggah File</Button>
