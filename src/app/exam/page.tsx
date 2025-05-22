@@ -3,7 +3,7 @@ import React from 'react';
 const examUrl = process.env.NEXT_PUBLIC_EXAM_URL;
 
 const Exam = () => (
-    <div className="App" style={{ padding: '0', margin: '0', height: '100vh'}}>
+    <div className="App" style={{ padding: '0', margin: '0', height: '120vh'}}>
     <iframe
       src={examUrl}
       style={{

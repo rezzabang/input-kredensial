@@ -138,7 +138,8 @@ exports.Prisma.DataPekerjaanScalarFieldEnum = {
   noStr: 'noStr',
   tanggalStr: 'tanggalStr',
   noSip: 'noSip',
-  tanggalSip: 'tanggalSip'
+  tanggalSip: 'tanggalSip',
+  fileSik: 'fileSik'
 };
 
 exports.Prisma.DataPendidikanScalarFieldEnum = {
@@ -178,17 +179,18 @@ exports.Prisma.DatapribadiOrderByRelevanceFieldEnum = {
   alamat: 'alamat'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 exports.Prisma.DataPekerjaanOrderByRelevanceFieldEnum = {
   nip: 'nip',
   namaTempatBekerja: 'namaTempatBekerja',
   alamatPekerjaan: 'alamatPekerjaan',
   noStr: 'noStr',
-  noSip: 'noSip'
-};
-
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
+  noSip: 'noSip',
+  fileSik: 'fileSik'
 };
 
 exports.Prisma.DataPendidikanOrderByRelevanceFieldEnum = {

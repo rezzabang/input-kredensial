@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { Button, Input, DatePicker, Form, Upload, message, Card } from 'antd';
+import { Button, Input, DatePicker, Form, Upload, message,  } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import type { UploadChangeParam, UploadFile, UploadProps } from 'antd/es/upload/interface';
 
@@ -18,48 +18,48 @@ const DataPendidikan = ({ form }) => {
     setHydrated(true);
   }, []);
 
-const uploadProps: UploadProps = {
-  beforeUpload: (file) => {
-    const isPDF = file.type === 'application/pdf';
-    if (!isPDF) {
-      message.error(`${file.name} bukan file PDF`);
-    }
-    return isPDF || Upload.LIST_IGNORE;
-  },
-  maxCount: 1,
-  showUploadList: {
-    showRemoveIcon: true,
-    showDownloadIcon: true,
-  },
-  listType: 'text',
-  onRemove: async (file) => {
-    const nip = form.getFieldValue('nip'); // ← you need `form` here
-    if (!nip) {
-      message.error('NIP tidak ditemukan. Tidak bisa hapus file.');
-      return false;
-    }
+  const uploadProps: UploadProps = {
+    beforeUpload: (fileIjazah) => {
+      const isPDF = fileIjazah.type === 'application/pdf';
+      if (!isPDF) {
+        message.error(`${fileIjazah.name} bukan file PDF`);
+      }
+      return isPDF || Upload.LIST_IGNORE;
+    },
+    maxCount: 1,
+    showUploadList: {
+      showRemoveIcon: true,
+      showDownloadIcon: true,
+    },
+    listType: 'text',
+    onRemove: async (fileIjazah) => {
+      const nip = form.getFieldValue('nip'); // ← you need `form` here
+      if (!nip) {
+        message.error('NIP tidak ditemukan. Tidak bisa hapus file.');
+        return false;
+      }
 
-    try {
-      const res = await fetch(`/api/data/delete-ijazah/${nip}`, {
-        method: 'DELETE',
-      });
+      try {
+        const res = await fetch(`/api/data/delete-ijazah/${nip}`, {
+          method: 'DELETE',
+        });
 
-      const json = await res.json();
+        const json = await res.json();
 
-      if (json.success) {
-        message.success('File ijazah berhasil dihapus');
-        form.setFieldsValue({ fileIjazah: [] });
-        return true; // remove from UI
-      } else {
-        message.error(json.message || 'Gagal menghapus file ijazah');
+        if (json.success) {
+          message.success('File ijazah berhasil dihapus');
+          form.setFieldsValue({ fileIjazah: [] });
+          return true; // remove from UI
+        } else {
+          message.error(json.message || 'Gagal menghapus file ijazah');
+          return false; // keep file in UI
+        }
+      } catch (err) {
+        message.error('Terjadi kesalahan saat menghapus file ijazah.');
         return false; // keep file in UI
       }
-    } catch (err) {
-      message.error('Terjadi kesalahan saat menghapus file ijazah.');
-      return false; // keep file in UI
-    }
-  },
-};
+    },
+  };
 
   if (!hydrated) return null;
 

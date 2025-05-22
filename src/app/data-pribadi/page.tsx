@@ -53,7 +53,6 @@ const Cek = () => {
       formData.append("noIjazah", values.noIjazah);
       formData.append("tanggalIjazah", values.tanggalIjazah.toDate().toISOString());
 
-      // Penanganan fileIjazah
       const fileItem = values.fileIjazah?.[0];
       if (fileItem?.originFileObj) {
         // Jika user mengupload file baru
@@ -61,6 +60,15 @@ const Cek = () => {
       } else if (fileItem?.url) {
         // Jika file lama tidak diubah, bisa kirim nama file saja (optional)
         formData.append("fileIjazah_existing", fileItem.name); // backend harus handle ini
+      }
+
+      const fileAitem = values.fileSik?.[0];
+      if (fileAitem?.originFileObj) {
+        // Jika user mengupload file baru
+        formData.append("fileSik", fileAitem.originFileObj);
+      } else if (fileAitem?.url) {
+        // Jika file lama tidak diubah, bisa kirim nama file saja (optional)
+        formData.append("fileSik_existing", fileAitem.name); // backend harus handle ini
       }
 
       const response = await fetch("/api/data/create", {
@@ -94,7 +102,7 @@ const Cek = () => {
             e.preventDefault();
             }
           }}
-          initialValues={{ fileIjazah: [] }}
+          initialValues={{ fileIjazah: [], fileSik: [] }}
           style={{ maxWidth: '100%' }}
         >
         <Row gutter={[32, 32]}>

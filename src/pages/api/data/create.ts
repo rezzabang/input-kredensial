@@ -39,7 +39,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     const nipValue = getField(fields.nip);
-    let savedFileName = "";
+    let fileIjazahName = "";
+    let fileSikName = "";
 
     const fileIjazahObj = files.fileIjazah?.[0];
 
@@ -54,11 +55,31 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       fs.renameSync(tempFilePath, finalFilePath);
-      savedFileName = filename;
+      fileIjazahName = filename;
     } else if (fields.fileIjazah_existing) {
-      savedFileName = getField(fields.fileIjazah_existing);
+      fileIjazahName = getField(fields.fileIjazah_existing);
     } else {
       return res.status(400).json({ success: false, message: "File ijazah tidak ditemukan." });
+    }
+
+    const fileSikObj = files.fileSik?.[0];
+
+    if (fileSikObj) {
+      const filename = fileSikObj.newFilename;
+      const tempFilePath = fileSikObj.filepath;
+      const finalDir = path.join(tempUploadDir, nipValue);
+      const finalFilePath = path.join(finalDir, filename);
+
+      if (!fs.existsSync(finalDir)) {
+        fs.mkdirSync(finalDir, { recursive: true });
+      }
+
+      fs.renameSync(tempFilePath, finalFilePath);
+      fileSikName = filename;
+    } else if (fields.fileSik_existing) {
+      fileSikName = getField(fields.fileSik_existing);
+    } else {
+      return res.status(400).json({ success: false, message: "File SIK & STR tidak ditemukan." });
     }
 
     // Upsert DataPribadi
@@ -95,6 +116,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         tanggalStr: new Date(getField(fields.tanggalStr)),
         noSip: getField(fields.noSip),
         tanggalSip: new Date(getField(fields.tanggalSip)),
+        fileSik: fileSikName,
       },
       create: {
         nip: nipValue,
@@ -104,6 +126,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         tanggalStr: new Date(getField(fields.tanggalStr)),
         noSip: getField(fields.noSip),
         tanggalSip: new Date(getField(fields.tanggalSip)),
+        fileSik: fileSikName,
       },
     });
 
@@ -115,7 +138,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         jurusan: getField(fields.jurusan),
         noIjazah: getField(fields.noIjazah),
         tanggalIjazah: new Date(getField(fields.tanggalIjazah)),
-        fileIjazah: savedFileName,
+        fileIjazah: fileIjazahName,
       },
       create: {
         nip: nipValue,
@@ -123,7 +146,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         jurusan: getField(fields.jurusan),
         noIjazah: getField(fields.noIjazah),
         tanggalIjazah: new Date(getField(fields.tanggalIjazah)),
-        fileIjazah: savedFileName,
+        fileIjazah: fileIjazahName,
       },
     });
 

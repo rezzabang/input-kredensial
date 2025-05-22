@@ -2306,6 +2306,7 @@ export namespace Prisma {
     tanggalStr: Date | null
     noSip: string | null
     tanggalSip: Date | null
+    fileSik: string | null
   }
 
   export type DataPekerjaanMaxAggregateOutputType = {
@@ -2316,6 +2317,7 @@ export namespace Prisma {
     tanggalStr: Date | null
     noSip: string | null
     tanggalSip: Date | null
+    fileSik: string | null
   }
 
   export type DataPekerjaanCountAggregateOutputType = {
@@ -2326,6 +2328,7 @@ export namespace Prisma {
     tanggalStr: number
     noSip: number
     tanggalSip: number
+    fileSik: number
     _all: number
   }
 
@@ -2338,6 +2341,7 @@ export namespace Prisma {
     tanggalStr?: true
     noSip?: true
     tanggalSip?: true
+    fileSik?: true
   }
 
   export type DataPekerjaanMaxAggregateInputType = {
@@ -2348,6 +2352,7 @@ export namespace Prisma {
     tanggalStr?: true
     noSip?: true
     tanggalSip?: true
+    fileSik?: true
   }
 
   export type DataPekerjaanCountAggregateInputType = {
@@ -2358,6 +2363,7 @@ export namespace Prisma {
     tanggalStr?: true
     noSip?: true
     tanggalSip?: true
+    fileSik?: true
     _all?: true
   }
 
@@ -2441,6 +2447,7 @@ export namespace Prisma {
     tanggalStr: Date
     noSip: string
     tanggalSip: Date
+    fileSik: string | null
     _count: DataPekerjaanCountAggregateOutputType | null
     _min: DataPekerjaanMinAggregateOutputType | null
     _max: DataPekerjaanMaxAggregateOutputType | null
@@ -2468,6 +2475,7 @@ export namespace Prisma {
     tanggalStr?: boolean
     noSip?: boolean
     tanggalSip?: boolean
+    fileSik?: boolean
     datapribadi?: boolean | DatapribadiDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["dataPekerjaan"]>
 
@@ -2481,9 +2489,10 @@ export namespace Prisma {
     tanggalStr?: boolean
     noSip?: boolean
     tanggalSip?: boolean
+    fileSik?: boolean
   }
 
-  export type DataPekerjaanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nip" | "namaTempatBekerja" | "alamatPekerjaan" | "noStr" | "tanggalStr" | "noSip" | "tanggalSip", ExtArgs["result"]["dataPekerjaan"]>
+  export type DataPekerjaanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nip" | "namaTempatBekerja" | "alamatPekerjaan" | "noStr" | "tanggalStr" | "noSip" | "tanggalSip" | "fileSik", ExtArgs["result"]["dataPekerjaan"]>
   export type DataPekerjaanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     datapribadi?: boolean | DatapribadiDefaultArgs<ExtArgs>
   }
@@ -2501,6 +2510,7 @@ export namespace Prisma {
       tanggalStr: Date
       noSip: string
       tanggalSip: Date
+      fileSik: string | null
     }, ExtArgs["result"]["dataPekerjaan"]>
     composites: {}
   }
@@ -2878,6 +2888,7 @@ export namespace Prisma {
     readonly tanggalStr: FieldRef<"DataPekerjaan", 'DateTime'>
     readonly noSip: FieldRef<"DataPekerjaan", 'String'>
     readonly tanggalSip: FieldRef<"DataPekerjaan", 'DateTime'>
+    readonly fileSik: FieldRef<"DataPekerjaan", 'String'>
   }
     
 
@@ -6069,7 +6080,8 @@ export namespace Prisma {
     noStr: 'noStr',
     tanggalStr: 'tanggalStr',
     noSip: 'noSip',
-    tanggalSip: 'tanggalSip'
+    tanggalSip: 'tanggalSip',
+    fileSik: 'fileSik'
   };
 
   export type DataPekerjaanScalarFieldEnum = (typeof DataPekerjaanScalarFieldEnum)[keyof typeof DataPekerjaanScalarFieldEnum]
@@ -6127,23 +6139,24 @@ export namespace Prisma {
   export type DatapribadiOrderByRelevanceFieldEnum = (typeof DatapribadiOrderByRelevanceFieldEnum)[keyof typeof DatapribadiOrderByRelevanceFieldEnum]
 
 
-  export const DataPekerjaanOrderByRelevanceFieldEnum: {
-    nip: 'nip',
-    namaTempatBekerja: 'namaTempatBekerja',
-    alamatPekerjaan: 'alamatPekerjaan',
-    noStr: 'noStr',
-    noSip: 'noSip'
-  };
-
-  export type DataPekerjaanOrderByRelevanceFieldEnum = (typeof DataPekerjaanOrderByRelevanceFieldEnum)[keyof typeof DataPekerjaanOrderByRelevanceFieldEnum]
-
-
   export const NullsOrder: {
     first: 'first',
     last: 'last'
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const DataPekerjaanOrderByRelevanceFieldEnum: {
+    nip: 'nip',
+    namaTempatBekerja: 'namaTempatBekerja',
+    alamatPekerjaan: 'alamatPekerjaan',
+    noStr: 'noStr',
+    noSip: 'noSip',
+    fileSik: 'fileSik'
+  };
+
+  export type DataPekerjaanOrderByRelevanceFieldEnum = (typeof DataPekerjaanOrderByRelevanceFieldEnum)[keyof typeof DataPekerjaanOrderByRelevanceFieldEnum]
 
 
   export const DataPendidikanOrderByRelevanceFieldEnum: {
@@ -6293,6 +6306,7 @@ export namespace Prisma {
     tanggalStr?: DateTimeFilter<"DataPekerjaan"> | Date | string
     noSip?: StringFilter<"DataPekerjaan"> | string
     tanggalSip?: DateTimeFilter<"DataPekerjaan"> | Date | string
+    fileSik?: StringNullableFilter<"DataPekerjaan"> | string | null
     datapribadi?: XOR<DatapribadiScalarRelationFilter, DatapribadiWhereInput>
   }
 
@@ -6304,6 +6318,7 @@ export namespace Prisma {
     tanggalStr?: SortOrder
     noSip?: SortOrder
     tanggalSip?: SortOrder
+    fileSik?: SortOrderInput | SortOrder
     datapribadi?: DatapribadiOrderByWithRelationInput
     _relevance?: DataPekerjaanOrderByRelevanceInput
   }
@@ -6319,6 +6334,7 @@ export namespace Prisma {
     tanggalStr?: DateTimeFilter<"DataPekerjaan"> | Date | string
     noSip?: StringFilter<"DataPekerjaan"> | string
     tanggalSip?: DateTimeFilter<"DataPekerjaan"> | Date | string
+    fileSik?: StringNullableFilter<"DataPekerjaan"> | string | null
     datapribadi?: XOR<DatapribadiScalarRelationFilter, DatapribadiWhereInput>
   }, "nip">
 
@@ -6330,6 +6346,7 @@ export namespace Prisma {
     tanggalStr?: SortOrder
     noSip?: SortOrder
     tanggalSip?: SortOrder
+    fileSik?: SortOrderInput | SortOrder
     _count?: DataPekerjaanCountOrderByAggregateInput
     _max?: DataPekerjaanMaxOrderByAggregateInput
     _min?: DataPekerjaanMinOrderByAggregateInput
@@ -6346,6 +6363,7 @@ export namespace Prisma {
     tanggalStr?: DateTimeWithAggregatesFilter<"DataPekerjaan"> | Date | string
     noSip?: StringWithAggregatesFilter<"DataPekerjaan"> | string
     tanggalSip?: DateTimeWithAggregatesFilter<"DataPekerjaan"> | Date | string
+    fileSik?: StringNullableWithAggregatesFilter<"DataPekerjaan"> | string | null
   }
 
   export type DataPendidikanWhereInput = {
@@ -6606,6 +6624,7 @@ export namespace Prisma {
     tanggalStr: Date | string
     noSip: string
     tanggalSip: Date | string
+    fileSik?: string | null
     datapribadi: DatapribadiCreateNestedOneWithoutPekerjaanInput
   }
 
@@ -6617,6 +6636,7 @@ export namespace Prisma {
     tanggalStr: Date | string
     noSip: string
     tanggalSip: Date | string
+    fileSik?: string | null
   }
 
   export type DataPekerjaanUpdateInput = {
@@ -6626,6 +6646,7 @@ export namespace Prisma {
     tanggalStr?: DateTimeFieldUpdateOperationsInput | Date | string
     noSip?: StringFieldUpdateOperationsInput | string
     tanggalSip?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileSik?: NullableStringFieldUpdateOperationsInput | string | null
     datapribadi?: DatapribadiUpdateOneRequiredWithoutPekerjaanNestedInput
   }
 
@@ -6637,6 +6658,7 @@ export namespace Prisma {
     tanggalStr?: DateTimeFieldUpdateOperationsInput | Date | string
     noSip?: StringFieldUpdateOperationsInput | string
     tanggalSip?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileSik?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DataPekerjaanCreateManyInput = {
@@ -6647,6 +6669,7 @@ export namespace Prisma {
     tanggalStr: Date | string
     noSip: string
     tanggalSip: Date | string
+    fileSik?: string | null
   }
 
   export type DataPekerjaanUpdateManyMutationInput = {
@@ -6656,6 +6679,7 @@ export namespace Prisma {
     tanggalStr?: DateTimeFieldUpdateOperationsInput | Date | string
     noSip?: StringFieldUpdateOperationsInput | string
     tanggalSip?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileSik?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DataPekerjaanUncheckedUpdateManyInput = {
@@ -6666,6 +6690,7 @@ export namespace Prisma {
     tanggalStr?: DateTimeFieldUpdateOperationsInput | Date | string
     noSip?: StringFieldUpdateOperationsInput | string
     tanggalSip?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileSik?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DataPendidikanCreateInput = {
@@ -6940,9 +6965,29 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type DatapribadiScalarRelationFilter = {
     is?: DatapribadiWhereInput
     isNot?: DatapribadiWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type DataPekerjaanOrderByRelevanceInput = {
@@ -6959,6 +7004,7 @@ export namespace Prisma {
     tanggalStr?: SortOrder
     noSip?: SortOrder
     tanggalSip?: SortOrder
+    fileSik?: SortOrder
   }
 
   export type DataPekerjaanMaxOrderByAggregateInput = {
@@ -6969,6 +7015,7 @@ export namespace Prisma {
     tanggalStr?: SortOrder
     noSip?: SortOrder
     tanggalSip?: SortOrder
+    fileSik?: SortOrder
   }
 
   export type DataPekerjaanMinOrderByAggregateInput = {
@@ -6979,9 +7026,10 @@ export namespace Prisma {
     tanggalStr?: SortOrder
     noSip?: SortOrder
     tanggalSip?: SortOrder
+    fileSik?: SortOrder
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
     notIn?: string[] | null
@@ -6993,12 +7041,10 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type DataPendidikanOrderByRelevanceInput = {
@@ -7032,24 +7078,6 @@ export namespace Prisma {
     noIjazah?: SortOrder
     tanggalIjazah?: SortOrder
     fileIjazah?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type KompetensiOrderByRelevanceInput = {
@@ -7233,6 +7261,10 @@ export namespace Prisma {
     connect?: DatapribadiWhereUniqueInput
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type DatapribadiUpdateOneRequiredWithoutPekerjaanNestedInput = {
     create?: XOR<DatapribadiCreateWithoutPekerjaanInput, DatapribadiUncheckedCreateWithoutPekerjaanInput>
     connectOrCreate?: DatapribadiCreateOrConnectWithoutPekerjaanInput
@@ -7245,10 +7277,6 @@ export namespace Prisma {
     create?: XOR<DatapribadiCreateWithoutPendidikanInput, DatapribadiUncheckedCreateWithoutPendidikanInput>
     connectOrCreate?: DatapribadiCreateOrConnectWithoutPendidikanInput
     connect?: DatapribadiWhereUniqueInput
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type DatapribadiUpdateOneRequiredWithoutPendidikanNestedInput = {
@@ -7449,6 +7477,7 @@ export namespace Prisma {
     tanggalStr: Date | string
     noSip: string
     tanggalSip: Date | string
+    fileSik?: string | null
   }
 
   export type DataPekerjaanUncheckedCreateWithoutDatapribadiInput = {
@@ -7458,6 +7487,7 @@ export namespace Prisma {
     tanggalStr: Date | string
     noSip: string
     tanggalSip: Date | string
+    fileSik?: string | null
   }
 
   export type DataPekerjaanCreateOrConnectWithoutDatapribadiInput = {
@@ -7524,6 +7554,7 @@ export namespace Prisma {
     tanggalStr?: DateTimeFieldUpdateOperationsInput | Date | string
     noSip?: StringFieldUpdateOperationsInput | string
     tanggalSip?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileSik?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DataPekerjaanUncheckedUpdateWithoutDatapribadiInput = {
@@ -7533,6 +7564,7 @@ export namespace Prisma {
     tanggalStr?: DateTimeFieldUpdateOperationsInput | Date | string
     noSip?: StringFieldUpdateOperationsInput | string
     tanggalSip?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileSik?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DataPendidikanUpsertWithoutDatapribadiInput = {

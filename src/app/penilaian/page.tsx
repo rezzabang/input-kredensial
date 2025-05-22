@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Table, message } from 'antd';
-import type { TableProps } from 'antd';
 import ExpandedKompetensiTable from '../component/ExpandedKompetensiTable'; // Adjust the path as needed
 
 interface DatapribadiItem {

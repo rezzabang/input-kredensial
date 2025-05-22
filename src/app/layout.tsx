@@ -10,6 +10,7 @@ import {
   BookOutlined,
   UserOutlined,
   FileSearchOutlined,
+  UnorderedListOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, theme, Skeleton } from 'antd';
 import Link from 'next/link';
@@ -43,9 +44,22 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
   return (
     <AntdRegistry>
       <html lang="id">
+        <title>Kredensial Rekmed</title>
         <body>
-          <Layout>
-            <Sider trigger={null} collapsible collapsed={collapsed}>
+          <Layout style={{ minHeight: '100vh' }}>
+            {/* Fixed Sidebar */}
+            <Sider
+              trigger={null}
+              collapsible
+              collapsed={collapsed}
+              style={{
+                position: 'fixed',
+                height: '100vh',
+                left: 0,
+                overflow: 'hidden',
+              }}
+            >
+              {/* Sidebar content */}
               <div
                 className="logo-vertical"
                 style={{
@@ -76,41 +90,23 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
                   />
                 )}
               </div>
-
               <Menu
                 theme="dark"
                 mode="inline"
                 defaultSelectedKeys={['1']}
                 items={[
-                  {
-                    key: '1',
-                    icon: <HomeOutlined />,
-                    label: <Link href="/">Beranda</Link>,
-                  },
-                  {
-                    key: '2',
-                    icon: <UserOutlined />,
-                    label: <Link href="/data-pribadi">Data Pribadi</Link>,
-                  },
-                  {
-                    key: '3',
-                    icon: <FileSearchOutlined />,
-                    label: <Link href="/asesmen-mandiri">Asesmen Mandiri</Link>,
-                  },
-                  {
-                    key: '4',
-                    icon: <BookOutlined />,
-                    label: <Link href="/exam">Ujian Tulis</Link>,
-                  },
-                  {
-                    key: '5',
-                    icon: <FileDoneOutlined />,
-                    label: <Link href="/penilaian">Penilaian</Link>,
-                  },
+                  { key: '1', icon: <HomeOutlined />, label: <Link href="/">Beranda</Link> },
+                  { key: '2', icon: <UserOutlined />, label: <Link href="/data-pribadi">Data Pribadi</Link> },
+                  { key: '3', icon: <FileSearchOutlined />, label: <Link href="/asesmen-mandiri">Asesmen Mandiri</Link> },
+                  { key: '4', icon: <BookOutlined />, label: <Link href="/exam">Ujian Tulis</Link> },
+                  { key: '5', icon: <FileDoneOutlined />, label: <Link href="/penilaian">Penilaian</Link> },
+                  { key: '6', icon: <UnorderedListOutlined />, label: <Link href="/kompetensi">Kompetensi</Link> },
                 ]}
               />
             </Sider>
-            <Layout style={{ minHeight: '100vh' }}>
+
+            {/* Main Content */}
+            <Layout style={{ marginLeft: collapsed ? '80px' : '200px' }}>
               <Content
                 style={{
                   margin: '24px 16px',
@@ -120,11 +116,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
                   borderRadius: borderRadiusLG,
                 }}
               >
-                {loading ? (
-                  <Skeleton active paragraph={{ rows: 10 }} />
-                ) : (
-                  children
-                )}
+                {loading ? <Skeleton active paragraph={{ rows: 10 }} /> : children}
               </Content>
             </Layout>
           </Layout>

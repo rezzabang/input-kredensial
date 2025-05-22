@@ -38,6 +38,14 @@ const CariDataAll = ({ form }) => {
         tanggalStr: data.pekerjaan?.tanggalStr ? dayjs(data.pekerjaan.tanggalStr) : null,
         noSip: data.pekerjaan?.noSip,
         tanggalSip: data.pekerjaan?.tanggalSip ? dayjs(data.pekerjaan.tanggalSip) : null,
+        fileSik: data.pekerjaan?.fileSik
+          ? [{
+              uid: '-1',
+              name: data.pekerjaan.fileSik,
+              status: 'done',
+              url: `/uploads/${data.nip}/${data.pekerjaan.fileSik}`,
+            }]
+          : [],
         universitas: data.pendidikan?.universitas,
         jurusan: data.pendidikan?.jurusan,
         noIjazah: data.pendidikan?.noIjazah,
