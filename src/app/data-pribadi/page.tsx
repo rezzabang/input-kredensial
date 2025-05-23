@@ -62,6 +62,14 @@ const Cek = () => {
         formData.append("fileIjazah_existing", fileItem.name); // backend harus handle ini
       }
 
+      const fileAiteme = values.fileStr?.[0];
+      if (fileAiteme?.originFileObj) {
+        // Jika user mengupload file baru
+        formData.append("fileStr", fileAiteme.originFileObj);
+      } else if (fileAiteme?.url) {
+        // Jika file lama tidak diubah, bisa kirim nama file saja (optional)
+        formData.append("fileStr_existing", fileAiteme.name); // backend harus handle ini
+      }
       const fileAitem = values.fileSik?.[0];
       if (fileAitem?.originFileObj) {
         // Jika user mengupload file baru

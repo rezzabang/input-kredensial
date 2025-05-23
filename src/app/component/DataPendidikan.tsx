@@ -32,7 +32,7 @@ const DataPendidikan = ({ form }) => {
       showDownloadIcon: true,
     },
     listType: 'text',
-    onRemove: async (fileIjazah) => {
+    onRemove: async (file) => {
       const nip = form.getFieldValue('nip'); // ← you need `form` here
       if (!nip) {
         message.error('NIP tidak ditemukan. Tidak bisa hapus file.');
@@ -55,7 +55,7 @@ const DataPendidikan = ({ form }) => {
           return false; // keep file in UI
         }
       } catch (err) {
-        message.error('Terjadi kesalahan saat menghapus file ijazah.');
+        message.error(err + 'Terjadi kesalahan saat menghapus file ijazah.');
         return false; // keep file in UI
       }
     },

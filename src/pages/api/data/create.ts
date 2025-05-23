@@ -40,6 +40,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const nipValue = getField(fields.nip);
     let fileIjazahName = "";
+    let fileStrName = "";
     let fileSikName = "";
 
     const fileIjazahObj = files.fileIjazah?.[0];
@@ -79,7 +80,27 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     } else if (fields.fileSik_existing) {
       fileSikName = getField(fields.fileSik_existing);
     } else {
-      return res.status(400).json({ success: false, message: "File SIK & STR tidak ditemukan." });
+      return res.status(400).json({ success: false, message: "File SIK tidak ditemukan." });
+    }
+
+    const fileStrObj = files.fileStr?.[0];
+
+    if (fileStrObj) {
+      const filename = fileStrObj.newFilename;
+      const tempFilePath = fileStrObj.filepath;
+      const finalDir = path.join(tempUploadDir, nipValue);
+      const finalFilePath = path.join(finalDir, filename);
+
+      if (!fs.existsSync(finalDir)) {
+        fs.mkdirSync(finalDir, { recursive: true });
+      }
+
+      fs.renameSync(tempFilePath, finalFilePath);
+      fileStrName = filename;
+    } else if (fields.fileStr_existing) {
+      fileStrName = getField(fields.fileStr_existing);
+    } else {
+      return res.status(400).json({ success: false, message: "File STR tidak ditemukan." });
     }
 
     // Upsert DataPribadi
@@ -116,6 +137,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         tanggalStr: new Date(getField(fields.tanggalStr)),
         noSip: getField(fields.noSip),
         tanggalSip: new Date(getField(fields.tanggalSip)),
+        fileStr: fileStrName,
         fileSik: fileSikName,
       },
       create: {
@@ -126,6 +148,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         tanggalStr: new Date(getField(fields.tanggalStr)),
         noSip: getField(fields.noSip),
         tanggalSip: new Date(getField(fields.tanggalSip)),
+        fileStr: fileStrName,
         fileSik: fileSikName,
       },
     });

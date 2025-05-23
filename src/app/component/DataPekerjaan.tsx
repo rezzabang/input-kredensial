@@ -10,6 +10,12 @@ const normFilesik = (e: UploadChangeParam<UploadFile> | UploadFile[]): UploadFil
   }
   return e?.fileList || [];
 };
+const normFilestr = (e: UploadChangeParam<UploadFile> | UploadFile[]): UploadFile[] => {
+  if (Array.isArray(e)) {
+    return e;
+  }
+  return e?.fileList || [];
+};
 
 const DataPekerjaan = ({ form }) => {
 
@@ -19,24 +25,65 @@ const DataPekerjaan = ({ form }) => {
     setHydrated(true);
   }, []);
 
-    const uploadProps: UploadProps = {
-    beforeUpload: (fileSik) => {
-      const isPDF = fileSik.type === 'application/pdf';
+  const uploadPropsStr: UploadProps = {
+    beforeUpload: (file) => {
+      const isPDF = file.type === 'application/pdf';
       if (!isPDF) {
-        message.error(`${fileSik.name} bukan SikfileSik PDF`);
+        message.error(`${file.name} bukan file PDF`);
       }
       return isPDF || Upload.LIST_IGNORE;
     },
-    maxCount: 2,
+    maxCount: 1,
     showUploadList: {
       showRemoveIcon: true,
       showDownloadIcon: true,
     },
     listType: 'text',
-    onRemove: async (fileSik) => {
+    onRemove: async (file) => {
       const nip = form.getFieldValue('nip');
       if (!nip) {
-        message.error('NIP tidak ditemukan. Tidak bisa hapus SikfileSik.');
+        message.error('NIP tidak ditemukan. Tidak bisa hapus file STR.');
+        return false;
+      }
+
+      try {
+        const res = await fetch(`/api/data/delete-str/${nip}`, {
+          method: 'DELETE',
+        });
+        const json = await res.json();
+        if (json.success) {
+          message.success('File STR berhasil dihapus');
+          form.setFieldsValue({ fileStr: [] });
+          return true;
+        } else {
+          message.error(json.message || 'Gagal menghapus file STR');
+          return false;
+        }
+      } catch (err) {
+        message.error(err + 'Terjadi kesalahan saat menghapus file STR');
+        return false;
+      }
+    },
+  };
+
+  const uploadPropsSik: UploadProps = {
+    beforeUpload: (file) => {
+      const isPDF = file.type === 'application/pdf';
+      if (!isPDF) {
+        message.error(`${file.name} bukan file PDF`);
+      }
+      return isPDF || Upload.LIST_IGNORE;
+    },
+    maxCount: 1,
+    showUploadList: {
+      showRemoveIcon: true,
+      showDownloadIcon: true,
+    },
+    listType: 'text',
+    onRemove: async (file) => {
+      const nip = form.getFieldValue('nip');
+      if (!nip) {
+        message.error('NIP tidak ditemukan. Tidak bisa hapus file SIK.');
         return false;
       }
 
@@ -44,20 +91,18 @@ const DataPekerjaan = ({ form }) => {
         const res = await fetch(`/api/data/delete-sik/${nip}`, {
           method: 'DELETE',
         });
-
         const json = await res.json();
-
         if (json.success) {
-          message.success('File berhasil dihapus');
-          form.setFieldsValue({ fileSip: [] });
-          return true; // remove from UI
+          message.success('File SIK berhasil dihapus');
+          form.setFieldsValue({ fileSik: [] });
+          return true;
         } else {
-          message.error(json.message || 'Gagal menghapus file');
-          return false; // keep file in UI
+          message.error(json.message || 'Gagal menghapus file SIK');
+          return false;
         }
       } catch (err) {
-        message.error('Terjadi kesalahan saat menghapus file');
-        return false; // keep file in UI
+        message.error(err + 'Terjadi kesalahan saat menghapus file SIK');
+        return false;
       }
     },
   };
@@ -106,7 +151,18 @@ const DataPekerjaan = ({ form }) => {
         <DatePicker placeholder="Pilih Tanggal" style={{ width: '100%' }} />
       </Form.Item>
       <Form.Item
-        label="Nomor SIP"
+        label="Upload STR"
+        name="fileStr"
+        rules={[{ required: true, message: 'Mohon upload file STR!' }]}
+        valuePropName="fileList"
+        getValueFromEvent={normFilestr}
+      >
+        <Upload {...uploadPropsStr}>
+          <Button icon={<UploadOutlined />}>File STR</Button>
+        </Upload>
+      </Form.Item>
+      <Form.Item
+        label="Nomor SIK"
         name="noSip"
         rules={[
           { required: true, message: 'Nomor SIP mohon untuk diisi!' },
@@ -115,7 +171,7 @@ const DataPekerjaan = ({ form }) => {
         <Input placeholder='Perizinan/xxxx/xxxx'/>
       </Form.Item>
       <Form.Item
-        label="Tanggal Berakhir SIP"
+        label="Tanggal Berakhir SIK"
         name="tanggalSip"
         rules={[
           { required: true, message: 'Tanggal Berakhir SIP mohon untuk diisi!' },
@@ -124,14 +180,14 @@ const DataPekerjaan = ({ form }) => {
         <DatePicker placeholder="Pilih Tanggal" style={{ width: '100%' }} />
       </Form.Item>
       <Form.Item
-        label="Upload SIK & STR"
+        label="Upload SIK"
         name="fileSik"
         rules={[{ required: true, message: 'Mohon upload file SIK!' }]}
         valuePropName="fileList"
         getValueFromEvent={normFilesik}
       >
-        <Upload {...uploadProps}>
-          <Button icon={<UploadOutlined />}>File SIK & STR</Button>
+        <Upload {...uploadPropsSik}>
+          <Button icon={<UploadOutlined />}>File SIK</Button>
         </Upload>
       </Form.Item>
     </>

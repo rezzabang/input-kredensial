@@ -36,6 +36,14 @@ const CariDataAll = ({ form }) => {
         alamatPekerjaan: data.pekerjaan?.alamatPekerjaan,
         noStr: data.pekerjaan?.noStr,
         tanggalStr: data.pekerjaan?.tanggalStr ? dayjs(data.pekerjaan.tanggalStr) : null,
+        fileStr: data.pekerjaan?.fileStr
+          ? [{
+              uid: '-1',
+              name: data.pekerjaan.fileStr,
+              status: 'done',
+              url: `/uploads/${data.nip}/${data.pekerjaan.fileStr}`,
+            }]
+          : [],
         noSip: data.pekerjaan?.noSip,
         tanggalSip: data.pekerjaan?.tanggalSip ? dayjs(data.pekerjaan.tanggalSip) : null,
         fileSik: data.pekerjaan?.fileSik
@@ -62,7 +70,7 @@ const CariDataAll = ({ form }) => {
 
       message.success('Data berhasil dimuat!');
     } catch (err) {
-      message.error('Terjadi kesalahan saat memuat data.');
+      message.error(err + 'Terjadi kesalahan saat memuat data.');
     }
   };
 

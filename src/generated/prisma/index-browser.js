@@ -139,6 +139,7 @@ exports.Prisma.DataPekerjaanScalarFieldEnum = {
   tanggalStr: 'tanggalStr',
   noSip: 'noSip',
   tanggalSip: 'tanggalSip',
+  fileStr: 'fileStr',
   fileSik: 'fileSik'
 };
 
@@ -190,6 +191,7 @@ exports.Prisma.DataPekerjaanOrderByRelevanceFieldEnum = {
   alamatPekerjaan: 'alamatPekerjaan',
   noStr: 'noStr',
   noSip: 'noSip',
+  fileStr: 'fileStr',
   fileSik: 'fileSik'
 };
 

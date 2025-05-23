@@ -37,6 +37,7 @@ model DataPekerjaan {
   tanggalStr        DateTime
   noSip             String
   tanggalSip        DateTime
+  fileStr           String?
   fileSik           String?
 
   datapribadi Datapribadi @relation(fields: [nip], references: [nip], onDelete: Cascade)
